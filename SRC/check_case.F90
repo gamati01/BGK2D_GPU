@@ -145,7 +145,7 @@
        endif
 #endif
 !
-#ifdef CHECK1
+#ifdef TRICK1
        write(6,*) "WARNING: square box mandatory (TRICK1)!"
        if(l.ne.m) then
           write(6,*) "ERROR: box not squared (TRICK1)!"
