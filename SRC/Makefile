@@ -69,19 +69,16 @@ ifdef DGX
 endif
 #
 ifdef NV
- SCC = pgcc
- SFC = pgf90
+ SCC = nvcc
+ SFC = nvfortran
  CC = mpicc
  FC = mpifort
 # FC = mpipgifort
  OPENMP = -mp
- OPENACC = -acc -Minfo=acc -ta=tesla:$(CUDA),managed
- OPENACC = -acc -Minfo=acc -ta=tesla:$(CUDA)
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
- OPENACC = -acc -Minfo=acc -ta=tesla:$(CUDA)
  FIX = -DPGI 
- FOPT = -fast -Mnodepchk  -Mcontiguous
- COPT = -fast 
+ FOPT = -O3 -Mnodepchk  -Mcontiguous
+ COPT = -O3 
  OPT = -O3  -Mnodepchk  -Mcontiguous
 endif
 #
