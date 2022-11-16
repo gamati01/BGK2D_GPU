@@ -55,6 +55,43 @@
 !
        force =  u00/(6.0)
 !
+#ifdef TRICK1
+! it is correct only if l=m
+
+#ifdef OFFLOAD
+!$OMP target teams distribute parallel do simd 
+        do j=1,m
+#else
+        do concurrent (j=1:m)
+#endif
+! front (x = l)
+           a12(l1,j-1) = a01(l,j)
+           a10(l1,j+1) = a03(l,j)
+           a14(l1,j  ) = a05(l,j)
+
+! rear (x = 0)
+           a03(0,j-1) = a10(1,j)
+           a01(0,j+1) = a12(1,j)
+           a05(0,j  ) = a14(1,j)
+
+! left (y = 0)
+           a08(j  ,0)  = a17(j,1)
+           a12(j+1,0)  = a01(j,1)
+           a03(j-1,0)  = a10(j,1)
+
+! right (y = m) lid-wall
+           a10(j+1,m1) = a03(j,m) - force
+           a17(j  ,m1) = a08(j,m)
+           a01(j-1,m1) = a12(j,m) + force
+
+        end do
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#endif
+
+
+
+#else
 
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
@@ -94,6 +131,7 @@
         enddo
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
+#endif
 #endif
 !
 ! stop timing

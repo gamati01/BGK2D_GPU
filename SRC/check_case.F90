@@ -145,6 +145,13 @@
        endif
 #endif
 !
+#ifdef CHECK1
+       write(6,*) "WARNING: square box mandatory (TRICK1)!"
+       if(l.ne.m) then
+          write(6,*) "ERROR: box not squared (TRICK1)!"
+          stop
+       endif
+#endif
        return
 !
         end subroutine check_case
