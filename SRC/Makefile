@@ -6,14 +6,13 @@
 #
 # 	1) ...
 #	2) ....
-#		Intel/AMD
 #
 #----------------------------------------------
 # targets:
 #
-#		serial ---> serial code
-#		openmp ---> openmp
-#		openacc ---> openacc
+#		deault ---> GPU code with do concurrent
+#		            (nvfortran)
+#		offload ---> GPU code with openmp offload
 # 
 # flags
 #----------------------------------------------
@@ -22,115 +21,31 @@ DATE = $(shell date +%d%m%y)
 FINE = "********** Fine Compilazione *********"
 #----------------------------------------------
 #
-# generic option
-FOPT = -O3
+# default (nvfortran)
+SCC = nvcc
+SFC = nvfortran
+CC = mpicc
+FC = mpifort
+OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
+DC  = -DPGI -stdpar=gpu
+FOPT = -O3 -Mnodepchk  -Mcontiguous
 COPT = -O3
-OPT = -O3
-CUDA = cc70
-OPENMP = -qopenmp
-#
-# generic compiler
-SCC = icc
-SFC = ifort 
-#
-# option for AMD with intel compiler (from prace doc)
-ifdef AMD
- CC = mpiicc
- FC = mpiifort 
- SCC = icc
- OPENMP = -qopenmp
- SFC = ifort -march=core-avx2 -align array64byte -fma -ftz 
-endif
-#
-ifdef MI100
- SFC = /home/userinternal/sorland2/gcc-install-omp11/bin/gfortran
- SCC = /home/userinternal/sorland2/gcc-install-omp11/bin/gcc
- OPENMP = -fopenmp
- OPENACC = -fopenacc -foffload=-march=gfx908 
- FOPT = -Ofast -ftree-vectorize
- FOPT = -ftree-loop-distribution -fopenmp-simd -ftree-vectorize -fvect-cost-model=unlimited -march=native -mtune=native -Ofast
- COPT = 
- OPT = -Ofast -ftree-vectorize
-endif
-#
-ifdef DGX
- SCC = nvcc
- SFC = nvfortran
- CC = mpicc
- FC = mpifort
- FIX = -DPGI -Minfo
- OPENMP = -mp
- OPENACC = -acc -Minfo=acc -ta=tesla:cc80,managed
- OPENACC = -acc -Minfo=acc -ta=tesla:cc80
- FOPT = -fast -Mnodepchk 
- FOPT = -fast -Mnodepchk -Mcontiguous
- COPT = 
- OPT = -fast -Mnodepchk
-endif
-#
-ifdef NV
- SCC = nvcc
- SFC = nvfortran
- CC = mpicc
- FC = mpifort
-# FC = mpipgifort
- OPENMP = -mp
- OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
- FIX = -DPGI 
- FOPT = -O3 -Mnodepchk  -Mcontiguous
- COPT = -O3 
- OPT = -O3  -Mnodepchk  -Mcontiguous
-endif
-#
-ifdef FUGAKU
- SFC = frtpx
- SCC = FCCpx
- FC = mpifrtpx
- CC = mpiFCCpx
-endif
+OPT  = -O3  -Mnodepchk  -Mcontiguous
 #
 ifdef GNU
  CC = mpicc
  FC = mpif90
  SFC = gfortran 
  SCC = gcc 
- OPENMP = -fopenmp
- OPENACC = -fopenacc
-# DGX...
- OPENACC = -fopenacc -foffload=-misa=sm_35
- OPENACC = -fopenacc -foffload=nvptx-none
  OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
  FOPT =  -O3
-# FOPT = -ftree-vectorize -Ofast
-# FOPT = -ftree-loop-distribution -fopenmp-simd -ftree-vectorize -fvect-cost-model=unlimited -mtune=native -Ofast
  COPT =  -O3
  OPT =   -O3
-endif
-#
-ifdef ARM
- CC = mpicc
- FC = mpif90
- SFC = armflang
- SCC = armclang
-# CC = gcc
-# FC = gfortran
-# SFC = gfortran
-# SCC = gcc
-# FOPT = -O3 -mcpu=native  -march=armv8-a+sve 
- FOPT = -Ofast -fno-stack-arrays -mcpu=native
- LIB = -L/opt/arm/gcc-8.2.0_Generic-AArch64_RHEL-7_aarch64-linux/lib64/
-# FOPT = -Ofast -march=armv8-a+sve
 endif
 #
 ifdef BDW
  FOPT = -O3 -xCORE-AVX2 
  COPT = -O3 -xCORE-AVX2
- OPENMP = -qopenmp
-endif
-#
-ifdef KNL
- FOPT = -O3 -xMIC-AVX512 -qopt-prefetch=5 
- COPT = -O3 -xMIC-AVX512 -qopt-prefetch=5
  OPENMP = -qopenmp
 endif
 #
@@ -146,7 +61,6 @@ endif
 ifdef PWR
  SCC = xlc_r  
  SFC = xlf_r 
- OPENMP = -qsmp=omp
  OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
  FIX = -DPGI
  FOPT = -O3 -qassert=contig
@@ -154,31 +68,10 @@ ifdef PWR
  OPT = -O3 -qassert=contig
 endif
 #
-
-ifdef A100
- CUDA = cc80
-endif
-#
-#
 ifdef DOUBLE
  DBL = -DDOUBLE_P
 endif
 #
-ifdef COMM
- COMM1 = -DNOBLOCK
-else
- COMM1 = -DSENDRECV
-endif
-#
-ifdef IOMPI
- FIX = -DMPIIO
-endif
-#
-ifdef IOHDF5
- FIX =
-endif
-# include file
-INC = 
 #----------------------------------------------
 # module
 MOD0 = get_mem_mod.o \
@@ -241,35 +134,12 @@ OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 
 #----------------------------------------------
 #
-all: VER := serial
-all: FC := $(SFC)
+all: VER := doconcurrent
+all: FC := $(SFC) 
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x 
+	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x 
 	@echo $(FINE)
-
-#----------------------------------------------
-openacc: FC := $(SFC)
-openacc: CC := $(SCC)
-# gnu stuff
-#openacc: FOPT += $(OPENACC) -Ofast -ftree-vectorize
-#openacc: OPT  += $(OPENACC) -Ofast -ftree-vectorize
-openacc: FOPT += $(OPENACC) 
-openacc: OPT  += $(OPENACC) 
-openacc: VER = openacc
-openacc: FINE = "Under development: works only with pgi/gnu compiler!!!"
-openacc: $(MOD0) $(MOD1) $(OBJ) $(OBJ5)
-	$(FC) $(OPT) $(DBL) $(MOD1) $(OBJ) $(OBJ5) $(TRY) $(FIX) -o ../RUN/bgk2d.openacc.x
-	@echo $(FINE)
-
-#----------------------------------------------
-openmp: FOPT += $(OPENMP)
-openmp: OPT  += $(OPENMP) 
-openmp: VER := openmp
-openmp: FC := $(SFC)
-openmp: CC := $(SCC)
-openmp: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x 
 
 #----------------------------------------------
 offload: FOPT += $(OFFLOAD)
@@ -277,8 +147,15 @@ offload: OPT  += $(OFFLOAD)
 offload: VER := offload
 offload: FC := $(SFC)
 offload: CC := $(SCC)
-offload: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
+offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+
+#----------------------------------------------
+serial: VER:= serial
+serial: FC := $(SFC)
+serial: CC := $(SCC)
+serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -DSERIAL -o ../RUN/bgk2d.$(VER).x
 
 
 %.o %.mod: $(INC) %.f90

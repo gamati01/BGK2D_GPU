@@ -102,27 +102,20 @@
          write(6,*) " Uniform LBE...          "
 ! 
 ! implementation
-#ifdef FLIPFLOP
-         write(6,*) " Implementation: FLIPFLOP"
-#else
-# ifdef FUSED
+#ifdef FUSED
          write(6,*) " Implementation: FUSED   "
-# else
+#else
          write(6,*) " Implementation: ORIGINAL"
-# endif
 #endif
 ! 
 ! parallelization
-#ifdef _OPENACC
-         write(6,*) " Parallelization: OpenACC"
-#else
-# ifdef _OPENMP
-         write(6,*) " Parallelization: OpenMP "
-#  ifdef OFFLOAD
+#ifdef OFFLOAD
          write(6,*) " Parallelization: GPU offloading"
-#  endif
-# else  
+#else  
+# ifdef SERIAL
          write(6,*) " Serial"
+# else  
+         write(6,*) " Parallization: DO concurrent   "
 # endif
 #endif
 ! 
