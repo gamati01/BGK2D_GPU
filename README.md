@@ -1,10 +1,20 @@
-# BGK2D
+# BGK2D_GPU
+
+
+This is a 2D CFD lattice-boltzmann based code to assess performance usinig GPU.
+It is a "downsize" of a more complex code. 
+Now it performs only lid-driven cavity. More test will come in a near (?) future.
+
 
 2D LBM using
+  * SERIAL
   * DO_CONCURRENT
   * OPEMMP OFFLOAD 
 
 With different HW & SW
+  	* nvfortran
+	* gnu (GPU enabled)
+	* xlf
 
 
 
@@ -19,13 +29,13 @@ To compile do-concurrent (gpu) with nvfortran (fused)
 * make NV=1 FIX="-DPGI -stdpar=gpu -DFUSED "
 
 To compile offload (gpu) with nvfortran (original)
-*  make offload NV=1 
+*  make offload 
 
 To compile offload (gpu) with nvfortran (fused)
-* make offload NV=1 FIX="-DPGI -DFUSED" 
+* make offload FIX="-DFUSED" 
 
 To compile offload (gpu) with xl (fused)
-* make offload PWR=1 FIX="-DPGI -DFUSED" 
+* make offload PWR=1 FIX="-DFUSED" 
 
 To compile offload (gpu) with gnu (fused)
 * make offload GNU=1 FIX=" -DFUSED" 

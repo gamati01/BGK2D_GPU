@@ -37,6 +37,7 @@ ifdef GNU
  FC = mpif90
  SFC = gfortran 
  SCC = gcc 
+ DC  = 
  OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
  FOPT =  -O3
  COPT =  -O3
@@ -62,7 +63,7 @@ ifdef PWR
  SCC = xlc_r  
  SFC = xlf_r 
  OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
- FIX = -DPGI
+ DC  = -DPGI
  FOPT = -O3 -qassert=contig
  COPT = -O3 -qassert=contig
  OPT = -O3 -qassert=contig
@@ -99,8 +100,6 @@ OBJ2 = check_case.o \
        alloca.o \
        bcond.bc.o \
        build.bcond.o \
-       bcond.bc.flipflop.o \
-       bcond.bc.periodic.o \
        restore_raw.o \
        init.o\
        hencol.o \
@@ -119,15 +118,12 @@ OBJ2 = check_case.o \
        movef.o\
        save_raw.o\
        profile.o\
-       copyA2F.o\
-       copyF2A.o\
        dealloca.o
 
 # 3rd level subroutine
 OBJ3 = get_mem.o \
        collision.o \
        col_MC.o \
-       col_FlipFlop.o \
        col.o 
 
 OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
@@ -138,7 +134,7 @@ all: VER := doconcurrent
 all: FC := $(SFC) 
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x 
+	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(LIB) -o ../RUN/bgk2d.$(VER).x 
 	@echo $(FINE)
 
 #----------------------------------------------
@@ -152,6 +148,7 @@ offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 
 #----------------------------------------------
 serial: VER:= serial
+serial: DC := -DPGI
 serial: FC := $(SFC)
 serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
@@ -159,13 +156,13 @@ serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 
 
 %.o %.mod: $(INC) %.f90
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.F90
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.f
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
@@ -182,14 +179,12 @@ info:  $(INC)
 	@echo "Objects          =  "$(OBJ);
 	@echo "Compiler         =  "$(FC);
 	@echo "Compiler flags   =  "$(OPT);
-	@echo "Compiler openmp  =  "$(OPENMP);
 	@echo "Preproc  flags   =  "$(PREPROC);
 	@echo "Fix      flags   =  "$(FIX);
 	@echo "Other    flags   =  "$(TRY);
 	@echo "Double   flags   =  "$(DBL);
-	@echo "Architecture     =  "$(HOSTTYPE);
+	@echo "DC       flags   =  "$(DC);
 	@echo "Version          =  "$(VER);
-	@echo "Libraries        =  "$(LIB);
 
 #----------------------------------------------
 test:
