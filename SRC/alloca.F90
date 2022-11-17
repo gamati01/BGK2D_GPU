@@ -69,24 +69,8 @@ subroutine alloca()
       cy( 18    ) = -1
       cy( 19    ) =  0
 !
-#ifdef NOMANAGED
-!acc data allocate(obs,a01,a02,a03,a04,a05,a06,a07,a08,a09,a10,a11,a12,a13,a14,a15,a16,a17,a18,a19,b01,b02,b03,b04,b05,b06,b07,b08,b09,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19)
-#endif
-!
       allocate(obs(1:l,1:m))
       obs = 0
-!
-#ifdef FLIPFLOP
-      allocate(f01(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f03(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f05(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f08(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f10(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f12(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f14(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f17(0:l+1+ipad,0:m+1+jpad,0:1))
-      allocate(f19(0:l+1+ipad,0:m+1+jpad,0:1))
-#endif
 !
       allocate(a01(0:l+1+ipad,0:m+1+jpad))
       allocate(a03(0:l+1+ipad,0:m+1+jpad))
@@ -107,18 +91,6 @@ subroutine alloca()
       allocate(b14(0:l+1+ipad,0:m+1+jpad))
       allocate(b17(0:l+1+ipad,0:m+1+jpad))
       allocate(b19(0:l+1+ipad,0:m+1+jpad))
-!
-#ifdef FLIPFLOP
-      f01 = huge(mykind)
-      f03 = huge(mykind)
-      f05 = huge(mykind)
-      f08 = huge(mykind)
-      f10 = huge(mykind)
-      f12 = huge(mykind)
-      f14 = huge(mykind)
-      f17 = huge(mykind)
-      f19 = huge(mykind)
-#endif
 !
       a01 = huge(mykind)
       a03 = huge(mykind)

@@ -96,13 +96,6 @@
         logical periodic(mpid)
         logical rreorder
 !
-#ifdef FLIPFLOP
-        real(mystorage), dimension(:,:,:), allocatable :: f01,f03,f05
-        real(mystorage), dimension(:,:,:), allocatable :: f08,f10
-        real(mystorage), dimension(:,:,:), allocatable :: f12,f14
-        real(mystorage), dimension(:,:,:), allocatable :: f17,f19
-#endif 
-!
 #ifdef FUSED
         real(mystorage), dimension(:,:), pointer, CONTIGUOUS :: a01,a03,a05
         real(mystorage), dimension(:,:), pointer, CONTIGUOUS :: a08,a10

@@ -24,10 +24,6 @@
         use storage
         use timing
 !
-#ifdef _OPENMP
-        use omp_lib
-#endif
-!
         implicit none
 !
         integer:: ierr
@@ -51,19 +47,6 @@
         write(16,*) "INFO: using NOSHIFT preprocessing flag"
 #endif
 !
-#ifdef NOMANAGED
-        write(6,*)  "INFO: using NOMANAGED preprocessing flag"
-        write(16,*) "INFO: using NOMANAGED preprocessing flag"
-#endif
-!
-#ifdef NO_OUTPUT
-        write(16,*) "INFO: no output mode enabled (few I/O) "
-#endif
-
-#ifdef HPC
-        write(16,*) "INFO: HPC mode enabled (all binary dump) "
-#endif
- 
 #ifdef QUAD_P
         write(16,*) "INFO: using quad precision"
 #else
@@ -86,9 +69,12 @@
        write(16,*) "INFO: mykind=   ", mykind, "range  =", range(u0)
        write(16,*) "INFO: mykind=   ", mykind, "huge   =", huge(u0)
        write(16,*) "INFO: mykind=   ", mykind, "epsilon=", epsilon(u0)
-       write(16,*) "INFO: mystorage=", mystorage, "range  =", range(a01(1,1))
-       write(16,*) "INFO: mystorage=", mystorage, "huge   =", huge(a01(1,1))
-       write(16,*) "INFO: mystorage=", mystorage, "epsilon=", epsilon(a01(1,1))
+       write(16,*) "INFO: mystorage=", mystorage, "range  =", & 
+                                       range(a01(1,1))
+       write(16,*) "INFO: mystorage=", mystorage, "huge   =", 
+                                       huge(a01(1,1))
+       write(16,*) "INFO: mystorage=", mystorage, "epsilon=", 
+                                       epsilon(a01(1,1))
 !
        write(16,*) "INFO: using RAW I/O"
 !
@@ -97,26 +83,14 @@
        write(16,*) "      quad precision not supported"
 #endif
 !
-#ifdef ARM
-       write(16,*) "INFO: using ARM version"
-       write(16,*) "      quad precision not supported"
-#endif
-!
-#ifdef _OPENACC
-       write(16,*) "INFO: using openacc"
-#endif
-
-       write(16,*) "INFO: using Move & collide (Original) version"
+#ifdef SERIAL
        write(16,*) "INFO: serial version"
+#endif
 
-#ifdef _OPENMP
-!$omp parallel
-       nthreads = OMP_GET_NUM_THREADS()
-       threadid = OMP_GET_THREAD_NUM()
-       if(threadid.eq.0) then
-          write(16,*) "INFO: using OpenMP version with threads = ", nthreads
-       endif
-!$omp end parallel
+#ifdef FUSED
+       write(16,*) "INFO: using Fused version"
+#else
+       write(16,*) "INFO: using Move & collide (Original) version"
 #endif
 !
 #ifdef DEBUG_3
