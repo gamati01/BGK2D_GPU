@@ -71,9 +71,9 @@
        write(16,*) "INFO: mykind=   ", mykind, "epsilon=", epsilon(u0)
        write(16,*) "INFO: mystorage=", mystorage, "range  =", & 
                                        range(a01(1,1))
-       write(16,*) "INFO: mystorage=", mystorage, "huge   =", 
+       write(16,*) "INFO: mystorage=", mystorage, "huge   =", &
                                        huge(a01(1,1))
-       write(16,*) "INFO: mystorage=", mystorage, "epsilon=", 
+       write(16,*) "INFO: mystorage=", mystorage, "epsilon=", &
                                        epsilon(a01(1,1))
 !
        write(16,*) "INFO: using RAW I/O"
