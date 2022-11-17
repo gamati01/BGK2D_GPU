@@ -19,7 +19,8 @@
 !     *****
 !=====================================================================
 !
-      subroutine setup(itfin,ivtim,isignal,itsave,icheck,itrestart,init_v,tstep)
+      subroutine setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 
+                       init_v,tstep)
 !
       use storage
       use timing
@@ -81,9 +82,6 @@
 !
       open(16,file='bgk.log',  status='unknown')
 !        
-#ifdef NO_OUTPUT
-! do nothing
-#else
       open(61,file=file_name2, status='unknown')        ! prof_i
       open(64,file=file_name6, status='unknown')        ! prof_j
       open(65,file=file_name9, status='unknown')        ! lift
@@ -91,7 +89,6 @@
       open(67,file=file_name7, status='unknown')        ! probe_gb
       open(68,file=file_name3, status='unknown')        ! probe
       open(38,file=file_name5, status='unknown')        ! task.XXXXXX.log
-#endif
 !
       if(myrank==0) then
          open(63,file='diagno.dat',status='unknown')
@@ -120,11 +117,7 @@
 #endif
 ! 
 ! test case
-#ifdef PERIODIC
-         write(6,*) " Test Case: Tylor-Green vortex"
-#else
          write(6,*) " Test Case: Lid-Driven Cavity "
-#endif
 !
          write(6,*) "================================"
       endif
@@ -141,11 +134,7 @@
       write(file_name4(11:13),4100) mpicoords(2)
       write(file_name4(15:17),4100) mpicoords(3)
 
-#ifdef NO_OUTPUT
-! do nothing...
-#else
       open(62,file=file_name4, status='unknown')
-#endif
 !
       current = 0
       next = 1

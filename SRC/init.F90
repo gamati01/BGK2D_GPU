@@ -63,7 +63,6 @@
         real(mykind) ::  zstart, ystart, xstart
         real(mykind) ::  cte1
 #endif
-        
 !
         integer      :: ll, mm
 !
@@ -106,37 +105,8 @@
         yj = 0.0
 !
 !
-!!$OMP PARALLEL DEFAULT(NONE)                                      & 
-!!$OMP PRIVATE(i,j,k)                                              &
-!!$OMP PRIVATE(xj,yj,zj)                                           &
-!!$OMP PRIVATE(cx01,cx02,cx03,cx04,cx05,cx06,cx07,cx08,cx09,cx10)  &
-!!$OMP PRIVATE(cx11,cx12,cx13,cx14,cx15,cx16,cx17,cx18,cx19)       &
-!!$OMP PRIVATE(cvsq,crho)                                          & 
-!!$OMP PRIVATE(x,y,z)                                              &
-!!$OMP SHARED(opt,u0,u00)                                          &
-!!$OMP SHARED(l1,m1,n1,ll,mm,nn)                                   &
-!!$OMP SHARED(xstart,ystart,zstart)                                &
-!!$OMP SHARED(a01,a02,a03,a04,a05,a06,a07,a08,a09)                 &
-!!$OMP SHARED(a10,a11,a12,a13,a14,a15,a16,a17,a18,a19)             
-!!$OMP DO
-!
         do j = 0, m1
-#ifdef PERIODIC
-           y = (real(j+ystart,mykind)-0.5d0)/real(mm,mykind)  ! 0<x<1 (taylor)
-#else
-           y = (real(j+ystart)-0.5-0.5*real(mm))/(0.5*real(mm)) ! -1<x<1
-#endif
            do i = 0, l1
-#ifdef PERIODIC
-              x = (real(i+xstart,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
-#else
-              x = (real(i+xstart)-0.5-0.5*real(ll))/(0.5*real(ll)) ! -1<x<1
-#endif
-!
-# ifdef PERIODIC
-              xj = 0.1*sin(real(2,mykind)*pi*x)*cos(real(2,mykind)*pi*y)          !kida(?) vortices
-              yj =-0.1*cos(real(2,mykind)*pi*x)*sin(real(2,mykind)*pi*y)
-# endif
 
               cvsq=xj*xj+yj*yj
 !
@@ -162,9 +132,6 @@
 !
            end do
         end do
-!!$OMP END DO
-!
-!!$OMP END PARALLEL
 !
         if (opt == 0) then
            write(16,*) "INFO: initial condition --> rest flow"
@@ -174,7 +141,7 @@
         endif
 !
 ! check
-        call vtk_xy_bin(0)
+!        call vtk_xy_bin(0)
 !        
 #ifdef DEBUG_1
         if(myrank == 0) then

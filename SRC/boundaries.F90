@@ -29,15 +29,8 @@
         integer:: ierr, i
         real(mykind):: temp1, temp2
 !
-#ifdef PERIODIC
-        call bcond_bc_periodic
-#else
-# ifdef FLIPFLOP
-        call bcond_bc_ff
-# else
+! only lid_caviti bc (for now)
         call bcond_bc
-# endif
-#endif
 !
 !
 #ifdef DEBUG_2

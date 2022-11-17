@@ -28,7 +28,6 @@
 !
         implicit none
 !
-
 ! start timing
         call SYSTEM_CLOCK(countB0, count_rate, count_max)
         call time(tcountB0)

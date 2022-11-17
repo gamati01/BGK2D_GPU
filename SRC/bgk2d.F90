@@ -58,11 +58,12 @@
       integer:: tstep, tt
 !
 ! set up the simulation...
-      call setup(itfin,ivtim,isignal,itsave,icheck,itrestart,init_v,tstep)
-!
+      call setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 
+                 init_v,tstep)
 !      
 ! initialize the flow...
-      call initialize(itrestart,init_v,itfin,itstart,ivtim,isignal,itsave,icheck,tstep)
+      call initialize(itrestart,init_v,itfin,itstart,ivtim,isignal, & 
+                      itsave,icheck,tstep)
 !
 !
       call SYSTEM_CLOCK(countE0, count_rate, count_max)
@@ -87,12 +88,8 @@
 #ifdef DEBUG_2
          if(myrank == 0) then
             write(6,*) "DEBUG2: starting time step =", itime
-!            call check_NaN;
          endif
 #endif
-!
-!         call SYSTEM_CLOCK(countD0, count_rate, count_max)
-!         call time(tcountD0)
 !
          call boundaries         ! boundary conditions
 !
@@ -121,11 +118,11 @@
       time_loop = real(countE1-countE0)/(count_rate)
       time_loop1 = tcountE1-tcountE0
 !
-!     final diagnostic
-      call diagno(itime-1)
-      call varm(itime-1)
-      call prof_i(itime-1,m/2)
-      call prof_j(itime-1,l/2)
+!     final diagnostic (for check)
+!      call diagno(itime-1)
+!      call varm(itime-1)
+!      call prof_i(itime-1,m/2)
+!      call prof_j(itime-1,l/2)
 !
       call finalize(itstart,itfin)     ! finalize all
 !

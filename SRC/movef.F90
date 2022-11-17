@@ -20,7 +20,7 @@
 !     *****
 !====================================================
 !
-subroutine movef
+        subroutine movef
 !
         use storage
 !
@@ -32,8 +32,6 @@ subroutine movef
 ! Best (?) decompsition for BW
 !------------------------------------------------------
 #ifdef OFFLOAD
-!!$OMP target data map(to:  a01,a03,a05,a08,a10,a12,a14,a17)  &
-!!$OMP&            map(from:b01,b03,b05,b08,b10,b12,b14,b17)
 !$OMP target teams distribute parallel do simd collapse(2)
         do j=1,m
         do i=1,l
@@ -52,7 +50,6 @@ subroutine movef
 #ifdef OFFLOAD
         enddo
 !$OMP end target teams distribute parallel do simd
-!!$omp end target data
 #endif
 !
 #ifdef DEBUG_2

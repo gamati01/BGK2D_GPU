@@ -30,19 +30,14 @@
 !
         integer:: itime, ierr, istat
 !
-!
 ! start timing
         call SYSTEM_CLOCK(countC0, count_rate, count_max)
         call time(tcountC0)
 !
-#ifdef FLIPFLOP
-        call col_FlipFlop(itime)
-#else
-# ifdef FUSED
+#ifdef FUSED
         call col_MC(itime)
-# else
+#else
         call col(itime)
-# endif
 #endif
 !
 ! stop timing
