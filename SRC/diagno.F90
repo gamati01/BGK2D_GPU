@@ -71,44 +71,32 @@
        ytot = 0.
        stot = 0.
 !
-!$OMP PARALLEL DEFAULT(NONE) & 
-!$OMP PRIVATE(i,j)  &
-!$OMP PRIVATE(rho,xj,yj,rhoinv)  &
-!$OMP SHARED(l,m)  &
-!$OMP SHARED(obs)  &
-!$OMP SHARED(cte1)  &
-!$OMP SHARED(a01,a03,a05,a08)  &
-!$OMP SHARED(a10,a12,a14,a17,a19)      &
-!$OMP REDUCTION(+:rtot,xtot,ytot,stot) 
-!$OMP DO
- 
-      do j=1,m
-         do i=1,l
+       do j=1,m
+          do i=1,l
 ! standard form
 !                   rho = (+a01(i,j)+a03(i,j)+a05(i,j) &
 !                          +a08(i,j)+a10(i,j)+a12(i,j) &
 !                          +a14(i,j)+a17(i,j)+a19(i,j)) + cte1
 !
 ! better for half precision????
-                   rho =(((+a01(i,j)+a03(i,j)+a10(i,j)+a12(i,j)) + &
-                          (+a05(i,j)+a08(i,j)+a14(i,j)+a17(i,j)))+ & 
-                           a19(i,j)) + cte1
+              rho =(((+a01(i,j)+a03(i,j)+a10(i,j)+a12(i,j)) + &
+                     (+a05(i,j)+a08(i,j)+a14(i,j)+a17(i,j)))+ & 
+                      a19(i,j)) + cte1
 !
-                   rhoinv = uno/rho
+              rhoinv = uno/rho
 !
-                   xj = ((a03(i,j)-a12(i,j))+(a01(i,j)-a10(i,j)) & 
-                                            +(a05(i,j)-a14(i,j)))*rhoinv
-                   yj = ((a03(i,j)-a01(i,j))+(a12(i,j)-a10(i,j)) & 
-                                            +(a08(i,j)-a17(i,j)))*rhoinv
+              xj = ((a03(i,j)-a12(i,j))+(a01(i,j)-a10(i,j)) & 
+                   +(a05(i,j)-a14(i,j)))*rhoinv
+              yj = ((a03(i,j)-a01(i,j))+(a12(i,j)-a10(i,j)) & 
+                   +(a08(i,j)-a17(i,j)))*rhoinv
 !
-                rtot = rtot+rho
-                xtot = xtot+xj
-                ytot = ytot+yj
-                stot = stot+(xj*xj+yj*yj)
+              rtot = rtot+rho
+              xtot = xtot+xj
+              ytot = ytot+yj
+              stot = stot+(xj*xj+yj*yj)
 !
-             enddo
           enddo
-!$OMP END PARALLEL
+       enddo
 !
        rtot = (rtot/float(l))/float(m)
        xtot = (xtot/float(l))/float(m)
@@ -125,17 +113,17 @@
        endif
 !
 #ifdef DEBUG_1
-        if(myrank == 0) then
-           write(6,*) "DEBUG1: Exiting from sub. diagno"
-        endif
+       if (myrank == 0) then
+          write(6,*) "DEBUG1: Exiting from sub. diagno"
+       endif
 #endif
 !
 ! formats...
 !
-1001  format(" Timestep ",i8)
-1002  format("       mean rho ",1(e14.6,1x))
-1003  format("       mean vel ",3(e14.6,1x))
-1004  format(i8,4(e14.6,1x))
+1001   format(" Timestep ",i8)
+1002   format("       mean rho ",1(e14.6,1x))
+1003   format("       mean vel ",3(e14.6,1x))
+1004   format(i8,4(e14.6,1x))
 !
-      return
-      end subroutine diagno
+       return
+       end subroutine diagno

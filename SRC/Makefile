@@ -28,9 +28,9 @@ CC = mpicc
 FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
 DC  = -DPGI -stdpar=gpu
-FOPT = -O3 -Mnodepchk  -Mcontiguous
-COPT = -O3
-OPT  = -O3  -Mnodepchk  -Mcontiguous
+FOPT = -O2 -Mnodepchk  -Mcontiguous
+COPT = -O2
+OPT  = -O2  -Mnodepchk  -Mcontiguous
 #
 ifdef GNU
  CC = mpicc

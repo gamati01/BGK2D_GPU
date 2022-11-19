@@ -28,21 +28,21 @@
 !
         implicit none
 !
+#ifdef FUSED
+! do nothing
+#else
 ! start timing
         call SYSTEM_CLOCK(countB0, count_rate, count_max)
         call time(tcountB0)
 !
-#ifdef FUSED
-! do nothing
-#else
         call movef
-#endif
 !
 ! stop timing
         call time(tcountB1)
         call SYSTEM_CLOCK(countB1, count_rate, count_max)
         time_move = time_move + real(countB1-countB0)/(count_rate)
         time_move1 = time_move1 + (tcountB1-tcountB0)
+#endif
 !
 #ifdef DEBUG_2
         if(myrank == 0) then

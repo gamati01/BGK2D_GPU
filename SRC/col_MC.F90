@@ -152,19 +152,19 @@
            forcex = zero
            forcey = fgrad*rho
 # else
-           forcex = fgrad*rho     ! default value...
-           forcey = zero
+!           forcex = fgrad*rho     ! default value...
+!           forcey = zero
 # endif
 !
 ! loop on populations
-           b01(i,j) = x01 - omega*(x01-e01) + forcex - forcey     
-           b03(i,j) = x03 - omega*(x03-e03) + forcex + forcey
-           b05(i,j) = x05 - omega*(x05-e05) + forcex
-           b08(i,j) = x08 - omega*(x08-e08)          + forcey
-           b10(i,j) = x10 - omega*(x10-e10) - forcex - forcey
-           b12(i,j) = x12 - omega*(x12-e12) - forcex + forcey
-           b14(i,j) = x14 - omega*(x14-e14) - forcex 
-           b17(i,j) = x17 - omega*(x17-e17)          - forcey
+           b01(i,j) = x01 - omega*(x01-e01) !+ forcex - forcey     
+           b03(i,j) = x03 - omega*(x03-e03) !+ forcex + forcey
+           b05(i,j) = x05 - omega*(x05-e05) !+ forcex
+           b08(i,j) = x08 - omega*(x08-e08) !         + forcey
+           b10(i,j) = x10 - omega*(x10-e10) !- forcex - forcey
+           b12(i,j) = x12 - omega*(x12-e12) !- forcex + forcey
+           b14(i,j) = x14 - omega*(x14-e14) !- forcex 
+           b17(i,j) = x17 - omega*(x17-e17) !         - forcey
            a19(i,j) = x19 - omega*(x19-e19)
 !
         end do

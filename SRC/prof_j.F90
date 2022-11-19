@@ -44,19 +44,23 @@
 #endif
 !
         do j = 1,m         ! density
-           den(j) = (+a01(icoord,j)+a03(icoord,j)+a05(icoord,j) & 
-                    +a08(icoord,j)+a10(icoord,j)+a12(icoord,j) & 
-                    +a14(icoord,j)+a17(icoord,j)+a19(icoord,j)) + cte1
+           den(j) = ((+a01(icoord,j)+a03(icoord,j) & 
+                      +a05(icoord,j)+a08(icoord,j) &
+                      +a10(icoord,j)+a12(icoord,j) & 
+                      +a14(icoord,j)+a17(icoord,j))&
+                                    +a19(icoord,j)) + cte1
         enddo
 ! 
         do j = 1,m         ! streamwise velocity
-           u(j) =  (+a01(icoord,j)+a03(icoord,j)+a05(icoord,j) &
-                    -a10(icoord,j)-a12(icoord,j)-a14(icoord,j))/den(j)
+           u(j) =  ( (a01(icoord,j)-a10(icoord,j)) &
+                    +(a03(icoord,j)-a12(icoord,j)) &
+                    +(a05(icoord,j)-a14(icoord,j)))/den(j)
         end do
 !
         do j = 1,m         ! spanwise velocity
-           w(j) =  (+a03(icoord,j)+a08(icoord,j)+a12(icoord,j) &
-                    -a01(icoord,j)-a10(icoord,j)-a17(icoord,j))/den(j)
+           w(j) =  ( (a03(icoord,j)-a01(icoord,j)) &
+                    +(a08(icoord,j)-a17(icoord,j)) &
+                    +(a12(icoord,j)-a10(icoord,j)))/den(j)
         end do
 !
         write(64,1005) itime
