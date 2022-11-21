@@ -99,6 +99,7 @@ OBJ2 = check_case.o \
        input.o \
        alloca.o \
        bcond.bc.o \
+       bcond.bc.periodic.o \
        build.bcond.o \
        restore_raw.o \
        init.o\

@@ -41,17 +41,10 @@
         real(mykind) :: cvsq,crho
         real(mykind) :: cx01,cx02,cx03,cx04,cx05
         real(mykind) :: cx10,cx11,cx12,cx13,cx14
-        real(mykind) :: cte1
 !
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
         call time(tcountA0)
-!
-#ifdef NOSHIFT
-       cte1=uno
-#else
-       cte1=zero
-#endif
 !
        force =  u00/(6.0)
 !
@@ -64,6 +57,11 @@
 #else
         do concurrent (j=1:m)
 #endif
+! right (y = m) lid-wall
+           a01(j-1,m1) = a12(j,m) + force
+           a17(j  ,m1) = a08(j,m)
+           a10(j+1,m1) = a03(j,m) - force
+
 ! front (x = l)
            a12(l1,j-1) = a01(l,j)
            a10(l1,j+1) = a03(l,j)
@@ -75,14 +73,9 @@
            a05(0,j  ) = a14(1,j)
 
 ! left (y = 0)
+           a03(j-1,0)  = a10(j,1)
            a08(j  ,0)  = a17(j,1)
            a12(j+1,0)  = a01(j,1)
-           a03(j-1,0)  = a10(j,1)
-
-! right (y = m) lid-wall
-           a10(j+1,m1) = a03(j,m) - force
-           a17(j  ,m1) = a08(j,m)
-           a01(j-1,m1) = a12(j,m) + force
 
         end do
 #ifdef OFFLOAD

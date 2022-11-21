@@ -29,8 +29,13 @@
         integer:: ierr, i
         real(mykind):: temp1, temp2
 !
-! only lid_caviti bc (for now)
+#ifdef PERIODIC
+! periodic bc
+        call bcond_bc_periodic
+#else
+! lid_cavity bc 
         call bcond_bc
+#endif
 !
 !
 #ifdef DEBUG_2

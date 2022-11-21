@@ -36,11 +36,18 @@
 
 ! Warning section  (run will proceed...) 
         if((u0.GT.0).AND.(u_inflow.GT.0)) then
-           write(16,*) "WARNING: inflow ad volume force at the same time", myrank, u0, u_inflow 
+           write(16,*) "WARNING: inflow ad volume force & 
+                        at the same time", myrank, u0, u_inflow 
         endif
 !
 ! Info section  
+#ifdef PERIODIC
+        write(6 ,*) "INFO: The test case has periodic bc" 
+        write(16,*) "INFO: The test case has periodic bc" 
+#else
+        write(6 ,*) "INFO: The test case is driven cavity" 
         write(16,*) "INFO: The test case is driven cavity" 
+#endif
 !
 #ifdef NOSHIFT
         write(6,*)  "INFO: using NOSHIFT preprocessing flag"

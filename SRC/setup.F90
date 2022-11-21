@@ -117,7 +117,11 @@
 #endif
 ! 
 ! test case
+#ifdef PERIODIC
+         write(6,*) " Test Case: Taylor-Green Vortices"
+#else  
          write(6,*) " Test Case: Lid-Driven Cavity "
+#endif
 !
          write(6,*) "================================"
       endif

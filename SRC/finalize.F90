@@ -72,6 +72,10 @@
          write(69,9999) 
          close(69)   ! bgk.perf
 !
+         write(6,1106) float(lx)*float(ly)* &
+                       (itfin-itstart)/(time_loop1)/1000.0/1000.0
+
+!
 !         call system("git log | grep commit | tail -n 1 >> bgk.perf")
 !
       endif

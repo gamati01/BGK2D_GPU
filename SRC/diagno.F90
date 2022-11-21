@@ -33,24 +33,12 @@
        integer:: itime,i,j
        integer:: ierr
 !
-#ifdef MIXEDPRECISION
-# ifdef DOUBLE_P
-       real(qp):: rtot,xtot,ytot,stot
-       real(qp):: xj, yj, rho, rhoinv, rdv
-       real(qp):: loctot(5), glotot(5)
-       real(qp):: cte1
-# else
-       real(dp):: rtot,xtot,ytot,stot
-       real(dp):: xj, yj, rho, rhoinv, rdv
-       real(dp):: loctot(5), glotot(5)
-       real(dp):: cte1
-# endif
-#else
        real(mykind):: rtot,xtot,ytot,stot
        real(mykind):: xj, yj, rho, rhoinv, rdv
        real(mykind):: loctot(5), glotot(5)
+       real(mykind):: x01,x03,x05,x08,x10
+       real(mykind):: x12,x14,x17,x19
        real(mykind):: cte1
-#endif
 !
 #ifdef NOSHIFT
        cte1 = zero
@@ -60,35 +48,43 @@
 !
        rdv = uno/(real(l,mykind)*real(m,mykind))
 !
-       glotot(1) = 0.
-       glotot(2) = 0.
-       glotot(3) = 0.
-       glotot(4) = 0.
-       glotot(5) = 0.
+       glotot(1) = zero
+       glotot(2) = zero
+       glotot(3) = zero
+       glotot(4) = zero
+       glotot(5) = zero
 !
-       rtot = 0.
-       xtot = 0.
-       ytot = 0.
-       stot = 0.
+       rtot = zero
+       xtot = zero
+       ytot = zero
+       stot = zero
 !
        do j=1,m
           do i=1,l
+!
+             x01 = a01(i,j)
+             x03 = a03(i,j)
+             x05 = a05(i,j)
+             x08 = a08(i,j)
+             x10 = a10(i,j)
+             x12 = a12(i,j)
+             x14 = a14(i,j)
+             x17 = a17(i,j)
+             x19 = a19(i,j)
+
 ! standard form
 !                   rho = (+a01(i,j)+a03(i,j)+a05(i,j) &
 !                          +a08(i,j)+a10(i,j)+a12(i,j) &
 !                          +a14(i,j)+a17(i,j)+a19(i,j)) + cte1
 !
 ! better for half precision????
-              rho =(((+a01(i,j)+a03(i,j)+a10(i,j)+a12(i,j)) + &
-                     (+a05(i,j)+a08(i,j)+a14(i,j)+a17(i,j)))+ & 
-                      a19(i,j)) + cte1
+              rho =(((+x01+x03+x10+x12)+ & 
+                     (+x05+x08+x14+x17))+x19)+cte1
 !
               rhoinv = uno/rho
 !
-              xj = ((a03(i,j)-a12(i,j))+(a01(i,j)-a10(i,j)) & 
-                   +(a05(i,j)-a14(i,j)))*rhoinv
-              yj = ((a03(i,j)-a01(i,j))+(a12(i,j)-a10(i,j)) & 
-                   +(a08(i,j)-a17(i,j)))*rhoinv
+              xj = ((x03-x12)+(x01-x10)+(x05-x14))*rhoinv
+              yj = ((x03-x01)+(x12-x10)+(x08-x17))*rhoinv
 !
               rtot = rtot+rho
               xtot = xtot+xj
