@@ -92,7 +92,7 @@
               den = (a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
                     +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j))+cte1
 !
-              write(52) u/den, w/den, 0.0
+              write(52) u/den, w/den, zero
            end do
         end do
         close(52)

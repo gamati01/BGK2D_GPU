@@ -100,6 +100,7 @@ OBJ2 = check_case.o \
        alloca.o \
        bcond.bc.o \
        bcond.bc.periodic.o \
+       bcond.channel.o \
        build.bcond.o \
        restore_raw.o \
        init.o\

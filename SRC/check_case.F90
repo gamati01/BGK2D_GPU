@@ -45,8 +45,13 @@
         write(6 ,*) "INFO: The test case has periodic bc" 
         write(16,*) "INFO: The test case has periodic bc" 
 #else
+# ifdef CHANNEL
+        write(6 ,*) "INFO: The test case has channel bc" 
+        write(16,*) "INFO: The test case has channel bc" 
+# else
         write(6 ,*) "INFO: The test case is driven cavity" 
         write(16,*) "INFO: The test case is driven cavity" 
+# endif
 #endif
 !
 #ifdef NOSHIFT

@@ -93,10 +93,10 @@
 !
 #endif
 !
-#ifdef DEBUG_2
+!#ifdef DEBUG_2
         if(myrank == 0) then
            write(6,*) "DEBUG2: Exiting from sub. bcond_bc_periodic"
         endif
-#endif
+!#endif
         return
         end subroutine bcond_bc_periodic

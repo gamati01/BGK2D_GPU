@@ -68,11 +68,11 @@
 !$omp target update from(a01,a03,a05,a08,a10,a12,a14,a17,a19)
 #endif
            call diagno(itime)
-           call probe(itime,32,32)
+           call probe(itime,l,m/2)
 !
            call varm(itime)
            call prof_i(itime,m/2)
-           call prof_j(itime,l/2)
+           call prof_j(itime,l)
 !
 ! global probe: 
 ! x ---> LX = 20  x_p = 8

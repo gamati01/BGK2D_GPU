@@ -33,8 +33,13 @@
 ! periodic bc
         call bcond_bc_periodic
 #else
+# ifdef CHANNEL
+! channel bc        
+        call bcond_channel
+# else
 ! lid_cavity bc 
         call bcond_bc
+# endif
 #endif
 !
 !

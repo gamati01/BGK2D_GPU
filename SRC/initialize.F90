@@ -19,7 +19,8 @@
 !     *****
 !=====================================================================
 !
-       subroutine initialize(itrestart,init_v,itfin,itstart,ivtim,isignal,itsave,icheck,tstep)
+       subroutine initialize(itrestart,init_v,itfin,itstart,ivtim & 
+                            ,isignal,itsave,icheck,tstep)
 !
        use storage
        use timing
@@ -100,8 +101,9 @@
 ! do nothing
 #else
              call varm(itstart)
-!             call prof_i(itstart,m/2)
-!             call prof_j(itstart,l/2)
+             call prof_i(itstart,m/2)
+             call prof_j(itstart,l/2)
+             call vtk_xy_bin(itstart)
 #endif
           endif
        endif
