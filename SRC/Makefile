@@ -156,6 +156,16 @@ serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -DSERIAL -o ../RUN/bgk2d.$(VER).x
 
+#----------------------------------------------
+multicore: VER:= multicore
+multicore: DC := -DPGI
+multicore: FC := $(SFC) -stdpar=multicore -Minfo=all -DMULTICORE
+multicore: CC := $(SCC)
+multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -stdpar=multicore -DSERIAL -o ../RUN/bgk2d.$(VER).x
+
+
+#----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
 	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
