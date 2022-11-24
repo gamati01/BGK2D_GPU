@@ -42,6 +42,9 @@
 # endif
 #endif
 !
+#ifdef OBSTACLE
+        call bcond_obs
+#endif
 !
 #ifdef DEBUG_2
         if(myrank == 0) then

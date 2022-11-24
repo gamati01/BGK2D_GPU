@@ -64,6 +64,10 @@
 !
 ! build obstacles
 !
+#ifdef OBSTACLE
+       call build_obs
+       call vtk_obs
+#endif
 !
 ! build starting configuration
 !

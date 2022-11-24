@@ -47,6 +47,7 @@
          write(69,1104) time_bc, time_bc1
          write(69,1105) time_io, time_io1
          write(69,1114) time_dg, time_dg1
+         write(69,1116) time_obs, time_obs1
          write(69,1117) time_loop-(time_coll+time_move+time_bc+time_io+time_dg+time_mp+time_obs)
          write(69,9999)
          write(69,*)  "# Ratio per section "
@@ -104,7 +105,6 @@
 1104  format(" # bc     time",2(e14.6,1x))
 1105  format(" # I/O    time",2(e14.6,1x))
 1114  format(" # diagno time",2(e14.6,1x))
-1115  format(" # MPI    time",2(e14.6,1x))
 1116  format(" # Obst   time",2(e14.6,1x))
 1117  format(" # Check      ",1(e14.6,1x))
 1201  format(" # Ratio MPI  ",2(f7.3,1x))

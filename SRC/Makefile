@@ -101,12 +101,15 @@ OBJ2 = check_case.o \
        bcond.bc.o \
        bcond.bc.periodic.o \
        bcond.channel.o \
+       bcond.obs.o \
        build.bcond.o \
+       build.obs.o \
        restore_raw.o \
        init.o\
        hencol.o \
        outdat.o \
        vtk_rho.binary.o \
+       vtk_obstacle.o \
        vtk_xy.o \
        vtk_xy.binary.o \
        vtk_om.o \
