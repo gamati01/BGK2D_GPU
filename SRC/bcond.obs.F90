@@ -30,20 +30,28 @@
         call SYSTEM_CLOCK(countO0, count_rate, count_max)
         call time(tcountO0)
 !
-        do j = jmin, jmax
-           do i = imin, imax
-              if(obs(i,j)==1) then
-                    a01(i,j) = a12(i+1,j-1)
-                    a03(i,j) = a10(i+1,j+1)
-                    a05(i,j) = a14(i+1,j  )
-                    a08(i,j) = a17(i  ,j+1)
-                    a10(i,j) = a03(i-1,j-1)
-                    a12(i,j) = a01(i-1,j+1)
-                    a14(i,j) = a05(i-1,j  )
-                    a17(i,j) = a08(i  ,j-1)
-              endif
-           end do
+#ifdef OFFLOAD
+!$OMP target teams distribute parallel do simd collapse(2)
+        do j=jmin,jmax
+        do i=imin,imax
+#else
+        do concurrent (j=jmin:jmax, i=imin:imax)
+#endif
+           if(obs(i,j)==1) then
+              a01(i,j) = a12(i+1,j-1)
+              a03(i,j) = a10(i+1,j+1)
+              a05(i,j) = a14(i+1,j  )
+              a08(i,j) = a17(i  ,j+1)
+              a10(i,j) = a03(i-1,j-1)
+              a12(i,j) = a01(i-1,j+1)
+              a14(i,j) = a05(i-1,j  )
+              a17(i,j) = a08(i  ,j-1)
+           endif
         end do
+#ifdef OFFLOAD
+        end do
+        !$OMP end target teams distribute parallel do simd
+#endif
 !
 ! stop timing
         call time(tcountO1)
