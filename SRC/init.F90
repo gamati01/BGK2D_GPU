@@ -84,20 +84,18 @@
 !
         ll = l
         mm = m
-        xstart = 0
-        ystart = 0
 !
 ! builds the populations
         crho = 1.0_mykind
 !
-        do j = 1, m
-           y = (real(j+ystart) - 0.5 - 0.5*real(mm))/(0.5*real(mm))
-!           write(76,*) j, y
+        do j = 0, m1
+           y = (real(j,mykind)-0.5d0)/real(mm,mykind)  ! 0<x<1 (taylor)
+           write(76,*) j, y
         enddo
 !	write(76,*) " "
-        do i = 1, l
-           x = (real(i+xstart) - 0.5 - 0.5*real(ll))/(0.5*real(ll))
-!           write(76,*) i, x
+        do i = 0, l1
+           x = (real(i,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
+           write(76,*) i, x
         enddo
 !
 ! rest flow 
@@ -107,11 +105,11 @@
 !
         do j = 0, m1
 #ifdef PERIODIC
-           y = (real(j+ystart,mykind)-0.5d0)/real(mm,mykind)  ! 0<x<1 (taylor)
+           y = (real(j,mykind)-0.5d0)/real(mm,mykind)  ! 0<x<1 (taylor)
 #endif
            do i = 0, l1
 #ifdef PERIODIC
-              x = (real(i+xstart,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
+              x = (real(i,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
 !
 !kida(?) vortices
               xj = 0.1*sin(real(2,mykind)*pi*x)*cos(real(2,mykind)*pi*y)

@@ -98,8 +98,8 @@ OBJ1 = setup.o \
 OBJ2 = check_case.o \
        input.o \
        alloca.o \
-       bcond.bc.o \
-       bcond.bc.periodic.o \
+       bcond.driven.o \
+       bcond.periodic.o \
        bcond.channel.o \
        bcond.inflow.o \
        bcond.obs.o \

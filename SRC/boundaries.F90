@@ -31,17 +31,18 @@
 !
 #ifdef PERIODIC
 ! periodic bc
-        call bcond_bc_periodic
+        call bcond_periodic
 #else
 # ifdef CHANNEL
 ! channel bc        
         call bcond_channel
 # else
 #  ifdef INFLOW
+! inflow bc
         call bcond_inflow
 #  else
 ! lid_cavity bc 
-        call bcond_bc
+        call bcond_driven
 #  endif
 # endif
 #endif
