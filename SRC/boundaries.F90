@@ -37,8 +37,12 @@
 ! channel bc        
         call bcond_channel
 # else
+#  ifdef INFLOW
+        call bcond_inflow
+#  else
 ! lid_cavity bc 
         call bcond_bc
+#  endif
 # endif
 #endif
 !

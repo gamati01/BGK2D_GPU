@@ -53,7 +53,11 @@
 !
       icoord = lx/4
       jcoord = ly/2
-      radius = ly/8  
+      if (m.gt.256) then
+          radius = 32
+      else
+          radius = ly/8  
+      endif
       write(16,*) "WARNING: radius hardwired ", radius
       write( 6,*) "WARNING: radius hardwired ", radius
       write( 6,*) "INFO: Cyl radius    -->", radius

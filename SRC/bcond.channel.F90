@@ -5,7 +5,10 @@
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond
+!       bcond_channel: simple channel flow with
+!                      * inflow (rear)
+!                      * outflow (front)
+!                      * no slip (left/right)
 !     DESCRIPTION
 !       2D periodic bc
 !     INPUTS
@@ -54,18 +57,16 @@
         call time(tcountA0)
 !
         u_inflow=0.1
-! ----------------------------------------------
-! front (x = l)
-! rear (x = 0)
-! ----------------------------------------------
 !
+! ----------------------------------------------
+! loop foused for performance reason (for GPU)
+! -------------------------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do j=1,m
+        do j=0,m+1
 #else
         do concurrent (j=0:m+1)
 #endif
-!         y = (real(y,mykind) -0.5 - 0.5*real(m,mykind))/(0.5*real(m,mykind))
            crho  =uno
            rhoinv=uno
 !           
@@ -86,15 +87,10 @@
            a10(l1,j) = crho*p2*(cte1+cx10)
            a12(l1,j) = crho*p2*(cte1+cx12)
            a14(l1,j) = crho*p1*(cte1+cx14)
-        end do
-
+!
+! -------------------------------------------------------------
 ! rear, inflow (x = 0)
-#ifdef OFFLOAD
-!$OMP target teams distribute parallel do simd
-        do j=1,m
-#else
-        do concurrent (j=0:m+1)
-#endif
+!           
            xj = u_inflow
            yj = zero
 !           
@@ -116,7 +112,7 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
-        do j=1,m
+        do i=0,l+1
 #else
         do concurrent (i=0:l+1)
 #endif

@@ -29,11 +29,6 @@
         integer:: ierr
         real(mykind) :: a
 !
-#ifdef _OPENMP
-        INTEGER:: nthreads, threadid
-#endif
-!
-
 ! Warning section  (run will proceed...) 
         if((u0.GT.0).AND.(u_inflow.GT.0)) then
            write(16,*) "WARNING: inflow ad volume force & 
@@ -48,10 +43,19 @@
 # ifdef CHANNEL
         write(6 ,*) "INFO: The test case has channel bc" 
         write(16,*) "INFO: The test case has channel bc" 
-# else
+#  ifdef INFLOW
+        write(6 ,*) "INFO: The test case has inflow bc" 
+        write(16,*) "INFO: The test case has inflow bc" 
+#  else
         write(6 ,*) "INFO: The test case is driven cavity" 
         write(16,*) "INFO: The test case is driven cavity" 
+#  endif
 # endif
+#endif
+!
+#ifdef OBSTACLE
+        write(6 ,*)  "INFO: The test case has an obstacle in the flow"
+        write(16,*)  "INFO: The test case has an obstacle in the flow"
 #endif
 !
 #ifdef MULTICORE
