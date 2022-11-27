@@ -26,7 +26,7 @@ SCC = nvcc
 SFC = nvfortran
 CC = mpicc
 FC = mpifort
-OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
+OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
 DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
@@ -101,7 +101,6 @@ OBJ2 = check_case.o \
        bcond.driven.o \
        bcond.periodic.o \
        bcond.channel.o \
-       bcond.inflow.o \
        bcond.obs.o \
        build.bcond.o \
        build.obs.o \
@@ -137,7 +136,7 @@ OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 #----------------------------------------------
 #
 all: VER := doconcurrent
-all: FC := $(SFC) 
+all: FC := $(SFC) $(DC) 
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(LIB) -o ../RUN/bgk2d.$(VER).x 
@@ -172,13 +171,13 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 #----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
-	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.F90
-	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.f
-	$(FC) $(FOPT) $(DC) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
