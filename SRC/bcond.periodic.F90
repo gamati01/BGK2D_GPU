@@ -49,7 +49,7 @@
 !$OMP target teams distribute parallel do simd
         do j=1,m
 #else
-        do concurrent (j=1:m)
+        do concurrent (j=0:m+1)
 #endif
 ! front (x = l)
            a01( 0,j) = a01(l,j)
@@ -71,7 +71,7 @@
 !$OMP target teams distribute parallel do simd 
         do i=1,l
 #else
-        do concurrent (i=1:l)
+        do concurrent (i=0:l+1)
 #endif
 ! left (y = 0)  
            a17(i,m1) = a17(i,1)
