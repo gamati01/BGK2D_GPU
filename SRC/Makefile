@@ -101,6 +101,7 @@ OBJ2 = check_case.o \
        bcond.driven.o \
        bcond.periodic.o \
        bcond.channel.o \
+       bcond.inflow.o \
        bcond.obs.o \
        build.bcond.o \
        build.obs.o \
