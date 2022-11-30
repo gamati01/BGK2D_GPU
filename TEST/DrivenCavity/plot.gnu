@@ -15,7 +15,7 @@
 unset clip points
 set clip one
 unset clip two
-unset clip radial
+#unset clip radial
 set errorbars front 1.000000 
 set border 31 front lt black linewidth 1.000 dashtype solid
 set zdata 
@@ -24,7 +24,7 @@ set xdata
 set y2data 
 set x2data 
 set boxwidth
-set boxdepth 0
+#set boxdepth 0
 set style fill  empty border
 set style rectangle back fc  bgnd fillstyle   solid 1.00 border lt -1
 set style circle radius graph 0.02 
@@ -56,7 +56,7 @@ unset style line
 unset style arrow
 set style histogram clustered gap 2 title textcolor lt -1
 unset object
-unset walls
+#unset walls
 set style textbox  transparent margins  1.0,  1.0 border  lt -1 linewidth  1.0
 set offsets 0, 0, 0, 0
 set pointsize 1
@@ -64,7 +64,7 @@ set pointintervalbox 1
 set encoding default
 unset polar
 unset parametric
-unset spiderplot
+#unset spiderplot
 unset decimalsign
 unset micro
 unset minussign
@@ -78,7 +78,7 @@ unset contour
 set cntrlabel  format '%8.3g' font '' start 5 interval 20
 set mapping cartesian
 set datafile separator whitespace
-set datafile nocolumnheaders
+#set datafile nocolumnheaders
 unset hidden3d
 set cntrparam order 4
 set cntrparam linear
@@ -158,7 +158,7 @@ set locale "it_IT.UTF-8"
 set pm3d explicit at s
 set pm3d scansautomatic
 set pm3d interpolate 1,1 flush begin noftriangles noborder corners2color mean
-set pm3d clip z 
+#set pm3d clip z 
 set pm3d nolighting
 set palette positive nops_allcF maxcolors 0 gamma 1.5 color model RGB 
 set palette rgbformulae 7, 5, 15

@@ -72,7 +72,7 @@
 !
            call varm(itime)
            call prof_i(itime,m/2)
-           call prof_j(itime,l)
+           call prof_j(itime,l/2)
 !
 ! global probe: 
 ! x ---> LX = 20  x_p = 8
