@@ -47,7 +47,7 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do j=1,m
+        do j=0,m+1
 #else
         do concurrent (j=0:m+1)
 #endif
@@ -69,7 +69,7 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
-        do i=1,l
+        do i=0,l+1
 #else
         do concurrent (i=0:l+1)
 #endif
