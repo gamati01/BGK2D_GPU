@@ -1,0 +1,4 @@
+
+
+for dgx 
+	* using gnu compiler add "-foffload=-misa=sm_35"
