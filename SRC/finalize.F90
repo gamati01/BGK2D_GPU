@@ -56,6 +56,7 @@
          write(69,1204) time_coll/time_loop, time_coll1/time_loop1
          write(69,1205) time_dg/time_loop  , time_dg1/time_loop1
          write(69,1206) time_move/time_loop, time_move1/time_loop1
+         write(69,1207) time_obs/time_loop , time_obs1/time_loop1
          write(69,9999) 
          write(69,*)  "# Derived (global) metrics "
          write(69,1106) float(lx)*float(ly)* & 
