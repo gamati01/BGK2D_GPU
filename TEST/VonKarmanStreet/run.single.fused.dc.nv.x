@@ -1,13 +1,13 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_TRICK1_DC_NV
+setenv DIR RUN_SINGLE_FUSED_DC_NV
 setenv EXE bgk2d.doconcurrent.x
 #
 echo "-------------------------------"
 echo "starting test VonKarman Street " 
 echo " ---> nvfortran            "
 echo " ---> single precision     "
-echo " ---> fused+trick1         "
+echo " ---> fused                "
 echo " ---> doconcurrent         "
 echo " ---> "$EXE
 echo " ---> "$DIR
@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 #make clean
-make FIX="-DFUSED -DTRICK1 -DINFLOW -DOBSTACLE"
+make FIX="-DFUSED -DINFLOW -DOBSTACLE"
 if ($?) then
    echo "compiling fails..."
    exit 1
