@@ -78,6 +78,7 @@
 !
           if(myrank == 0) then
              write(*,*) "restoring at timestep ", itstart
+             call restore_raw(itstart)
           endif
 !
           call SYSTEM_CLOCK(countF1, count_rate, count_max)
