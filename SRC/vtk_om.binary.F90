@@ -71,7 +71,7 @@
         phi(-1) = 0.0
         i = 1
         do j = 0, m
-            den =( a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) & 
+           den =( a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) & 
                  +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)) + cte1
 
            uv =   a01(i,j)+a03(i,j)+a05(i,j) &

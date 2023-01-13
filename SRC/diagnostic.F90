@@ -77,7 +77,7 @@
 ! global probe: 
 ! x ---> LX = 20  x_p = 8
 ! y ---> LX = 16  x_p = 9
-            call probe_global(itime,(8*lx/20),(9*ly/16))
+            call probe_global(itime,(32*lx/50),(ly/2))
 !
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat

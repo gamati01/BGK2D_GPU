@@ -43,6 +43,7 @@
 !
         real(sp) :: u,w,den
         real(sp) :: cte1
+        real(sp), parameter :: zerol=0.0
 !
         file_name = 'tec_xy.xxxx.xxxxxxxx.vtk'
 !
@@ -92,7 +93,7 @@
               den = (a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
                     +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j))+cte1
 !
-              write(52) u/den, w/den, zero
+              write(52) u/den, w/den, zerol
            end do
         end do
         close(52)

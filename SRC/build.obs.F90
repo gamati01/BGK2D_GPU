@@ -51,7 +51,7 @@
       write( 6,*) "INFO: creating obstacle (cylinder)" 
       write(16,*) "INFO: creating obstacle (cylinder)" 
 !
-      icoord = lx/4
+      icoord = 2*lx/5
       jcoord = ly/2
       if (m.gt.256) then
           radius = 32
