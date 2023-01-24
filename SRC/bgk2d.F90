@@ -95,6 +95,11 @@
 !
          call propagation        ! propagation step
 !
+! to remove...
+!         if (mod(itime,icheck).eq.0) then
+!            call drag(itime,10,667)
+!         endif   
+!
          call collision(itime)   ! collision step
 !
 ! get macroscopic values

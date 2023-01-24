@@ -76,11 +76,10 @@
 !
 #ifdef OFFLOAD
 # ifdef TRICK2
-$OMP target teams distribute parallel do simd collapse(2) num_teams(220) thread_limit(256)
+$OMP target teams distribute parallel do simd collapse(2) num_teams(208) thread_limit(256)
 # else
 $OMP target teams distribute parallel do simd collapse(2)
 # endif
-#endif
         do j=1,m
         do i=1,l
 #else

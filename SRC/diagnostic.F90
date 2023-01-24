@@ -79,38 +79,21 @@
 !
 ! Drag section (still to fix)
 !
-! cylinder center
-           icoord = int(2.0*l/5.0)
-           jcoord = int(m/2.0)
-! 
-! cylinder radius           
-           if (m.gt.256) then
-              radius = 32
-           else
-              radius = ly/8
-           endif
+           call drag(itime, 7,666)
+           call drag(itime, 8,667)
+           call drag(itime, 9,668)
+           call drag(itime,10,669)
 !
-! bounding box delta           
-           delta = 5
+! Lift section (still to fix)           
 !
-! Gauss Th bounding box
-           istart = icoord - radius - delta
-           istop  = icoord + radius + delta
-           jstart = jcoord - radius - delta
-           jstop  = jcoord + radius + delta
-!           
-           fluxX = zero
-           fluxY = zero
-!           
-           call fluxX_y(itime,istart,istop,jstart,jstop,fluxX)
-           call fluxX_x(itime,istart,istop,jstart,jstop,fluxY)
-           write(666,*) itime, fluxX, fluxY
-!
+           call lift(itime, 7,766)
+           call lift(itime, 8,767)
+           call lift(itime, 9,768)
+           call lift(itime,10,769)
 !
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat
 !           call flush(88)            ! flush fort.88 (convergence)
-           call flush(666)            ! flush fort.666 (drag)
 !
 ! stop timing
            call time(tcountA1)
@@ -129,13 +112,13 @@
 #ifdef DEBUG_2
         if(myrank == 0) then
            if (mod(itime,icheck).eq.0) then
-              write(6,*) "DEBUG2: Exiting from sub. diagnostic", itime
-              write(6,*) "DEBUG2", int(2.0*l/5.0),int(m/2.0)
-              write(6,*) "DEBUG2", icoord, jcoord
-              write(6,*) "DEBUG2", radius, delta
-              write(6,*) "DEBUG2", istart, istop 
-              write(6,*) "DEBUG2", jstart, jstop 
-              write(6,*) "DEBUG2", fluxX, fluxY
+!              write(6,*) "DEBUG2: Exiting from sub. diagnostic", itime
+!              write(6,*) "DEBUG2", int(2.0*l/5.0),int(m/2.0)
+!              write(6,*) "DEBUG2", icoord, jcoord
+!              write(6,*) "DEBUG2", radius, delta
+!              write(6,*) "DEBUG2", istart, istop 
+!              write(6,*) "DEBUG2", jstart, jstop 
+!              write(6,*) "DEBUG2", fluxX, fluxY
            else
               write(6,*) "DEBUG2: Exiting from sub. diagnostic", itime
            endif
