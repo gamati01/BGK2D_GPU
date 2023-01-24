@@ -28,9 +28,9 @@
         integer:: itime,ivtim,icheck,itsave
         integer:: istart,istop
         integer:: jstart,jstop
-        integer:: kstart,kstop
+        integer:: icoord, jcoord, delta
 !
-        real(mykind) :: fluxX, fluxY, fluxZ
+        real(mykind) :: fluxX, fluxY
 !
 ! get macroscopic values
 !
@@ -58,7 +58,6 @@
 !
         if (mod(itime,icheck).eq.0) then
 !
-!
 ! start timing...
            call SYSTEM_CLOCK(countA0, count_rate, count_max)
 !           
@@ -74,14 +73,44 @@
            call prof_i(itime,m/2)
            call prof_j(itime,l/2)
 !
-! global probe: 
-! x ---> LX = 20  x_p = 8
-! y ---> LX = 16  x_p = 9
-            call probe_global(itime,(32*lx/50),(ly/2))
+! global probe:  Set value for VonKarman streets check with OF
+           call probe_global(itime,(32*lx/50),(ly/2))
+
+!
+! Drag section (still to fix)
+!
+! cylinder center
+           icoord = int(2.0*l/5.0)
+           jcoord = int(m/2.0)
+! 
+! cylinder radius           
+           if (m.gt.256) then
+              radius = 32
+           else
+              radius = ly/8
+           endif
+!
+! bounding box delta           
+           delta = 5
+!
+! Gauss Th bounding box
+           istart = icoord - radius - delta
+           istop  = icoord + radius + delta
+           jstart = jcoord - radius - delta
+           jstop  = jcoord + radius + delta
+!           
+           fluxX = zero
+           fluxY = zero
+!           
+           call fluxX_y(itime,istart,istop,jstart,jstop,fluxX)
+           call fluxX_x(itime,istart,istop,jstart,jstop,fluxY)
+           write(666,*) itime, fluxX, fluxY
+!
 !
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat
 !           call flush(88)            ! flush fort.88 (convergence)
+           call flush(666)            ! flush fort.666 (drag)
 !
 ! stop timing
            call time(tcountA1)
@@ -89,7 +118,7 @@
            time_dg = time_dg + real(countA1-countA0)/(count_rate)
            time_dg1 = time_dg1 + (tcountA1-tcountA0)
 !
-        endif
+        endif   ! closing if with icheck 
 !
         if (mod(itime,itsave).eq.0) then
 !
@@ -99,7 +128,17 @@
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
-           write(6,*) "DEBUG2: Exiting from sub. diagnostic"
+           if (mod(itime,icheck).eq.0) then
+              write(6,*) "DEBUG2: Exiting from sub. diagnostic", itime
+              write(6,*) "DEBUG2", int(2.0*l/5.0),int(m/2.0)
+              write(6,*) "DEBUG2", icoord, jcoord
+              write(6,*) "DEBUG2", radius, delta
+              write(6,*) "DEBUG2", istart, istop 
+              write(6,*) "DEBUG2", jstart, jstop 
+              write(6,*) "DEBUG2", fluxX, fluxY
+           else
+              write(6,*) "DEBUG2: Exiting from sub. diagnostic", itime
+           endif
         endif
 #endif
 !

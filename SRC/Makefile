@@ -124,6 +124,8 @@ OBJ2 = check_case.o \
        movef.o\
        save_raw.o\
        profile.o\
+       fluxX_x.o \
+       fluxX_y.o \
        dealloca.o
 
 # 3rd level subroutine
