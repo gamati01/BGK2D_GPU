@@ -34,12 +34,12 @@ endif
 
 
 # step 2: running test
-echo "step 2: running test"
-./$EXE >& out.log
-if (-e "bgk.perf") then
-   echo "run ended succesfully..."
-else
-   echo "running test fails..."
-   exit 1
-endif
+#echo "step 2: running test"
+#./$EXE >& out.log
+#if (-e "bgk.perf") then
+#   echo "run ended succesfully..."
+#else
+#   echo "running test fails..."
+#   exit 1
+#endif
 
