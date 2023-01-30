@@ -76,20 +76,20 @@
 ! global probe:  Set value for VonKarman streets check with OF
            call probe_global(itime,(32*lx/50),(ly/2))
 
+#ifdef DRAG
 !
 ! Drag section (still to fix)
-!
            call drag(itime, 7,666)
            call drag(itime, 8,667)
            call drag(itime, 9,668)
            call drag(itime,10,669)
 !
 ! Lift section (still to fix)           
-!
            call lift(itime, 7,766)
            call lift(itime, 8,767)
            call lift(itime, 9,768)
            call lift(itime,10,769)
+#endif
 !
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat
