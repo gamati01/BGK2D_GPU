@@ -79,16 +79,30 @@
 #ifdef DRAG
 !
 ! Drag section (still to fix)
-           call drag(itime, 7,666)
-           call drag(itime, 8,667)
-           call drag(itime, 9,668)
-           call drag(itime,10,669)
+           call drag(itime, 5,666)
+           call drag(itime,10,667)
+           call drag(itime,15,668)
+           call drag(itime,20,669)
+           call drag(itime,25,670)
+           call drag(itime,30,671)
+           call drag(itime,40,672)
+           call drag(itime,50,673)
+           call drag(itime,60,674)
+           call drag(itime,70,675)
+           call drag(itime,80,676)
 !
 ! Lift section (still to fix)           
-           call lift(itime, 7,766)
-           call lift(itime, 8,767)
-           call lift(itime, 9,768)
-           call lift(itime,10,769)
+           call lift(itime, 5,766)
+           call lift(itime,10,767)
+           call lift(itime,15,768)
+           call lift(itime,20,769)
+           call lift(itime,25,770)
+           call lift(itime,30,771)
+           call lift(itime,40,772)
+           call lift(itime,50,773)
+           call lift(itime,60,774)
+           call lift(itime,70,775)
+           call lift(itime,80,776)
 #endif
 !
 !           call flush(61)            ! flush prof_i.dat

@@ -44,7 +44,7 @@
 ! 
 ! cylinder radius           
         if (m.gt.256) then
-           radius = 32
+           radius = 64
         else
            radius = ly/8
         endif
@@ -63,13 +63,6 @@
         write(iunit,*) itime, fluxX, fluxY
 !
         call flush(iunit)            ! flush for drag
-!
-! stop timing
-        call time(tcountA1)
-        call SYSTEM_CLOCK(countA1, count_rate, count_max)
-        time_dg = time_dg + real(countA1-countA0)/(count_rate)
-        time_dg1 = time_dg1 + (tcountA1-tcountA0)
-!
 !
 #ifdef DEBUG_2
         if(myrank == 0) then

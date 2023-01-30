@@ -68,6 +68,11 @@
         write(16,*) "INFO: using NOSHIFT preprocessing flag"
 #endif
 !
+#ifdef DRAG
+        write(6,*)  "INFO: using DRAG preprocessing flag"
+        write(16,*) "INFO: using DRAG preprocessing flag"
+#endif
+!
 #ifdef QUAD_P
         write(16,*) "INFO: using quad precision"
 #else
@@ -142,11 +147,23 @@
 !
 #ifdef TRICK1
        write(6,*) "WARNING: square box mandatory (TRICK1)!"
+       write(16,*) "WARNING: square box mandatory (TRICK1)!"
        if(l.ne.m) then
           write(6,*) "ERROR: box not squared (TRICK1)!"
+          write(16,*) "ERROR: box not squared (TRICK1)!"
           stop
        endif
 #endif
-       return
 !
+#ifdef TRICK2
+       write(6,*) "WARNING: forced offload num_threads(TRICK2)!"
+       write(16,*) "WARNING: forced offload num_threads(TRICK2)!"
+       endif
+#endif
+!
+#ifdef DEBUG_1
+       if(myrank == 0) then
+          write(6,*) "DEBUG1: Exiting from sub. check_case"
+       endif
+#endif
         end subroutine check_case
