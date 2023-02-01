@@ -27,47 +27,87 @@ subroutine alloca()
 ! 
       implicit none
 !
-!     define unit vector 
+!     define unit vector  (real/integer)
 !
-      cx(  1    ) =  1
-      cx(  2    ) =  1
-      cx(  3    ) =  1
-      cx(  4    ) =  1
-      cx(  5    ) =  1
-      cx(  6    ) =  0
-      cx(  7    ) =  0
-      cx(  8    ) =  0
-      cx(  9    ) =  0
-      cx( 10    ) = -1
-      cx( 11    ) = -1
-      cx( 12    ) = -1
-      cx( 13    ) = -1
-      cx( 14    ) = -1
-      cx( 15    ) =  0
-      cx( 16    ) =  0
-      cx( 17    ) =  0
-      cx( 18    ) =  0
-      cx( 19    ) =  0
+       cx(  1    ) =  1
+       cx(  2    ) =  1
+       cx(  3    ) =  1
+       cx(  4    ) =  1
+       cx(  5    ) =  1
+       cx(  6    ) =  0
+       cx(  7    ) =  0
+       cx(  8    ) =  0
+       cx(  9    ) =  0
+       cx( 10    ) = -1
+       cx( 11    ) = -1
+       cx( 12    ) = -1
+       cx( 13    ) = -1
+       cx( 14    ) = -1
+       cx( 15    ) =  0
+       cx( 16    ) =  0
+       cx( 17    ) =  0
+       cx( 18    ) =  0
+       cx( 19    ) =  0
+
+      icx(  1    ) =  1
+      icx(  2    ) =  1
+      icx(  3    ) =  1
+      icx(  4    ) =  1
+      icx(  5    ) =  1
+      icx(  6    ) =  0
+      icx(  7    ) =  0
+      icx(  8    ) =  0
+      icx(  9    ) =  0
+      icx( 10    ) = -1
+      icx( 11    ) = -1
+      icx( 12    ) = -1
+      icx( 13    ) = -1
+      icx( 14    ) = -1
+      icx( 15    ) =  0
+      icx( 16    ) =  0
+      icx( 17    ) =  0
+      icx( 18    ) =  0
+      icx( 19    ) =  0
 !
-      cy(  1    ) = -1
-      cy(  2    ) =  0
-      cy(  3    ) =  1
-      cy(  4    ) =  0
-      cy(  5    ) =  0
-      cy(  6    ) =  0
-      cy(  7    ) =  1
-      cy(  8    ) =  1
-      cy(  9    ) =  1
-      cy( 10    ) = -1
-      cy( 11    ) =  0
-      cy( 12    ) =  1
-      cy( 13    ) =  0
-      cy( 14    ) =  0
-      cy( 15    ) =  0
-      cy( 16    ) = -1
-      cy( 17    ) = -1
-      cy( 18    ) = -1
-      cy( 19    ) =  0
+       cy(  1    ) = -1
+       cy(  2    ) =  0
+       cy(  3    ) =  1
+       cy(  4    ) =  0
+       cy(  5    ) =  0
+       cy(  6    ) =  0
+       cy(  7    ) =  1
+       cy(  8    ) =  1
+       cy(  9    ) =  1
+       cy( 10    ) = -1
+       cy( 11    ) =  0
+       cy( 12    ) =  1
+       cy( 13    ) =  0
+       cy( 14    ) =  0
+       cy( 15    ) =  0
+       cy( 16    ) = -1
+       cy( 17    ) = -1
+       cy( 18    ) = -1
+       cy( 19    ) =  0
+!      
+      icy(  1    ) = -1
+      icy(  2    ) =  0
+      icy(  3    ) =  1
+      icy(  4    ) =  0
+      icy(  5    ) =  0
+      icy(  6    ) =  0
+      icy(  7    ) =  1
+      icy(  8    ) =  1
+      icy(  9    ) =  1
+      icy( 10    ) = -1
+      icy( 11    ) =  0
+      icy( 12    ) =  1
+      icy( 13    ) =  0
+      icy( 14    ) =  0
+      icy( 15    ) =  0
+      icy( 16    ) = -1
+      icy( 17    ) = -1
+      icy( 18    ) = -1
+      icy( 19    ) =  0
 !
       allocate(obs(1:l,1:m))
       obs = 0

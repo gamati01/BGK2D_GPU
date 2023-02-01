@@ -90,7 +90,8 @@
         integer:: flip, flop
         integer:: current, next
 !
-        real(mykind), dimension(1:19) :: cx,cy
+        real(mykind), dimension(1:19) ::  cx, cy
+        integer, dimension(1:19) :: icx,icy
 !
         logical remdims(mpid)
         logical periodic(mpid)
