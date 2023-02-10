@@ -2,13 +2,18 @@
 
 
 This is a 2D CFD lattice-boltzmann based code to assess performance usinig GPU.
-It is a "downsize" of a more complex code. 
-Now it performs only lid-driven cavity. More test will come in a near (?) future.
-
+It is a "downsize" of a more complex code (3D one with mpi+openacc). 
+Now it performs
+	* lid-driven cavity
+	* taylor-green vortex
+	* flow around a obstacle (cylinder)
+	
 
 2D LBM using
   * SERIAL
   * DO_CONCURRENT
+  	* CPU 
+	* GPU (NVIDIA)
   * OPEMMP OFFLOAD 
 
 With different HW & SW
@@ -43,6 +48,7 @@ To compile offload (gpu) with gnu (fused)
 
 Other preprocessing flags are
 
-* TRICK1 (to reduce impact of BC on performance --> square box" 
+* TRICK1 (to reduce impact of BC on performance --> square box")
+* TRICK2 (to force, for openmp offload the number of threads)
 
 
