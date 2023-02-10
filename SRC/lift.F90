@@ -17,7 +17,7 @@
 !     TODO
 !       
 !     NOTES
-!        the center and the radius of the cylinder are hardwritten
+!
 !
 !     *****
 !=====================================================================
@@ -43,11 +43,11 @@
         jcoord = int(m/2.0)
 ! 
 ! cylinder radius           
-        if (m.gt.256) then
-           radius = 64
-        else
-           radius = ly/8
-        endif
+!        if (m.gt.256) then
+!           radius = 32
+!        else
+!           radius = ly/8
+!        endif
 !
 ! Gauss Th bounding box
         istart = icoord - radius - delta
