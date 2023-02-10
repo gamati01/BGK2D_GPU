@@ -5,10 +5,10 @@ setenv EXE bgk2d.offload.x
 #
 echo "-------------------------------"
 echo "starting test VonKarman Street " 
-echo " ---> nvfortran            "
-echo " ---> single precision     "
-echo " ---> orig                 "
-echo " ---> doconcurrent         "
+echo " ---> nvfortran                "
+echo " ---> single precision         "
+echo " ---> orig                     "
+echo " ---> offload                  "
 echo " ---> "$EXE
 echo " ---> "$DIR
 echo "-------------------------------"

@@ -169,17 +169,20 @@ set grid
 set xlabel "Timesteps "
 #
 set title "Probe: x velocity"
-p   'RUN_SINGLE_TRICK1_DC_NV/probe_g.0000.dat' u 1:2 w p lw 2 t " This run "
+p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:2 w p lw 2 t " This run "
+rep 'RUN_DOUBLE_FUSED_OFFLOAD_NV/probe_g.0000.dat' u 1:2 w p lw 2 t " This run "
 rep 'probe_g.0000.dat' u 1:2 w l lw 2 t " Reference" 
 pause -1
 #
 set title "Probe: y velocity"
-p   'RUN_SINGLE_TRICK1_DC_NV/probe_g.0000.dat' u 1:3 w p lw 2 t " This run "
+p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:3 w p lw 2 t " This run "
+rep 'RUN_DOUBLE_FUSED_OFFLOAD_NV/probe_g.0000.dat' u 1:3 w p lw 2 t " This run "
 rep 'probe_g.0000.dat' u 1:3 w l lw 2 t " Reference" 
 pause -1
 #
 set title "Probe: density"
-p   'RUN_SINGLE_TRICK1_DC_NV/probe_g.0000.dat' u 1:4 w p lw 2 t " This run "
+p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:4 w p lw 2 t " This run "
+rep 'RUN_DOUBLE_FUSED_OFFLOAD_NV/probe_g.0000.dat' u 1:4 w p lw 2 t " This run "
 rep 'probe_g.0000.dat' u 1:4 w l lw 2 t " Reference" 
 pause -1
 #

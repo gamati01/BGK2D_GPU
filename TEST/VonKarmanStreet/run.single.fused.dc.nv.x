@@ -20,7 +20,7 @@ cd $DIR
 # step 1: compiling
 echo "step 1: compiling"
 cd ../../../SRC
-#make clean
+make clean
 make FIX="-DFUSED -DINFLOW -DOBSTACLE"
 if ($?) then
    echo "compiling fails..."
