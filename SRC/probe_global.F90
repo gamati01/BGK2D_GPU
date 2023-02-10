@@ -20,7 +20,7 @@
 !
 !     NOTES
 !       integer variables used: i,j,k,itime
-!       real variables used: rto,xj,yj,zj
+!       real variables used: rto,xj,yj
 !
 !     *****
 !=====================================================================

@@ -60,7 +60,6 @@
       write(16,*) 'flag3        =',flag3
       write(16,*) 'ipad         =',ipad
       write(16,*) 'jpad         =',jpad
-      write(16,*) 'kpad         =',kpad
       write(16,*) 'radius       =',radius
       write(16,*) '************** Further check ****************'
       write(16,*) 'zero         =', zero, zero_qp
@@ -99,7 +98,6 @@
       write(6,*) 'flag3        =',flag3
       write(6,*) 'ipad         =',ipad
       write(6,*) 'jpad         =',jpad
-      write(6,*) 'kpad         =',kpad
       write(6,*) 'radius       =',radius
       write(6,*) '*********************************************'
       write(6,*) ' '

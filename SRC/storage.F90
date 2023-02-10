@@ -85,7 +85,7 @@
         integer:: dump2d
         integer:: buffer_size
         integer:: i_shift
-        integer:: ipad,jpad,kpad
+        integer:: ipad,jpad
         integer:: flag1, flag2, flag3
         integer:: flip, flop
         integer:: current, next

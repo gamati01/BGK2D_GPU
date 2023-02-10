@@ -20,7 +20,7 @@
 !
 !     NOTES
 !       integer variables used: i,k,itime
-!       real variables used: rto,xj,zj
+!       real variables used: rto,xj
 !
 !     *****
 !=====================================================================
@@ -32,7 +32,7 @@
 !
         integer i0,j0,k0,itime
 !
-        real(mykind) :: rho, xj, yj, zj
+        real(mykind) :: rho, xj, yj
         real(mykind) :: x01,x03,x05,x08,x10
         real(mykind) :: x12,x14,x17,x19
         real(mykind) :: cte1

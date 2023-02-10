@@ -31,10 +31,10 @@
 !
         implicit none
 !
-        integer      :: i,j,k 
+        integer      :: i,j 
         integer      :: tag, ierr
         real(mykind) :: force
-        real(mykind) :: den,xj,yj,zj,rho,vsq,y,rhoinv
+        real(mykind) :: den,xj,yj,rho,vsq,y,rhoinv
         real(mykind) :: x01,x03,x05
         real(mykind) :: x08,x10,x12
         real(mykind) :: x14,x17
