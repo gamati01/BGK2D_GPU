@@ -77,7 +77,7 @@
            call probe_global(itime,(32*lx/50),(ly/2))
 
 #ifdef DRAG
-           call drag2(itime,333)
+           call drag3(itime,333)
 !
 ! Drag section (still to fix)
            call drag(itime, 5,666)
