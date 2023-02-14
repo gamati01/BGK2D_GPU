@@ -1,7 +1,7 @@
 # BGK2D_GPU
 
 
-This is a 2D CFD lattice-boltzmann based code to assess performance usinig GPU.
+This is a 2D CFD lattice-boltzmann based code to assess performance using GPU.
 It is a "downsize" of a more complex code (3D one with mpi+openacc). 
 Now it performs
 	* lid-driven cavity
@@ -25,13 +25,13 @@ With different HW & SW
 
 
 To compile do-concurrent (cpu) with nvfortran
-* make NV=1 FIX="-DPGI -stdpar=multicore "
+* make FIX="-DPGI -stdpar=multicore "
 
 To compile do-concurrent (gpu) with nvfortran (original)
-* make NV=1 FIX="-DPGI -stdpar=gpu "
+* make FIX="-DPGI -stdpar=gpu "
 
 To compile do-concurrent (gpu) with nvfortran (fused)
-* make NV=1 FIX="-DPGI -stdpar=gpu -DFUSED "
+* make FIX="-DPGI -stdpar=gpu -DFUSED "
 
 To compile offload (gpu) with nvfortran (original)
 *  make offload 
