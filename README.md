@@ -8,6 +8,10 @@ Now it performs
 	* taylor-green vortex
 	* flow around a obstacle (cylinder)
 	
+in SRC directory: all source files + Makefile
+in UTIL directory: some utilities like scripts or input file
+
+	
 
 2D LBM using
   * SERIAL
