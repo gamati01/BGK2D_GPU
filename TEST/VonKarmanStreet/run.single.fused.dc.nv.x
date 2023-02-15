@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make FIX="-DFUSED -DINFLOW -DOBSTACLE"
+make FIX="-DFUSED -DINFLOW -DOBSTACLE -DDRAG"
 if ($?) then
    echo "compiling fails..."
    exit 1

@@ -143,9 +143,7 @@ OBJ2 = check_case.o \
        fluxX_y.o \
        fluxY_x.o \
        fluxY_y.o \
-       drag.o \
-       drag2.o \
-       drag3.o \
+       draglift.o \
        lift.o \
        dealloca.o
 

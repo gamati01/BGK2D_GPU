@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make offload GNU=1 FIX="-DINFLOW -DOBSTACLE"
+make offload GNU=1 FIX="-DINFLOW -DOBSTACLE -DDRAG"
 if ($?) then
    echo "compiling fails..."
    exit 1
