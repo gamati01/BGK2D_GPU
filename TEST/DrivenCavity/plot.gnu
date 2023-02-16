@@ -177,22 +177,22 @@ set grid
 set ylabel " y direction "
 #
 set title "X velocity centerline"
-p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat' index 21 u 2:1 t "This run (do concurrent)" 
+p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat'      index 21 u 2:1 t "This run (do concurrent)" 
 rep 'RUN_SINGLE_TRICK1_OFFLOAD_NV/prof_j.0000.dat' index 21 u 2:1 t "This run (offload nv)" 
-rep 'RUN_SINGLE_TRICK1_OFFLOAD_GNU/prof_j.0000.dat' index 21 u 2:1 t "This run (offload gnu)" 
+rep 'RUN_SINGLE_ORIGINAL_OFFLOAD_GNU/prof_j.0000.dat'      index 21 u 2:1 t "This run (offload gnu)" 
 rep 'prof_j.0000.dat' index 21 u 2:1 w l lw 2 t " REFERENCE "
 pause -1 "press any key to continue" 
 #
 set title "y velocity centerline"
-p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat' index 21 u 3:1 t "This run (do concurrent)" 
+p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat'      index 21 u 3:1 t "This run (do concurrent)" 
 rep 'RUN_SINGLE_TRICK1_OFFLOAD_NV/prof_j.0000.dat' index 21 u 3:1 t "This run (offload nv)" 
-rep 'RUN_SINGLE_TRICK1_OFFLOAD_GNU/prof_j.0000.dat' index 21 u 3:1 t "This run (offload gnu)" 
+rep 'RUN_SINGLE_ORIGINAL_OFFLOAD_GNU/prof_j.0000.dat'      index 21 u 3:1 t "This run (offload gnu)" 
 rep 'prof_j.0000.dat' index 21 u 3:1 w l lw 2 t " REFERENCE "
 pause -1 "press any key to continue" 
 #
 set title "density centerline"
-p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat' index 21 u 4:1 t "This run (do concurrent)" 
+p   'RUN_SINGLE_TRICK1_DC_NV/prof_j.0000.dat'      index 21 u 4:1 t "This run (do concurrent)" 
 rep 'RUN_SINGLE_TRICK1_OFFLOAD_NV/prof_j.0000.dat' index 21 u 4:1 t "This run (offload nv)" 
-rep 'RUN_SINGLE_TRICK1_OFFLOAD_GNU/prof_j.0000.dat' index 21 u 4:1 t "This run (offload gnu)" 
+rep 'RUN_SINGLE_ORIGINAL_OFFLOAD_GNU/prof_j.0000.dat'      index 21 u 4:1 t "This run (offload gnu)" 
 rep 'prof_j.0000.dat' index 21 u 4:1 w l lw 2 t " REFERENCE "
 #    EOF

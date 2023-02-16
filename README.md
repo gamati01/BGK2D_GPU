@@ -26,6 +26,10 @@ Tested With different compiler (GPU)
 	* xlf
 	* flang
 
+With differenre precion
+	* single precision (default)
+	* double precision 
+
 3) Directory Structure
 
 in SRC directory: all source files + Makefile
@@ -61,6 +65,9 @@ To compile offload (gpu) with gnu (fused)
 
 To compile offload (gpu) with gnu (fused)
 * make offload FLANG=1 FIX=" -DFUSED" 
+
+To compile offload (gpu) with gnu (fused), double precision
+* make offload DOUBLE=1 FLANG=1 FIX=" -DFUSED" 
 
 
 4) Other stuff

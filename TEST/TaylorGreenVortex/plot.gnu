@@ -172,6 +172,7 @@ GNUTERM = "x11"
 set xlabel "timestep"
 set ylabel "Total Energy"
 ## Last datafile plotted: "RUN_SINGLE_TRICK1_DC_NV/diagno.dat"
-p   'RUN_SINGLE_TRICK1_DC_NV/diagno.dat' u 1:5 w p lw 2 t " This Run"
+p   'RUN_SINGLE_TRICK1_DC_NV/diagno.dat'            u 1:5 w p lw 2 t ' This Run (single precision)'
+rep 'RUN_DOUBLE_ORIGINAL_OFFLOAD_NV/diagno.dat'     u 1:5 w p lw 2 t ' This Run (double precision)'
 rep 'diagno.dat' u 1:5 w l lw 2 t " Reference "
 #    EOF

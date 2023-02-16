@@ -38,10 +38,6 @@ ifdef FLANG
  SCC = clang -DPGI
  DC  =
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
-# OFFLOAD = -fopenmp --offload-arch=amdgcn-amd-amdhsa--gfx90a:sramecc+
-# OFFLOAD = -fopenmp --offload-arch=amdgcn-amd-amdhsa--gfx90a
-# OFFLOAD = -fopenmp --offload-arch=gfx90a:sramecc+:xnack-
-# OFFLOAD = -fopenmp -fopenmp-targets=amdgcn-amd-amdhsa -Xopenmp-target=amdgcn-amd-amdhsa -march=gfx90a
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
