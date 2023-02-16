@@ -1,0 +1,16 @@
+
+
+To run a lid driven test simply 
+
+type: 
+
+./run.single.trick1.offload.nv.x 	--> single precision, fused verision, offload using nvfortran
+./run.single.trick1.offload.gnu.x       --> single precision, fused verision, offload using gfortran
+./run.single.trick1.dc.nv.x		--> single precision, fused verision, do concurrent using nvfortran
+./run.double.trick1.offload.gnu.x	--> double precision, fused verision, offload using gfortran
+./run.double.trick1.offload.flang.x	--> double precision, fused verision, offload using flang
+./run.double.trick1.dc.nv.x		--> double precision, fused verision, do concurrent using nvfortran
+
+bgk.input        --> input file used for the simulation
+plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
+prof_j.0000.dat

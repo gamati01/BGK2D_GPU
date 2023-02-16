@@ -1,0 +1,13 @@
+
+
+To run a Von Karman test simply 
+
+type: 
+
+./run.single.orig.offload.gnu.x   --> single precision, original version, offload using gfortran
+
+./run.single.fused.dc.nv.x --> single precision, fused version, do concurrent using nvfortran
+
+bgk.input        --> input file used for the simulation
+plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
+probe_g.0000.dat --> reference dat

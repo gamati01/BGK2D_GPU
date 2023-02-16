@@ -1,33 +1,43 @@
 # BGK2D_GPU
 
 
-This is a 2D CFD lattice-boltzmann based code to assess performance using GPU.
-It is a "downsize" of a more complex code (3D one with mpi+openacc). 
-Now it performs
-	* lid-driven cavity
-	* taylor-green vortex
-	* flow around a obstacle (cylinder)
-	
-in SRC directory: all source files + Makefile
-in UTIL directory: some utilities like scripts or input file
+1) Description
 
-	
+This is a 2D CFD Lattice Boltzmann Method code developed to assess performance using GPU.  It is a "downsize" of a more complex code (3D one with mpi+openacc). 
 
-2D LBM using
+Two implementation are possible
+  * ORIGINAL (default)
+	Classical implementation, with two different subroutine streaming + collision
+  * FUSED
+	Implementation with one single fused subroutine (no streaming subroutine). i
+        It asks for less BW but it uses pointers.
+
+These are the "possible" choice
   * SERIAL
   * DO_CONCURRENT
   	* CPU 
-	* GPU (NVIDIA)
+	* GPU (only NVIDIA so far)
   * OPEMMP OFFLOAD 
+	* GPU (NVIDIA and AMD)
 
-With different HW & SW
+Tested With different compiler (GPU)
   	* nvfortran
-	* gnu (GPU enabled)
+	* gnu 
 	* xlf
+	* flang
 
+3) Directory Structure
 
+in SRC directory: all source files + Makefile
+                  The exe (bgk2d.doconcurrent.x or bgk2d.offload.x) will be copied in ../RUN directory (to create)
+in UTIL directory: some utilities like scripts or input file
+in TEST directory: three test case
+        * lid-driven cavity
+        * taylor-green vortex
+        * flow around a obstacle (cylindera: von karman streets)
 
-
+3) How to compile
+	
 To compile do-concurrent (cpu) with nvfortran
 * make FIX="-DPGI -stdpar=multicore "
 
@@ -49,10 +59,16 @@ To compile offload (gpu) with xl (fused)
 To compile offload (gpu) with gnu (fused)
 * make offload GNU=1 FIX=" -DFUSED" 
 
+To compile offload (gpu) with gnu (fused)
+* make offload FLANG=1 FIX=" -DFUSED" 
 
-Other preprocessing flags are
+
+4) Other stuff
+
+Other preprocessing flags are:
 
 * TRICK1 (to reduce impact of BC on performance --> square box")
 * TRICK2 (to force, for openmp offload the number of threads)
+* DRAG (activate drag/lift computing, time consuming)
 
 

@@ -1,0 +1,11 @@
+
+
+To run Taylor-Green test simply 
+
+type: 
+
+./run.single.trick1.dc.nv.x		--> single precision, fused verision, do concurrent using nvfortran
+
+bgk.input        --> input file used for the simulation
+plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
+diagno.dat	 --> reference data
