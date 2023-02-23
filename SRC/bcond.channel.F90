@@ -70,39 +70,18 @@
            crho  =uno
            rhoinv=uno
 !           
-! front, outflow  (x = l)
-           xj = ((a03(l,j)-a12(l,j)) & 
-                +(a01(l,j)-a10(l,j)) & 
-                +(a05(l,j)-a14(l,j)))*rhoinv
-           yj = ((a03(l,j)-a01(l,j)) &
-                +(a12(l,j)-a10(l,j)) &
-                +(a08(l,j)-a17(l,j)))*rhoinv
-!          
-           cvsq=xj*xj+yj*yj
+! rear, periodic bc  (x = l)
 !
-           cx10 = rf*(-xj-yj)+qf*(3.0*(xj+yj)*(xj+yj)-cvsq)
-           cx12 = rf*(-xj+yj)+qf*(3.0*(xj-yj)*(xj-yj)-cvsq)
-           cx14 = rf*(-xj   )+qf*(3.0*(xj   )*(xj   )-cvsq)
-!
-           a10(l1,j) = crho*p2*(cte1+cx10)
-           a12(l1,j) = crho*p2*(cte1+cx12)
-           a14(l1,j) = crho*p1*(cte1+cx14)
+           a10(l1,j) = a10(1,j)
+           a12(l1,j) = a12(1,j)
+           a14(l1,j) = a14(1,j)
 !
 ! -------------------------------------------------------------
-! rear, inflow (x = 0)
+! front, inflow (x = 0)
 !           
-           xj = u_inflow
-           yj = zero
-!           
-           cvsq=xj*xj+yj*yj
-!
-           cx01 = rf*( xj-yj   )+qf*(3.d0*(xj-yj)*(xj-yj)-cvsq)
-           cx03 = rf*( xj+yj   )+qf*(3.d0*(xj+yj)*(xj+yj)-cvsq)
-           cx05 = rf*( xj      )+qf*(3.d0*(xj   )*(xj   )-cvsq)
-!
-           a01(0,j) = crho*p2*(cte1+cx01)
-           a03(0,j) = crho*p2*(cte1+cx03)
-           a05(0,j) = crho*p1*(cte1+cx05)
+           a01( 0,j) = a01(l,j)
+           a03( 0,j) = a03(l,j)
+           a05( 0,j) = a05(l,j)
         end do
 !
 ! ----------------------------------------------
