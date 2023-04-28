@@ -60,7 +60,7 @@
 !
 ! set boundary condition flags..
 !
-!GA       call build_bcond
+       call build_bcond
 !
 ! build obstacles
 !

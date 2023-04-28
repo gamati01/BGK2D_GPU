@@ -43,7 +43,9 @@
        cte1 = uno
 #endif
 !
-        do j = 1,m         ! density
+!        do j = 1,m         ! density
+        do concurrent (j=1:m)
+
            den(j) = ((+a01(icoord,j)+a03(icoord,j) & 
                       +a05(icoord,j)+a08(icoord,j) &
                       +a10(icoord,j)+a12(icoord,j) & 
@@ -51,13 +53,15 @@
                                     +a19(icoord,j)) + cte1
         enddo
 ! 
-        do j = 1,m         ! streamwise velocity
+!        do j = 1,m         ! streamwise velocity
+        do concurrent (j=1:m)
            u(j) =  ( (a01(icoord,j)-a10(icoord,j)) &
                     +(a03(icoord,j)-a12(icoord,j)) &
                     +(a05(icoord,j)-a14(icoord,j)))/den(j)
         end do
 !
-        do j = 1,m         ! spanwise velocity
+!        do j = 1,m         ! spanwise velocity
+        do concurrent (j=1:m)
            w(j) =  ( (a03(icoord,j)-a01(icoord,j)) &
                     +(a08(icoord,j)-a17(icoord,j)) &
                     +(a12(icoord,j)-a10(icoord,j)))/den(j)
