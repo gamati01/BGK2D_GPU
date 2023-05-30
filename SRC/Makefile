@@ -182,8 +182,11 @@ serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 #----------------------------------------------
 multicore: VER:= multicore
 multicore: DC := -DPGI
+	# nvidia
 multicore: FC := $(SFC) -stdpar=multicore -Minfo=all -DMULTICORE
+	# intel
 multicore: FC := $(SFC) -fopenmp -DMULTICORE 
+multicore: FC := $(SFC) -fopenmp -DMULTICORE   -ftree-parallelize-loops=4
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
