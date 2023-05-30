@@ -62,6 +62,8 @@ ifdef BDW
 endif
 #
 ifdef SKL
+ SFC = ifx
+ SCC = icc
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
@@ -181,9 +183,11 @@ serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 multicore: VER:= multicore
 multicore: DC := -DPGI
 multicore: FC := $(SFC) -stdpar=multicore -Minfo=all -DMULTICORE
+multicore: FC := $(SFC) -fopenmp -DMULTICORE 
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -stdpar=multicore -DSERIAL -o ../RUN/bgk2d.$(VER).x
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+#	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -stdpar=multicore -DSERIAL -o ../RUN/bgk2d.$(VER).x
 
 
 #----------------------------------------------
@@ -210,7 +214,7 @@ clean:
 info:  $(INC)
 	@echo "Modules          =  "$(MOD);
 	@echo "Objects          =  "$(OBJ);
-	@echo "Compiler         =  "$(FC);
+	@echo "Compiler         =  "$(SFC);
 	@echo "Compiler flags   =  "$(OPT);
 	@echo "Preproc  flags   =  "$(PREPROC);
 	@echo "Fix      flags   =  "$(FIX);
