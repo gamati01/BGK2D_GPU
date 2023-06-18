@@ -17,16 +17,16 @@ These are the "possible" choice
   * DO_CONCURRENT
   	* CPU 
 	* GPU (only NVIDIA so far)
-  * OPEMMP OFFLOAD 
+  * OPENMP OFFLOAD 
 	* GPU (NVIDIA and AMD)
 
-Tested With different compiler (GPU)
+Tested With different compilers (GPU)
   	* nvfortran
 	* gnu 
 	* xlf
 	* flang
 
-With differenre precion
+With different precision
 	* single precision (default)
 	* double precision 
 
@@ -37,8 +37,8 @@ in SRC directory: all source files + Makefile
 in UTIL directory: some utilities like scripts or input file
 in TEST directory: three test case
         * lid-driven cavity
-        * taylor-green vortex
-        * flow around a obstacle (cylindera: von karman streets)
+        * Taylor-green vortex
+        * flow around an obstacle (cylinder: von Karman streets)
 
 3) How to compile
 	
@@ -74,8 +74,8 @@ To compile offload (gpu) with gnu (fused), double precision
 
 Other preprocessing flags are:
 
-* TRICK1 (to reduce impact of BC on performance --> square box")
-* TRICK2 (to force, for openmp offload the number of threads)
-* DRAG (activate drag/lift computing, time consuming)
+* TRICK1 (to reduce the impact of BC on performance --> square box")
+* TRICK2 (to force, for OpenMP offload the number of threads)
+* DRAG (activate drag/lift computing, time-consuming)
 
 
