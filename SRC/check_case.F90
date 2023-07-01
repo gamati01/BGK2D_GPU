@@ -158,7 +158,6 @@
 #ifdef TRICK2
        write(6,*) "WARNING: forced offload num_threads(TRICK2)!"
        write(16,*) "WARNING: forced offload num_threads(TRICK2)!"
-       endif
 #endif
 !
 #ifdef DEBUG_1
