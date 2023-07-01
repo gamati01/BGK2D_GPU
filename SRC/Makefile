@@ -43,6 +43,15 @@ ifdef FLANG
  OPT =   -O3
 endif
 #
+ifdef CRAY
+ SCC = cc
+ SFC = ftn
+ OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
+ FOPT = -O3
+ COPT =
+ OPT = -O3
+endif
+#
 ifdef GNU
  CC = mpicc
  FC = mpif90

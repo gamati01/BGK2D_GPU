@@ -39,9 +39,15 @@
 #endif
 !
 ! some info about time...
+#ifdef CRAY
+!       write(100,*) itime, (time_mp-old1),   &
+!                           (time_coll-old2), & 
+!                           (time_move-old3)
+#else
        write(100,2001) itime, (time_mp-old1),   &
                               (time_coll-old2), & 
                               (time_move-old3)
+#endif
 !
        old1 = time_mp
        old2 = time_coll
@@ -52,7 +58,11 @@
 !
 ! formats...
 1001  format(" Mean   time",1(e14.6,1x),i8,"/",i8)
+#ifdef CRAY
+       !do nothing
+#else
 2001  format(i8, 3(e14.6,1x))
+#endif
 !
       return
       end subroutine profile
