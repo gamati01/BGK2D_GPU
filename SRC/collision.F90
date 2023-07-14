@@ -8,8 +8,8 @@
 !       bcond
 !     DESCRIPTION
 !       Simple wrapper for movef routine...
-!       - movef (if -DORIGINAL)
-!       - none  else
+!       - none (if -DFUSED) 
+!       - movef else
 !     INPUTS
 !       none
 !     OUTPUT

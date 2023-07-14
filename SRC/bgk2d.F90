@@ -65,6 +65,9 @@
       call initialize(itrestart,init_v,itfin,itstart,ivtim,isignal, & 
                       itsave,icheck,tstep)
 !
+#ifdef NOMANAGED
+!$acc data copyin(a01,a03,a05,a08,a10,a12,a14,a17,a19,b01,b03,b05,b08,b10,b12,b14,b17,b19,obs)
+#endif
 !
       call SYSTEM_CLOCK(countE0, count_rate, count_max)
       call time(tcountE0)
@@ -117,6 +120,10 @@
 !$omp end target data
 #endif
 !      
+#ifdef NOMANAGED
+!$acc end data
+#endif
+
 !     some global timings
       call SYSTEM_CLOCK(countE1, count_rate, count_max)
       call time(tcountE1)

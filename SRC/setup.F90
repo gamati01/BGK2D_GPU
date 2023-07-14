@@ -106,14 +106,14 @@
 #endif
 ! 
 ! parallelization
-#ifdef OFFLOAD
-         write(6,*) " Parallelization: GPU offloading"
-#else  
-# ifdef SERIAL
+#ifdef SERIAL
          write(6,*) " Serial"
-# else  
+#else if OFFLOAD
+         write(6,*) " Parallelization: OpenMP offload"
+#else if OPENACC 
+         write(6,*) " Parallelization: OpenACC"
+#else  
          write(6,*) " Parallization: DO concurrent   "
-# endif
 #endif
 ! 
 ! test case

@@ -27,6 +27,7 @@ SFC = nvfortran
 CC = mpicc
 FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
+OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc70,managed
 DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
@@ -47,6 +48,7 @@ ifdef CRAY
  SCC = cc
  SFC = ftn
  OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
+ OPENACC = -DPGI -h acc -DOPENACC
  FOPT = -O3
  COPT =
  OPT = -O3
@@ -179,7 +181,15 @@ offload: FC := $(SFC)
 offload: CC := $(SCC)
 offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
-
+#
+#----------------------------------------------
+openacc: FOPT += $(OPENACC)
+openacc: OPT  += $(OPENACC)
+openacc: VER := openacc
+openacc: FC := $(SFC)
+openacc: CC := $(SCC)
+openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 #----------------------------------------------
 serial: VER:= serial
 serial: DC := -DPGI

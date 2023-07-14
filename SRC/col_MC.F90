@@ -86,6 +86,12 @@
 # endif
         do j=1,m
         do i=1,l
+#else if OPENACC
+!$acc kernels
+!$acc loop independent
+        do j=1,m
+!$acc loop independent
+           do i=1,l
 #else
         do concurrent (j=1:m, i=1:l)
 #endif        
@@ -181,6 +187,9 @@
 #ifdef OFFLOAD
         end do
 !$OMP end target teams distribute parallel do simd
+#else if OPENACC
+        end do
+!$acc end kernels
 #endif
 !
 ! fix

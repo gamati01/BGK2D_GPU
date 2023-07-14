@@ -155,6 +155,16 @@
        endif
 #endif
 !
+#ifdef OFFLOAD
+       write(6,*) "INFO: offload version"
+       write(16,*) "INFO: offload version"
+#endif
+!       
+#ifdef OPENACC
+       write(6,*) "INFO: openacc version"
+       write(16,*) "INFO: openacc version"
+#endif
+!       
 #ifdef TRICK2
        write(6,*) "WARNING: forced offload num_threads(TRICK2)!"
        write(16,*) "WARNING: forced offload num_threads(TRICK2)!"

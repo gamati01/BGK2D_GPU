@@ -54,6 +54,10 @@
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
         do j=1,m
+#else if OPENACC
+!$acc kernels
+!$acc loop independent
+        do j=1,m
 #else
         do concurrent (j=1:m)
 #endif
@@ -80,6 +84,8 @@
         end do
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
+#else if OPENACC
+!$acc end kernels
 #endif
 
 
@@ -88,6 +94,10 @@
 
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
+        do j=1,m
+#else if OPENACC
+!$acc kernels
+!$acc loop independent
         do j=1,m
 #else
         do concurrent (j=1:m)
@@ -104,10 +114,16 @@
         end do
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
+#else if OPENACC
+!$acc end kernels
 #endif
 !        
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
+        do i=1,l
+#else if OPENACC
+!$acc kernels
+!$acc loop independent
         do i=1,l
 #else
         do concurrent (i=1:l)
@@ -124,7 +140,10 @@
         enddo
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
+#else if OPENACC
+!$acc end kernels
 #endif
+        
 #endif
 !
 ! stop timing
