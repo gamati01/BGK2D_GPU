@@ -1,4 +1,4 @@
-!=====================================================================
+!====================================================================
 !     ****** LBE/setup
 !
 !     COPYRIGHT
@@ -108,9 +108,9 @@
 ! parallelization
 #ifdef SERIAL
          write(6,*) " Serial"
-#else if OFFLOAD
+#elif OFFLOAD
          write(6,*) " Parallelization: OpenMP offload"
-#else if OPENACC 
+#elif OPENACC 
          write(6,*) " Parallelization: OpenACC"
 #else  
          write(6,*) " Parallization: DO concurrent   "

@@ -27,7 +27,7 @@ SFC = nvfortran
 CC = mpicc
 FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
-OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc70,managed
+OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc80,managed
 DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2

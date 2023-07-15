@@ -35,7 +35,7 @@
 !$OMP target teams distribute parallel do simd collapse(2)
         do j=1,m
            do i=1,l
-#else if OPENACC
+#elif OPENACC
 !$acc parallel loop independent collapse(2)
         do j=1,m
            do i=1,l
@@ -54,7 +54,7 @@
 #ifdef OFFLOAD
         enddo
 !$OMP end target teams distribute parallel do simd
-#else if OPENACC
+#elif OPENACC
         enddo
 !$acc end parallel
 #endif
