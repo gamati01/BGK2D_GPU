@@ -36,7 +36,8 @@
         do j=1,m
            do i=1,l
 #elif OPENACC
-!$acc parallel loop independent collapse(2)
+!$acc parallel 
+!$acc loop independent collapse(2)
         do j=1,m
            do i=1,l
 #else
