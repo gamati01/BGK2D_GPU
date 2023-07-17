@@ -59,6 +59,14 @@
        ytot = zero
        stot = zero
 !
+       !
+#ifdef NOMANAGED
+!$acc update self(a01,a03,a05,a08,a10,a12,a14,a17,a19)
+#endif
+!
+#ifdef OFFLOAD
+!$omp target update from(a01,a03,a05,a08,a10,a12,a14,a17,a19)
+#endif
        do j=1,m
           do i=1,l
 !
