@@ -19,16 +19,21 @@ These are the "possible" choice
 	* GPU (only NVIDIA so far)
   * OPENMP OFFLOAD 
 	* GPU (NVIDIA and AMD)
+  * OPENACC
+   	* GPU (NVIDIA and AMD with Cray Compiler)
 
 Tested With different compilers (GPU)
   	* nvfortran
 	* gnu 
 	* xlf
 	* flang
+ 	* fth (CRAY)
+ 
 
 With different precision
 	* single precision (default)
 	* double precision 
+ 	* mixed precision
 
 3) Directory Structure
 
