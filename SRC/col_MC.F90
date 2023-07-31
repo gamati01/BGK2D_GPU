@@ -82,7 +82,13 @@
 ! V100         
 !$OMP target teams distribute parallel do simd collapse(2) num_teams(80) thread_limit(128)
 # else
-!$OMP target teams distribute parallel do simd collapse(2)
+!mandatory for AMD to avoid NaN
+!$OMP target teams distribute parallel do simd collapse(2) & 
+!$OMP$              map(present,alloc:x01,x03,x05,x08,x10,x12,x14,x17,x19) & 
+!$OMP$              map(present,alloc:e01,e03,e05,e08,e10,e12,e14,e17,e19) & 
+!$OMP$              map(present,alloc:rho,vx,vy,vz,vx2,vy2,vsq,rhoinv,forcex,forcey) &
+!$OMP$              map(present,alloc:q0,qx,qy,qxmy,qxpy,vxmy,vxpy)  &  
+!$OMP$              map(present,alloc:rp0,rp1,rp2) 
 # endif
         do j=1,m
         do i=1,l
