@@ -48,7 +48,7 @@ ifdef CRAY
  SCC = cc
  SFC = ftn
  OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
- OPENACC = -DPGI -h acc -DOPENACC
+ OPENACC = -DPGI -h acc -DNOMANAGED -DOPENACC
  FOPT = -O3
  COPT =
  OPT = -O3
