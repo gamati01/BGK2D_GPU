@@ -116,14 +116,6 @@
          endif
       enddo
 !
-#ifdef OFFLOAD
-!$omp end target data
-#endif
-!      
-#ifdef NOMANAGED
-!$acc end data
-#endif
-
 !     some global timings
       call SYSTEM_CLOCK(countE1, count_rate, count_max)
       call time(tcountE1)
@@ -135,6 +127,14 @@
       call varm(itime-1)
       call prof_i(itime-1,m/2)
       call prof_j(itime-1,l/2)
+!
+#ifdef OFFLOAD
+!$omp end target data
+#endif
+!      
+#ifdef NOMANAGED
+!$acc end data
+#endif
 !
       call finalize(itstart,itfin)     ! finalize all
 !
