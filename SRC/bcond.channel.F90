@@ -132,6 +132,7 @@
         time_bc1 = time_bc1 + (tcountA1-tcountA0)
 !
 #endif
+        write(6,*) " ERROR: bcond_channel to fix "
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
