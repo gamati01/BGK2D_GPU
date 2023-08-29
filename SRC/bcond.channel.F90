@@ -64,6 +64,10 @@
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
         do j=0,m+1
+#elif OPENACC
+!$acc kernels
+!$acc loop independent
+        do j=0,m+1
 #else
         do concurrent (j=0:m+1)
 #endif
@@ -83,6 +87,11 @@
            a03( 0,j) = a03(l,j)
            a05( 0,j) = a05(l,j)
         end do
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+!$acc end kernels
+#endif
 !
 ! ----------------------------------------------
 ! left (y = 0)  
@@ -91,6 +100,10 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
+        do i=0,l+1
+#elif OPENACC
+!$acc kernels
+!$acc loop independent
         do i=0,l+1
 #else
         do concurrent (i=0:l+1)
@@ -105,6 +118,11 @@
            a17(i  ,m1) = a08(i,m)
            a01(i-1,m1) = a12(i,m) 
         enddo
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+!$acc end kernels
+#endif
 !
 ! ----------------------------------------------
 ! stop timing
@@ -121,5 +139,4 @@
            u_inflow
         endif
 #endif
-        return
         end subroutine bcond_channel
