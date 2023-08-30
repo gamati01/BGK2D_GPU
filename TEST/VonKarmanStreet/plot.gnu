@@ -1,8 +1,8 @@
-#!/cineca/prod/opt/tools/gnuplot/5.2.6/none/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 #    
 #    	G N U P L O T
-#    	Version 5.2 patchlevel 6    last modified 2019-01-01 
+#    	Version 5.2 patchlevel 4    last modified 2018-06-01 
 #    
 #    	Copyright (C) 1986-1993, 1998, 2004, 2007-2018
 #    	Thomas Williams, Colin Kelley and many others
@@ -10,7 +10,7 @@
 #    	gnuplot home:     http://www.gnuplot.info
 #    	faq, bugs, etc:   type "help FAQ"
 #    	immediate help:   type "help"  (plot window: hit 'h')
-# set terminal x11 
+# set terminal qt 0 font "Sans,9"
 # set output
 unset clip points
 set clip one
@@ -59,7 +59,7 @@ set style textbox transparent margins  1.0,  1.0 border  lt -1 linewidth  1.0
 set offsets 0, 0, 0, 0
 set pointsize 1
 set pointintervalbox 1
-set encoding default
+set encoding utf8
 unset polar
 unset parametric
 unset decimalsign
@@ -163,24 +163,20 @@ set loadpath
 set fontpath 
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
-GNUTERM = "x11"
-## Last datafile plotted: "RUN_SINGLE_TRICK1_DC_NV/probe_g.0000.dat"
+GNUTERM = "qt"
+set xlabel "# timestep "
+set ylabel " Cd (Drag) "
+set key box opaque right
 set grid
-set xlabel "Timesteps "
 #
-set title "Probe: x velocity"
-p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:2 w p lw 2 t " This run "
-rep 'probe_g.0000.dat' u 1:2 w l lw 2 t " Reference" 
-pause -1
+p   'RUN_SINGLE_FUSED_OFFLOAD_NV/fort.333' u 1:2 w p  t " Drag (Offload) "
+rep 'RUN_SINGLE_FUSED_OPENACC_NV/fort.333' u 1:2 w l  t " Drag (OpenACC) "
+rep 'RUN_SINGLE_FUSED_DC_NV/fort.333'      u 1:2 w lp t " Drag (Do concurrent) "
+pause -1 "press any key to continue "
 #
-set title "Probe: y velocity"
-p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:3 w p lw 2 t " This run "
-rep 'probe_g.0000.dat' u 1:3 w l lw 2 t " Reference" 
-pause -1
-#
-set title "Probe: density"
-p   'RUN_SINGLE_FUSED_DC_NV/probe_g.0000.dat' u 1:4 w p lw 2 t " This run "
-rep 'probe_g.0000.dat' u 1:4 w l lw 2 t " Reference" 
-pause -1
+set ylabel " Cl (Lift) "
+p   'RUN_SINGLE_FUSED_OFFLOAD_NV/fort.333' u 1:3 w p  t " Lift (Offload) "
+rep 'RUN_SINGLE_FUSED_OPENACC_NV/fort.333' u 1:3 w l  t " Lift (OpenACC) "
+rep 'RUN_SINGLE_FUSED_DC_NV/fort.333'      u 1:3 w lp t " Lift (Do concurrent) "
 #
 #    EOF
