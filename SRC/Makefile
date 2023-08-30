@@ -148,12 +148,7 @@ OBJ2 = check_case.o \
        movef.o\
        save_raw.o\
        profile.o\
-       fluxX_x.o \
-       fluxX_y.o \
-       fluxY_x.o \
-       fluxY_y.o \
        draglift.o \
-       lift.o \
        dealloca.o
 
 # 3rd level subroutine
