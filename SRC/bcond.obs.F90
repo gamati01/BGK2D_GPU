@@ -34,6 +34,12 @@
 !$OMP target teams distribute parallel do simd collapse(2)
         do j=jmin,jmax
         do i=imin,imax
+#elif OPENACC
+!$acc kernels
+!$acc loop independent
+        do j=jmin,jmax
+!$acc loop independent
+        do i=imin,imax
 #else
         do concurrent (j=jmin:jmax, i=imin:imax)
 #endif
@@ -50,8 +56,12 @@
         end do
 #ifdef OFFLOAD
         end do
-        !$OMP end target teams distribute parallel do simd
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+        end do
+!$acc end kernels
 #endif
+
 !
 ! stop timing
         call time(tcountO1)
@@ -67,5 +77,4 @@
         endif
 #endif
 !
-        return
         end subroutine bcond_obs

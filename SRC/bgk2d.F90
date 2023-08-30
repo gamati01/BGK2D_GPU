@@ -83,7 +83,7 @@
 !
 #ifdef OFFLOAD
 !$OMP target data map(tofrom:  a01,a03,a05,a08,a10,a12,a14,a17,a19, & 
-!$OMP&                         b01,b03,b05,b08,b10,b12,b14,b17) 
+!$OMP&                         b01,b03,b05,b08,b10,b12,b14,b17,obs) 
 #endif
 !      
       do itime=itstart+1,itfin

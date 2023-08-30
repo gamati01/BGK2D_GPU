@@ -140,6 +140,5 @@
           write(6,*) "MEM_CHECK: after intialize. mem =", mem_stop
        endif
 # endif
-
-       return
+!
        end subroutine initialize

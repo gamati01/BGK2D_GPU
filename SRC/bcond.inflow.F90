@@ -64,6 +64,10 @@
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
         do j=0,m+1
+#elif OPENACC
+!$acc kernels
+!$acc loop independent
+        do j=0,m+1
 #else
         do concurrent (j=0:m+1)
 #endif
@@ -103,6 +107,11 @@
            a03(0,j) = crho*p2*(cte1+cx03)
            a05(0,j) = crho*p1*(cte1+cx05)
         end do
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+!$acc end kernels
+#endif
 !
 ! ----------------------------------------------
 ! left (y = 0)  
@@ -111,6 +120,10 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
+        do i=0,l+1
+#elif OPENACC
+!$acc kernels
+!$acc loop independent
         do i=0,l+1
 #else
         do concurrent (i=0:l+1)
@@ -125,6 +138,12 @@
            a08(i,0) = a08(i,m)
            a12(i,0) = a12(i,m)
         enddo
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+!$acc end kernels
+#endif
+
 !
 ! ----------------------------------------------
 ! stop timing
@@ -141,5 +160,5 @@
            u_inflow
         endif
 #endif
-        return
+!        
         end subroutine bcond_inflow
