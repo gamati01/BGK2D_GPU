@@ -58,26 +58,6 @@
         write(file_name(13:20),4000) itime
         open(55,file=file_name,status='unknown')
 !
-! pre-compute phi ...
-!
-#ifdef QQQQQ
-        phi(-1) = 0.0
-        i = 1
-        do j = 0, m
-            den = a01(i,j,k0)+a02(i,j,k0)+a03(i,j,k0)+a04(i,j,k0) & 
-                 +a05(i,j,k0)+a06(i,j,k0)+a07(i,j,k0)+a08(i,j,k0) & 
-                 +a09(i,j,k0)+a10(i,j,k0)+a11(i,j,k0)+a12(i,j,k0) & 
-                 +a13(i,j,k0)+a14(i,j,k0)+a15(i,j,k0)+a16(i,j,k0) & 
-                 +a17(i,j,k0)+a18(i,j,k0)+a19(i,j,k0)
-!
-           uv =   a01(i,j,k0)+a02(i,j,k0)+a03(i,j,k0)+a04(i,j,k0) & 
-                 +a05(i,j,k0)-a10(i,j,k0)-a11(i,j,k0)-a12(i,j,k0) & 
-                 -a13(i,j,k0)-a14(i,j,k0)
-!
-           phi(j) =  phi(j-1) + uv/den
-        enddo
-#endif
-!
         write(55,'(A26)')'# vtk DataFile Version 2.0'
         write(55,'(A5)')'Campo'
         write(55,'(A5)')'ASCII'
@@ -136,30 +116,6 @@
            end do
         end do
 !
-! it works, commented only for comparison with binary one
-#ifdef QQQQ
-        write(55,'(A25)')'SCALARS stream double'
-        write(55,'(A20)')'LOOKUP_TABLE default'
-        do j = 2,m-1
-           do i = 2,l-1
-!
-              den = a01(i,j,k0)+a02(i,j,k0)+a03(i,j,k0)+a04(i,j,k0) &
-                   +a05(i,j,k0)+a06(i,j,k0)+a07(i,j,k0)+a08(i,j,k0) &
-                   +a09(i,j,k0)+a10(i,j,k0)+a11(i,j,k0)+a12(i,j,k0) &
-                   +a13(i,j,k0)+a14(i,j,k0)+a15(i,j,k0)+a16(i,j,k0) &
-                   +a17(i,j,k0)+a18(i,j,k0)+a19(i,j,k0)
-!
-              vv  = a03(i,j,k0)+a07(i,j,k0)+a08(i,j,k0)+a09(i,j,k0) & 
-                   +a12(i,j,k0)-a01(i,j,k0)-a10(i,j,k0)-a16(i,j,k0) & 
-                   -a17(i,j,k0)-a18(i,j,k0)
-!
-               phi(j) = phi(j) - vv/den
-!
-              write(55,1004) phi(j)
-           end do
-        end do
-#endif
-!
         close(55)
         write(16,*) "vorticity (vtk) done"
 !
@@ -173,6 +129,5 @@
 4000    format(i8.8)
 3100    format(i4.4)
 
-       return
        end subroutine vtk_om
 
