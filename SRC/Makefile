@@ -1,6 +1,6 @@
 #----------------------------------------------
-# makefile per BGK-DRIVEN
-# Giorgio Amati, CINECA 2021
+# makefile per BGK2
+# Giorgio Amati, CINECA 2021-202?
 #----------------------------------------------
 # notes:
 #
@@ -13,6 +13,9 @@
 #		deault ---> GPU code with do concurrent
 #		            (nvfortran)
 #		offload ---> GPU code with openmp offload
+#		openACC ---> GPU code with openACC
+#		serial  ---> Serial CPU code
+#		mulitcore -> Multicore CPU code
 # 
 # flags
 #----------------------------------------------
@@ -32,7 +35,6 @@ DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
 OPT  = -O2  -Mnodepchk  -Mcontiguous
-#
 #
 ifdef FLANG
  SFC = flang -DPGI
@@ -199,14 +201,12 @@ multicore: DC := -DPGI
 	# nvidia
 multicore: FC := $(SFC) -stdpar=multicore -Minfo=all -DMULTICORE
 	# intel
-multicore: FC := $(SFC) -fopenmp -DMULTICORE 
-multicore: FC := $(SFC) -fopenmp -DMULTICORE   -ftree-parallelize-loops=4
+#multicore: FC := $(SFC) -fopenmp -DMULTICORE 
+.multicore: FC := $(SFC) -fopenmp -DMULTICORE   -ftree-parallelize-loops=4
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
-#	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -stdpar=multicore -DSERIAL -o ../RUN/bgk2d.$(VER).x
-
-
+#
 #----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
