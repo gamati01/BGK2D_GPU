@@ -5,9 +5,9 @@
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond_channel: simple channel flow with
-!                      * inflow (rear)
-!                      * outflow (front)
+!       bcond_channel: simple (periodic) channel flow with
+!                      * periodic (rear)
+!                      * periodic (front)
 !                      * no slip (left/right)
 !     DESCRIPTION
 !       2D periodic bc
@@ -56,8 +56,6 @@
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
         call time(tcountA0)
 !
-        u_inflow=0.1
-!
 ! ----------------------------------------------
 ! loop foused for performance reason (for GPU)
 ! -------------------------------------------------------------
@@ -71,8 +69,6 @@
 #else
         do concurrent (j=0:m+1)
 #endif
-           crho  =uno
-           rhoinv=uno
 !           
 ! rear, periodic bc  (x = l)
 !
@@ -81,7 +77,7 @@
            a14(l1,j) = a14(1,j)
 !
 ! -------------------------------------------------------------
-! front, inflow (x = 0)
+! front, periodic (x = 0)
 !           
            a01( 0,j) = a01(l,j)
            a03( 0,j) = a03(l,j)
@@ -132,12 +128,10 @@
         time_bc1 = time_bc1 + (tcountA1-tcountA0)
 !
 #endif
-        write(6,*) " ERROR: bcond_channel to fix "
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
-           write(6,*) "DEBUG2: Exiting from sub. bcond_channel", & 
-           u_inflow
+           write(6,*) "DEBUG2: Exiting from sub. bcond_channel"
         endif
 #endif
         end subroutine bcond_channel

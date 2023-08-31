@@ -144,16 +144,27 @@
            e17 = rp1*(-vy  +qy  )+cte1*(rp1-p1)
            e19 = rp0*(     +q0  )+cte1*(rp0-p0)
 !
-! it is only correct for driven cavity/TG (no forcing at all)
+! forcing term
+!
+# ifdef CHANNEL
+#  ifdef FORCING_Y
+           forcex = zero
+           forcey = fgrad*rho
+#  else
+           forcex = fgrad*rho     ! default value...
+           forcey = zero
+#  endif
+# endif
+!
 ! loop on populations
-           a01(i,j) = x01 - omega*(x01-e01) 
-           a03(i,j) = x03 - omega*(x03-e03) 
-           a05(i,j) = x05 - omega*(x05-e05) 
-           a08(i,j) = x08 - omega*(x08-e08) 
-           a10(i,j) = x10 - omega*(x10-e10) 
-           a12(i,j) = x12 - omega*(x12-e12) 
-           a14(i,j) = x14 - omega*(x14-e14) 
-           a17(i,j) = x17 - omega*(x17-e17) 
+           a01(i,j) = x01 - omega*(x01-e01) + forcex - forcey
+           a03(i,j) = x03 - omega*(x03-e03) + forcex + forcey
+           a05(i,j) = x05 - omega*(x05-e05) + forcex
+           a08(i,j) = x08 - omega*(x08-e08)          + forcey
+           a10(i,j) = x10 - omega*(x10-e10) - forcex - forcey
+           a12(i,j) = x12 - omega*(x12-e12) - forcex + forcey
+           a14(i,j) = x14 - omega*(x14-e14) - forcex
+           a17(i,j) = x17 - omega*(x17-e17)          - forcey
            a19(i,j) = x19 - omega*(x19-e19)
 !
         end do

@@ -32,19 +32,15 @@
 #ifdef PERIODIC
 ! periodic bc
         call bcond_periodic
-#else
-# ifdef CHANNEL
+#elif CHANNEL
 ! channel bc        
         call bcond_channel
-# else
-#  ifdef INFLOW
+#elif INFLOW
 ! inflow bc
         call bcond_inflow
-#  else
-! lid_cavity bc 
+#else
+! lid_cavity bc (default)
         call bcond_driven
-#  endif
-# endif
 #endif
 !
 #ifdef OBSTACLE

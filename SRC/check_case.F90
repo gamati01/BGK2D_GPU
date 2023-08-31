@@ -35,22 +35,19 @@
                         at the same time", myrank, u0, u_inflow 
         endif
 !
-! Info section  
+! Info section   (boundary conditions)
 #ifdef PERIODIC
-        write(6 ,*) "INFO: The test case has periodic bc" 
-        write(16,*) "INFO: The test case has periodic bc" 
+        write(6 ,*) "INFO: The test case has periodic bc (-DPERIODIC)" 
+        write(16,*) "INFO: The test case has periodic bc (-DPERIODIC)" 
+#elif CHANNEL
+        write(6 ,*) "INFO: The test case has channel bc (-DCHANNEL)" 
+        write(16,*) "INFO: The test case has channel bc (-DCHANNEL)" 
+#elif INFLOW
+        write(6 ,*) "INFO: The test case has inflow bc (-DINFLOW)" 
+        write(16,*) "INFO: The test case has inflow bc (-DINFLOW)" 
 #else
-# ifdef CHANNEL
-        write(6 ,*) "INFO: The test case has channel bc" 
-        write(16,*) "INFO: The test case has channel bc" 
-#  ifdef INFLOW
-        write(6 ,*) "INFO: The test case has inflow bc" 
-        write(16,*) "INFO: The test case has inflow bc" 
-#  else
-        write(6 ,*) "INFO: The test case is driven cavity" 
-        write(16,*) "INFO: The test case is driven cavity" 
-#  endif
-# endif
+        write(6 ,*) "INFO: The test case is driven cavity (default)" 
+        write(16,*) "INFO: The test case is driven cavity (default)" 
 #endif
 !
 #ifdef OBSTACLE
