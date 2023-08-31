@@ -124,10 +124,10 @@
            write(6,*) "DEBUG1: Exiting from sub. vtk_om"
         endif
 #endif
-
+!
 1004    format((e14.6,1x))
 4000    format(i8.8)
 3100    format(i4.4)
-
+!
        end subroutine vtk_om
 

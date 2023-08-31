@@ -84,5 +84,5 @@
 !	format
 1002    format(i5,3(e14.6,1x))
 1005    format("# t=",i7)
-        return
+!       
         end subroutine prof_j

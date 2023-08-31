@@ -60,5 +60,4 @@
 1001  format(" Mean   time",1(e14.6,1x),i8,"/",i8)
 2001  format(i8, 3(e14.6,1x))
 !
-      return
       end subroutine profile

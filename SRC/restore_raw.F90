@@ -67,8 +67,6 @@
       endif
 # endif
 !
-
 4100  format(i2.2)
-
-      return
+!
       end subroutine restore_raw

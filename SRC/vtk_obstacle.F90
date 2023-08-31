@@ -93,5 +93,4 @@
 3100    format(i4.4)
 4000    format(i8.8)
 !
-      return
       end subroutine vtk_obs

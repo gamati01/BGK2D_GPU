@@ -94,10 +94,8 @@
            write(6,*) "DEBUG1: Exiting from sub. vtk_rho_bin"
         endif
 #endif
-
-
+!
 4000    format(i8.8)
-
-       return 
+!
        end subroutine vtk_rho_bin
 

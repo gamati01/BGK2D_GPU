@@ -169,12 +169,9 @@
            write(6,*) "DEBUG1: Exiting from sub. vtk_xy_bin"
         endif
 #endif
-
-
+!
 1004    format(3(e14.6,1x))
 3100    format(i4.4)
 4000    format(i8.8)
-
-       return 
+!
        end subroutine vtk_xy_bin
-

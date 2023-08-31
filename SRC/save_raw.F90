@@ -72,9 +72,8 @@
          write(6,*) "DEBUG1: Exiting from sub. save_raw"
       endif
 #endif
-
+!
 4100  format(i2.2)
 4000  format(i8.8)
-
-      return
+!
       end subroutine save_raw
