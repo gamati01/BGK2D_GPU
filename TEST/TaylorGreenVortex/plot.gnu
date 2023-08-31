@@ -1,8 +1,8 @@
-#!/cineca/prod/opt/tools/gnuplot/5.2.6/none/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 #    
 #    	G N U P L O T
-#    	Version 5.2 patchlevel 6    last modified 2019-01-01 
+#    	Version 5.2 patchlevel 4    last modified 2018-06-01 
 #    
 #    	Copyright (C) 1986-1993, 1998, 2004, 2007-2018
 #    	Thomas Williams, Colin Kelley and many others
@@ -10,7 +10,7 @@
 #    	gnuplot home:     http://www.gnuplot.info
 #    	faq, bugs, etc:   type "help FAQ"
 #    	immediate help:   type "help"  (plot window: hit 'h')
-# set terminal x11 
+# set terminal qt 0 font "Sans,9"
 # set output
 unset clip points
 set clip one
@@ -39,18 +39,15 @@ set ttics format "% h"
 set timefmt "%d/%m/%y,%H:%M"
 set angles radians
 set tics back
-set grid nopolar
-set grid xtics nomxtics ytics nomytics noztics nomztics nortics nomrtics \
- nox2tics nomx2tics noy2tics nomy2tics nocbtics nomcbtics
-set grid layerdefault   lt 0 linecolor 0 linewidth 0.500,  lt 0 linecolor 0 linewidth 0.500
+unset grid
 unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
 set key title "" center
-set key fixed right top vertical Right noreverse enhanced autotitle box lt black linewidth 1.000 dashtype solid
+set key fixed right top vertical Right noreverse enhanced autotitle nobox
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
-set key opaque
+set key noopaque
 unset label
 unset arrow
 set style increment default
@@ -62,7 +59,7 @@ set style textbox transparent margins  1.0,  1.0 border  lt -1 linewidth  1.0
 set offsets 0, 0, 0, 0
 set pointsize 1
 set pointintervalbox 1
-set encoding default
+set encoding utf8
 unset polar
 unset parametric
 unset decimalsign
@@ -167,12 +164,13 @@ set loadpath
 set fontpath 
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
-GNUTERM = "x11"
-#
+GNUTERM = "qt"
 set xlabel "timestep"
 set ylabel "Total Energy"
-## Last datafile plotted: "RUN_SINGLE_TRICK1_DC_NV/diagno.dat"
-p   'RUN_SINGLE_TRICK1_DC_NV/diagno.dat'            u 1:5 w p lw 2 t ' This Run (single precision)'
-rep 'RUN_DOUBLE_ORIGINAL_OFFLOAD_NV/diagno.dat'     u 1:5 w p lw 2 t ' This Run (double precision)'
-rep 'diagno.dat' u 1:5 w l lw 2 t " Reference "
+set grid
+set key box opaque
+## Last datafile plotted: "RUN_SINGLE_GPU_DC_NV/diagno.dat"	
+p   'RUN_SINGLE_GPU_DC_NV/diagno.dat' u 1:5 w l lw 2 t " Single Precision"
+rep 'RUN_MIXED_GPU_DC_NV/diagno.dat' u 1:5 w  l lw 2 t " Mixed  Precision"
+rep 'RUN_DOUBLE_GPU_DC_NV/diagno.dat' u 1:5 w l lw 2 t " Double Precision"
 #    EOF

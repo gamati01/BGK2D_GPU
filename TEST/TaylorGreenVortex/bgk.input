@@ -2,8 +2,8 @@
 lx = 256
 ly = 256
 svisc=0.256
-u0=0.1
-itfin=100000
+u0=0.0
+itfin=200000
 ivtim=50000
 isignal=1000
 itsave=1000000
