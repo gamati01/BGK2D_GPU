@@ -28,27 +28,28 @@ These are the "possible" choice
    	* GPU (NVIDIA and AMD with Cray Compiler)
 
 The code has been Tested With different compilers
-  	* nvfortran
-	* gnu 
-	* xlf
-	* flang
- 	* fth (CRAY)
+  * nvfortran
+  * gnu
+  * xlf
+  * flang
+  * ftn (CRAY)
  
 
 The code has been tested With different precision
-	* single precision (default)
-	* double precision 
- 	* mixed precision1 (single/double)
+  * single precision (default)
+  * double precision
+  * mixed precision1 (single/double)
 
 3) Directory Structure
 
 in SRC directory: all source files + Makefile
                   The exe (bgk2d.doconcurrent.x or bgk2d.offload.x) will be copied in ../RUN directory (to create)
 in UTIL directory: some utilities like scripts or input file
-in TEST directory: three test case
-        * lid-driven cavity
-        * Taylor-green vortex
-        * flow around an obstacle (cylinder: von Karman streets)
+in TEST directory: four test case
+  * lid-driven cavity
+  * Taylor-green vortex
+  * flow around an obstacle (cylinder: von Karman streets)
+  * poiseuille flow
 
 3) How to compile
 	
