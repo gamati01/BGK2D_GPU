@@ -3,13 +3,18 @@
 
 1) Description
 
-This is a 2D CFD Lattice Boltzmann Method code developed to assess performance using GPU.  It is a "downsize" of a more complex code (3D one with mpi+openacc). 
+This is a 2D CFD Lattice Boltzmann Method code developed to 
+	1) Give a (quite) efficient implementation of LBM
+ 	2) Exploit mulithreading
+  	3) assess performance using (different) GPUs (now AMD and NVIDIA).  
 
-Two implementation are possible
+It is a "downsize" of a more complex code (3D one with mpi+openacc). Different options can be activated/decativated via preprocessing flags
+
+Two implementations are possible
   * ORIGINAL (default)
 	Classical implementation, with two different subroutine streaming + collision
   * FUSED
-	Implementation with one single fused subroutine (no streaming subroutine). i
+	Implementation with one single fused subroutine (no streaming subroutine). 
         It asks for less BW but it uses pointers.
 
 These are the "possible" choice
@@ -22,7 +27,7 @@ These are the "possible" choice
   * OPENACC
    	* GPU (NVIDIA and AMD with Cray Compiler)
 
-Tested With different compilers (GPU)
+The code has been Tested With different compilers
   	* nvfortran
 	* gnu 
 	* xlf
@@ -30,10 +35,10 @@ Tested With different compilers (GPU)
  	* fth (CRAY)
  
 
-With different precision
+The code has been tested With different precision
 	* single precision (default)
 	* double precision 
- 	* mixed precision
+ 	* mixed precision1 (single/double)
 
 3) Directory Structure
 
