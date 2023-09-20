@@ -89,4 +89,19 @@ Other preprocessing flags are:
 * TRICK2 (to force, for OpenMP offload the number of threads)
 * DRAG (activate drag/lift computing, time-consuming)
 
+5) Licence
+
+This SW is under The MIT licence
+5) Licence
+
+This SW is under The MIT licence
+5) Licence
+
+This SW is under The MIT licence
+5) Licence
+
+This SW is under The MIT licence
+5) Licence
+
+This SW is under The MIT licence
 
