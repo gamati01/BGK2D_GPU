@@ -92,16 +92,4 @@ Other preprocessing flags are:
 5) Licence
 
 This SW is under The MIT licence
-5) Licence
-
-This SW is under The MIT licence
-5) Licence
-
-This SW is under The MIT licence
-5) Licence
-
-This SW is under The MIT licence
-5) Licence
-
-This SW is under The MIT licence
 
