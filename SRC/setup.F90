@@ -20,7 +20,7 @@
 !=====================================================================
 !
       subroutine setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 
-                       init_v,tstep)
+                       init_v)
 !
       use storage
       use timing
@@ -30,7 +30,6 @@
       INTEGER:: itfin, itstart, ivtim
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
-      INTEGER:: tstep
       INTEGER:: ierr
       INTEGER:: provided
       INTEGER:: idev
@@ -131,7 +130,7 @@
       call check_case
 !
       call input(itfin,ivtim,isignal,itsave,icheck, & 
-                   itrestart,init_v,tstep)
+                   itrestart,init_v)
 !
       file_name4 = 'u_med.xxx.xxx.xxx.dat'
       write(file_name4(7:9),4100) mpicoords(1)

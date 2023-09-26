@@ -18,20 +18,20 @@
 !     *****
 !=====================================================================
 !
-      subroutine profile(itime,itfin,tstep)
+      subroutine profile(itime,itfin)
 !
       use storage
       use timing
       implicit none
 !
-      integer:: itime, itfin, tstep
+      integer:: itime, itfin
 ! 
 ! here I am signal
       call SYSTEM_CLOCK(countD1, count_rate, count_max)
       call time(tcountD1)
       time_inn_loop = real(countD1-countD0)/(count_rate)
       time_inn_loop1 = time_inn_loop1 + (tcountD1-tcountD0)
-      write(6,1001)(time_inn_loop)/tstep,itime,itfin
+      write(6,1001)(time_inn_loop),itime,itfin
 !
 #ifdef MEM_CHECK
       mem_stop = get_mem();

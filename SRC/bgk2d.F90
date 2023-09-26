@@ -55,15 +55,15 @@
       INTEGER:: itfin, itstart, ivtim, ierr
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
-      integer:: tstep, tt
+      integer:: tt
 !
 ! set up the simulation...
       call setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 
-                 init_v,tstep)
+                 init_v)
 !      
 ! initialize the flow...
       call initialize(itrestart,init_v,itfin,itstart,ivtim,isignal, & 
-                      itsave,icheck,tstep)
+                      itsave,icheck)
 !
 #ifdef NOMANAGED
 !$acc data copyin(a01,a03,a05,a08,a10,a12,a14,a17,a19,b01,b03,b05,b08,b10,b12,b14,b17,b19,obs)

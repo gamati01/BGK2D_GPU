@@ -20,7 +20,7 @@
 !=====================================================================
 !
        subroutine initialize(itrestart,init_v,itfin,itstart,ivtim & 
-                            ,isignal,itsave,icheck,tstep)
+                            ,isignal,itsave,icheck)
 !
        use storage
        use timing
@@ -30,7 +30,7 @@
        integer:: i
        integer:: ierr
        integer:: itstart,itrestart,init_v
-       integer:: itfin,ivtim,isignal,itsave,icheck,tstep
+       integer:: itfin,ivtim,isignal,itsave,icheck
 !
 ! some other initializations
 !
@@ -117,7 +117,7 @@
        call hencol
 !
        if(myrank==0) then
-          call outdat(itfin,itstart,ivtim,isignal,itsave,icheck,tstep)
+          call outdat(itfin,itstart,ivtim,isignal,itsave,icheck)
        endif
 !
 !

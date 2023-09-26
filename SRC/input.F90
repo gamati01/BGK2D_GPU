@@ -25,29 +25,26 @@
 !	
 !     NOTES
 !       integer variables used: itfin,ivtim,isignal,itsave,icheck,irestart
-!                               init_v, tstep
-!       real variables defined: dt (not used)
+!                               init_v
 !
 !     *****
 ! =====================================================================
 !
       subroutine input (itfin,ivtim,isignal,itsave,icheck,irestart, & 
-                          init_v,tstep)
+                          init_v)
 !
       use storage
       use timing
 ! 
       implicit none
 !
-      real(mykind):: dt             ! not yet used
-!
       integer:: itfin,ivtim,isignal,itsave,icheck
-      integer:: irestart,init_v, tstep
+      integer:: irestart,init_v
 !
       namelist /parameters/ svisc, u0, itfin, ivtim, isignal, & 
                             itsave, icheck, irestart, init_v, &
-                            lx, ly, proc_x, proc_y, tstep, &
-                            flag1, flag2, flag3, ipad, jpad, & 
+                            lx, ly, proc_x, proc_y,           &
+                            flag1, flag2, flag3, ipad, jpad,  & 
                             radius
 !
 ! default values
@@ -68,13 +65,6 @@
       nprocs = 1
       l = lx
       m = ly
-
-! set tstep to 1... (to remove)
-      tstep = unoi
-!
-      if(myrank == 0) then 
-           write(16,*) "INFO: tstep --->", tstep
-      endif
 !
 ! some fix..
       l1 = l+1

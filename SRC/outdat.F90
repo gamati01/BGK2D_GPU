@@ -26,13 +26,12 @@
 !     *****
 ! =====================================================================
 !
-      subroutine outdat(itfin,itstart,ivtim,isignal,itsave,icheck,tstep)
+      subroutine outdat(itfin,itstart,ivtim,isignal,itsave,icheck)
 !
       use storage
       implicit none
 !
       integer:: itfin,itstart,ivtim,isignal,itsave,icheck
-      INTEGER:: tstep
 !
       write(16,*) ' '
       write(16,*) '*********** size of the lattice **************'
@@ -54,7 +53,6 @@
       write(16,*) 'isignal      =',isignal
       write(16,*) 'itsave       =',itsave
       write(16,*) 'icheck       =',icheck
-      write(16,*) 'tstep        =',tstep
       write(16,*) 'flag1        =',flag1
       write(16,*) 'flag2        =',flag2
       write(16,*) 'flag3        =',flag3
@@ -92,7 +90,6 @@
       write(6,*) 'isignal      =',isignal
       write(6,*) 'itsave       =',itsave
       write(6,*) 'icheck       =',icheck
-      write(6,*) 'tstep        =',tstep
       write(6,*) 'flag1        =',flag1
       write(6,*) 'flag2        =',flag2
       write(6,*) 'flag3        =',flag3
