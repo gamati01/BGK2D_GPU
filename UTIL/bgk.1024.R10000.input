@@ -8,7 +8,6 @@ ivtim=400000
 isignal=1000
 itsave=3000000
 icheck=100000
-tstep=1000
 irestart=0
 init_v=0
 ipad=0        /
