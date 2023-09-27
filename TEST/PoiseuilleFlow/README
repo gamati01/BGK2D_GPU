@@ -13,7 +13,8 @@ Files
 └── run.single.serial.original.gnu.x
 
 
-To run a  poiseuille flow use the following scripts
+To run a poiseuille flow use the following scripts (each one create a different directory)
+(CAVEAT: offloading with pointers are supported by gnu only from rel. 12.0)
 
 run.single.serial.fused.gnu.x	 ---> single precision, serial, fused using GNU compiler
 run.single.serial.original.gnu.x ---> single precision, serial, original using GNU compiler
@@ -22,9 +23,7 @@ run.single.multicore.fused.nv.x  ---> single precision, multicore, fused using n
 run.single.gpu.fused.dc.nv.x	 ---> single precision, gpu with do concurrent, fused using nvidia compiler
 
 
-(CAVEAT: offloading with pointers are supported by gnu only from rel. 12.0)
-
-
 bgk.input        --> input file used for the simulation (big one)
 bgk.input.small  --> input file used for the simulation (small one)
-plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
+plot.gnu         --> gnuplot file to check the results (do modify accordingly)
+plot.gnu.small   --> gnuplot file to check the results between original and fused version (GNU)
