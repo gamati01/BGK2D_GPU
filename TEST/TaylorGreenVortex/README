@@ -1,41 +1,40 @@
 
 Files
+
 .
 ├── bgk.input
 ├── bgk.input.small
+├── diagno.dat
 ├── plot.gnu
 ├── plot.small.gnu
 ├── README
-├── run.single.gpu.fused.dc.nv.x
-├── run.single.multicore.fused.nv.x
-├── run.single.serial.fused.nv.x
+├── run.double.gpu.dc.nv.x
+├── run.double.multicore.fused.gnu.x
+├── run.double.serial.fused.gnu.x
 ├── run.single.serial.fused.gnu.x
-└── run.single.serial.original.gnu.x
+├── run.mixed2.serial.fused.gnu.x
+├── run.mixed.gpu.dc.nv.x
+├── run.single.gpu.dc.nv.x
+├── run.single.multicore.gnu.x
+├── run.single.multicore.intel.x
+├── run.single.multicore.nv.x
+
+└── 
 
 
   
-To run Taylor-Green test simply
+To run Taylor-Green test use the following scripts (each one create a different directory)
 
-type:
+run.single.multicore.gnu.x	---> single precision, multicore, fused, using GNU compiler
+run.single.multicore.intel.x	---> single precision, multicore, fused, using intel compiler
+run.single.multicore.nv.x	---> single precision, multicore, fused, using nvidia compiler
 
-./run.single.trick1.dc.nv.x             --> single precision, fused verision, do concurrent using nvfortran
+run.double.serial.fused.gnu.x	---> double precision, serial, fused, using GNU compiler
+run.mixed2.serial.fused.gnu.x	---> mixed precision, serial, fused, using GNU compiler
+run.single.serial.fused.gnu.x	---> single precision, serial, fused, using GNU compiler
+
 
 bgk.input        --> input file used for the simulation
-plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
-diagno.dat       --> reference data
-
-
-To run a poiseuille flow use the following scripts (each one create a different directory)
-(CAVEAT: offloading with pointers are supported by gnu only from rel. 12.0)
-
-run.single.serial.fused.gnu.x	 ---> single precision, serial, fused using GNU compiler
-run.single.serial.original.gnu.x ---> single precision, serial, original using GNU compiler
-run.single.serial.fused.nv. 	 ---> single precision, serial, fused using nvidia compiler 
-run.single.multicore.fused.nv.x  ---> single precision, multicore, fused using nvidia compiler
-run.single.gpu.fused.dc.nv.x	 ---> single precision, gpu with do concurrent, fused using nvidia compiler
-
-
-bgk.input        --> input file used for the simulation (big one)
 bgk.input.small  --> input file used for the simulation (small one)
-plot.gnu         --> gnuplot file to check the results (do modify accordingly)
+plot.gnu         --> gnuplot file to check the results (to modify accordingly)
 plot.gnu.small   --> gnuplot file to check the results between original and fused version (GNU)

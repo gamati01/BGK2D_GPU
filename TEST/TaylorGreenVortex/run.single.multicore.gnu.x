@@ -1,14 +1,14 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_SERIAL_FUSED_GNU
-setenv EXE bgk2d.doconcurrent.x
+setenv DIR RUN_SINGLE_MULTICORE_FUSED_GNU
+setenv EXE bgk2d.multicore.x
 #
 echo "---------------------------"
 echo "starting test TG vortices  "
 echo " ---> gfortran             "
 echo " ---> single precision     "
 echo " ---> fused                "
-echo " ---> doconcurrent         "
+echo " ---> multicore            "
 echo " ---> " $EXE
 echo " ---> " $DIR
 echo "---------------------------"
@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make FIX="-DFUSED -DPERIODIC -ftree-parallelize-loops=2" GNU=1
+make multicore FIX="-DFUSED -DPERIODIC" GNU=1
 if ($?) then
    echo "compiling fails..."
    exit 1

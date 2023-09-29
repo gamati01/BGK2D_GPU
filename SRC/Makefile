@@ -31,6 +31,7 @@ CC = mpicc
 FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
 OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc80,managed
+MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
 DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
@@ -61,28 +62,22 @@ ifdef GNU
  FC = mpif90
  SFC = gfortran 
  SCC = gcc 
- DC  = 
  OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
+ MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
+ DC  = 
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
 endif
 #
-ifdef BDW
- FOPT = -O3 -xCORE-AVX2 
- COPT = -O3 -xCORE-AVX2
- OPENMP = -qopenmp
-endif
-#
 ifdef SKL
- SFC = ifx
+ SFC = ifort
  SCC = icc
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
  OPENMP = -qopenmp
-# FOPT = -O3 -mtune=skylake-avx512
-# COPT = -O3 -mtune=skylake-avx512
+ MULTI =   -parallel
 endif
 #
 ifdef PWR
@@ -197,12 +192,7 @@ serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 
 #----------------------------------------------
 multicore: VER:= multicore
-multicore: DC := -DPGI
-	# nvidia
-multicore: FC := $(SFC) -stdpar=multicore -Minfo=all -DMULTICORE
-	# intel
-#multicore: FC := $(SFC) -fopenmp -DMULTICORE 
-.multicore: FC := $(SFC) -fopenmp -DMULTICORE   -ftree-parallelize-loops=4
+multicore: FC := $(SFC) $(MULTI)
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
