@@ -1,7 +1,7 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_GPU_OPENACC_NV
-setenv EXE bgk2d.offload.x
+setenv DIR RUN_SINGLE_GPU_FUSED_OPENACC_NV
+setenv EXE bgk2d.openacc.x
 #
 echo "---------------------------"
 echo "starting test driven cavity"
@@ -29,7 +29,7 @@ if ($?) then
 else
    cd -
    cp ../../../RUN/$EXE  .
-   cp ../../../UTIL/bgk.512*  bgk.input
+   cp ../../../UTIL/bgk.1024*  bgk.input
    echo "compiling  ended succesfully..."
 endif
 

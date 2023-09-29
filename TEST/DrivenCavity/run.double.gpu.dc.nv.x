@@ -1,12 +1,12 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_GPU_FUSED_DC_NV
+setenv DIR RUN_DOUBLE_GPU_FUSED_DC_NV
 setenv EXE bgk2d.doconcurrent.x
 #
 echo "---------------------------"
 echo "starting test driven cavity"
 echo " ---> nvfortran            "
-echo " ---> single precision     "
+echo " ---> double precision     "
 echo " ---> fused                "
 echo " ---> GPU                  "
 echo " ---> doconcurrent         "
@@ -22,7 +22,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make FIX="-DFUSED"
+make FIX="-DFUSED" DOUBLE=1
 if ($?) then
    echo "compiling fails..."
    exit 1
