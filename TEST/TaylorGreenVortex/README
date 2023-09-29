@@ -1,11 +1,41 @@
 
+Files
+.
+├── bgk.input
+├── bgk.input.small
+├── plot.gnu
+├── plot.small.gnu
+├── README
+├── run.single.gpu.fused.dc.nv.x
+├── run.single.multicore.fused.nv.x
+├── run.single.serial.fused.nv.x
+├── run.single.serial.fused.gnu.x
+└── run.single.serial.original.gnu.x
 
-To run Taylor-Green test simply 
 
-type: 
+  
+To run Taylor-Green test simply
 
-./run.single.trick1.dc.nv.x		--> single precision, fused verision, do concurrent using nvfortran
+type:
+
+./run.single.trick1.dc.nv.x             --> single precision, fused verision, do concurrent using nvfortran
 
 bgk.input        --> input file used for the simulation
 plot.gnu         --> gnuplot file to check the resulta (do modify accordingly)
-diagno.dat	 --> reference data
+diagno.dat       --> reference data
+
+
+To run a poiseuille flow use the following scripts (each one create a different directory)
+(CAVEAT: offloading with pointers are supported by gnu only from rel. 12.0)
+
+run.single.serial.fused.gnu.x	 ---> single precision, serial, fused using GNU compiler
+run.single.serial.original.gnu.x ---> single precision, serial, original using GNU compiler
+run.single.serial.fused.nv. 	 ---> single precision, serial, fused using nvidia compiler 
+run.single.multicore.fused.nv.x  ---> single precision, multicore, fused using nvidia compiler
+run.single.gpu.fused.dc.nv.x	 ---> single precision, gpu with do concurrent, fused using nvidia compiler
+
+
+bgk.input        --> input file used for the simulation (big one)
+bgk.input.small  --> input file used for the simulation (small one)
+plot.gnu         --> gnuplot file to check the results (do modify accordingly)
+plot.gnu.small   --> gnuplot file to check the results between original and fused version (GNU)
