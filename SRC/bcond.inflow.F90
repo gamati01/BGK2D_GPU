@@ -16,6 +16,7 @@
 !     OUTPUT
 !       none
 !     TODO
+!       remove hardwritten inflow velocity       
 !       
 !     NOTES
 !       Order of upgrading bc
@@ -23,6 +24,8 @@
 !       2) rear  (x = 0)
 !       3) left  (y = 0)
 !       4) right (y = m)
+!
+!       inflow velocity  is hardwritten : 0.1       
 !
 !     *****
 !=====================================================================

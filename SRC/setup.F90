@@ -39,8 +39,7 @@
       character*15 file_name5
       character*19 file_name6
       character*21 file_name7
-      character*21 file_name8   ! drag
-      character*21 file_name9   ! lift
+      character*21 file_name8   ! draglift
 !
 ! set values for serial version...
       myrank = 0
@@ -59,13 +58,10 @@
       file_name7 = 'probe_g.xxxx.dat'
       write(file_name7(9:12),4000) myrank
 !
-! drag
-      file_name8 = 'drag.xxxx.dat'
-      write(file_name8(6:9),4000) myrank
+! draglift
+      file_name8 = 'drag.lift.dat'
 !
 ! lift
-      file_name9 = 'lift.xxxx.dat'
-      write(file_name9(6:9),4000) myrank
 !
 ! prof_j
       file_name6 = 'prof_j.xxxx.dat'
@@ -83,15 +79,12 @@
 !        
       open(61,file=file_name2, status='unknown')        ! prof_i
       open(64,file=file_name6, status='unknown')        ! prof_j
-      open(65,file=file_name9, status='unknown')        ! lift
       open(66,file=file_name8, status='unknown')        ! drag
       open(67,file=file_name7, status='unknown')        ! probe_gb
       open(68,file=file_name3, status='unknown')        ! probe
       open(38,file=file_name5, status='unknown')        ! task.XXXXXX.log
 !
-      if(myrank==0) then
-         open(63,file='diagno.dat',status='unknown')
-      endif
+      open(63,file='diagno.dat',status='unknown')       ! diagno.dat
 !
       if(myrank==0) then 
          write(6,*) "================================"

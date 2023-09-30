@@ -5,24 +5,22 @@
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond
+!       draglift
 !     DESCRIPTION
-!       computing drag in "easy way" 
+!       computing total drag/lift  in "easy way" around a box with the obstacle
 !     INPUTS
 !       itime
-!       iunit
+!
 !     OUTPUT
-!       drag on file iunit
 !     TODO
-!       
+!
 !     NOTES
-!       for drag/lift normalization inflow velosity if hardwritten to
-!       0.1
+!       drag/lift on file drag.lift (unit=66)
 !
 !     *****
 !=====================================================================
 !
-        subroutine draglift(itime,iunit)
+        subroutine draglift(itime)
 !
         use storage
         use timing
@@ -72,7 +70,7 @@
            enddo
         enddo
 !
-! computing lift (force along x) 
+! computing lift (force along y) 
         forceY = zero
         do j = jstart, jstop
            do i = istart, istop
@@ -92,10 +90,10 @@
            enddo
         enddo
 
-        norm = uno/(0.1*0.1*radius)
-        write(iunit,*) itime, forceX*norm, forceY*norm
+        norm = uno/(u_inflow*u_inflow*radius)
+        write(66,*) itime, forceX*norm, forceY*norm
 !
-        call flush(iunit)            ! flush for drag/lift
+        call flush(66)            ! flush for drag/lift
 !
 #ifdef DEBUG_2
         if(myrank == 0) then

@@ -169,9 +169,9 @@ set ylabel " Cd (Drag) "
 set key box opaque right
 set grid
 #
-p   'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/fort.333' u 1:2 w p  lw 5 t " Drag (Offload) "
-rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/fort.333' u 1:2 w l  lw 3 t " Drag (OpenACC) "
-rep 'RUN_SINGLE_GPU_FUSED_DC_NV/fort.333'      u 1:2 w lp lw 1 t " Drag (Do concurrent) "
+p   'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/drag.lift.dat' u 1:2 w p  lw 5 t " Drag (Offload) "
+rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/drag.lift.dat' u 1:2 w l  lw 3 t " Drag (OpenACC) "
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/drag.lift.dat'      u 1:2 w lp lw 1 t " Drag (Do concurrent) "
 pause -1 "press any key to continue (zoom)"
 #
 set xr[100000:400000]
@@ -180,8 +180,8 @@ pause -1 "press any key to continue (lift)"
 #
 set auto
 set ylabel " Cl (Lift) "
-p   'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/fort.333' u 1:3 w p  lw 5 t " Lift (Offload) "
-rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/fort.333' u 1:3 w l  lw 3 t " Lift (OpenACC) "
-rep 'RUN_SINGLE_GPU_FUSED_DC_NV/fort.333'      u 1:3 w lp lw 1 t " Lift (Do concurrent) "
+p   'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/drag.lift.dat' u 1:3 w p  lw 5 t " Lift (Offload) "
+rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/drag.lift.dat' u 1:3 w l  lw 3 t " Lift (OpenACC) "
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/fdrag.lift.dat'      u 1:3 w lp lw 1 t " Lift (Do concurrent) "
 #
 #    EOF
