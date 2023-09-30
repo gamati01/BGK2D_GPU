@@ -78,8 +78,6 @@ set datafile separator whitespace
 unset hidden3d
 set cntrparam order 4
 set cntrparam linear
-set cntrparam levels auto 5 unsorted
-set cntrparam firstlinetype 0
 set cntrparam points 5
 set size ratio 0 1,1
 set origin 0,0
@@ -168,9 +166,11 @@ GNUTERM = "qt"
 set xlabel "timestep"
 set ylabel "Total Energy"
 set grid
-set key box opaque
+set key box opaque left bottom
 ## Last datafile plotted: "RUN_SINGLE_GPU_DC_NV/diagno.dat"	
-p   'RUN_SINGLE_GPU_DC_NV/diagno.dat' u 1:5 w l lw 2 t " Single Precision"
-rep 'RUN_MIXED_GPU_DC_NV/diagno.dat' u 1:5 w  l lw 2 t " Mixed  Precision"
-rep 'RUN_DOUBLE_GPU_DC_NV/diagno.dat' u 1:5 w l lw 2 t " Double Precision"
+p   0.005*exp(-0.300*4*3.1415*3.1415*x/512/512)        lw 6 t " Theoretical Energy decay"
+rep 'RUN_DOUBLE_GPU_FUSED_DC_NV/diagno.dat' u 1:5 w lp lw 3 t " Double Precision"
+rep 'RUN_MIXED2_GPU_FUSED_DC_NV/diagno.dat' u 1:5 w lp lw 3 t " Mixed2 (single-double) Precision"
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/diagno.dat' u 1:5 w lp lw 3 t " Single Precision"
+rep 'RUN_MIXED1_GPU_FUSED_DC_NV/diagno.dat' u 1:5 w lp lw 3 t " Mixed1 (half-single) Precision"
 #    EOF
