@@ -10,18 +10,17 @@
 #----------------------------------------------
 # targets:
 #
-#		deault ---> GPU code with do concurrent
-#		            (nvfortran)
+#		<nonw> default ---> GPU code with do concurrent (nvfortran)
 #		offload ---> GPU code with openmp offload
-#		openACC ---> GPU code with openACC
+#		openacc ---> GPU code with openACC
 #		serial  ---> Serial CPU code
-#		mulitcore -> Multicore CPU code
+#		mulitcore -> Multicore CPU code 
 # 
 # flags
 #----------------------------------------------
 DATE = $(shell date +%d%m%y)
 #----------------------------------------------
-FINE = "********** Fine Compilazione *********"
+FINE = "******** End Compilation step  *******"
 #----------------------------------------------
 #
 # default (nvfortran)

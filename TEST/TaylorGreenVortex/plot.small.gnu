@@ -166,7 +166,7 @@ GNUTERM = "qt"
 set xlabel "timestep"
 set ylabel "Total Energy"
 set grid
-set key box opaque
+set key box opaque left bottom
 ## Last datafile plotted: "RUN_SINGLE_GPU_DC_NV/diagno.dat"	
 p   'RUN_SINGLE_SERIAL_FUSED_GNU/diagno.dat' u 1:5 w l lw 2 t " Single Precision"
 rep 'RUN_MIXED2_SERIAL_FUSED_GNU/diagno.dat' u 1:5 w l lw 2 t " Mixed (single-double) Precision"
