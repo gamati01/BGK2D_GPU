@@ -86,8 +86,17 @@ endif
 #----------------------------------------------
 # precision used
 #----------------------------------------------
+#
+ifdef MIXED1
+ PREC ="-DHALF_P -DMIXEDPRECISION "
+endif
+#
+ifdef MIXED2
+ PREC =-DMIXEDPRECISION 
+endif
+#
 ifdef DOUBLE
- DBL = -DDOUBLE_P
+ PREC =-DDOUBLE_P
 endif
 #
 #----------------------------------------------
@@ -201,13 +210,13 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 #----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.F90
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.f
-	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
@@ -222,29 +231,28 @@ clean:
 	rm -f core;
 #----------------------------------------------
 info:  $(INC)
-	@echo "Modules          =  "$(MOD);
+	@echo "Modules          =  "$(MOD0) $(MOD1);
 	@echo "Objects          =  "$(OBJ);
 	@echo "Compiler         =  "$(SFC);
-	@echo "Compiler flags   =  "$(OPT);
-	@echo "Preproc  flags   =  "$(PREPROC);
-	@echo "Fix      flags   =  "$(FIX);
-	@echo "Other    flags   =  "$(TRY);
-	@echo "Double   flags   =  "$(DBL);
-	@echo "DC       flags   =  "$(DC);
+	@echo "Compiler  flags  =  "$(OPT);
+	@echo "Preproc   flags  =  "$(PREPROC);
+	@echo "Fix       flags  =  "$(FIX);
+	@echo "Other     flags  =  "$(TRY);
+	@echo "Precision flags  =  "$(PREC);
 	@echo "Version          =  "$(VER);
 
 #----------------------------------------------
 test:
+	make clean;
+	make serial;
+	make clean;
+	make multicore;
 	make clean;
 	make;
 	make clean;
 	make openacc;
 	make clean;
 	make offload;
-	make clean;
-	make serial;
-	make clean;
-	make multicore;
 #----------------------------------------------
 tar:
 	make clean
