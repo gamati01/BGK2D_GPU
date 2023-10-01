@@ -1,31 +1,25 @@
 #----------------------------------------------
-# makefile per BGK2
+# makefile BGK2D_GPU
 # Giorgio Amati, CINECA 2021-202?
-#----------------------------------------------
-# notes:
-#
-# 	1) ...
-#	2) ....
-#
 #----------------------------------------------
 # targets:
 #
-#		<nonw> default ---> GPU code with do concurrent (nvfortran)
+#		<none> default ---> GPU code with do concurrent (nvfortran)
 #		offload ---> GPU code with openmp offload
 #		openacc ---> GPU code with openACC
 #		serial  ---> Serial CPU code
 #		mulitcore -> Multicore CPU code 
 # 
-# flags
 #----------------------------------------------
 DATE = $(shell date +%d%m%y)
-#----------------------------------------------
 FINE = "******** End Compilation step  *******"
 #----------------------------------------------
-#
+# Compilers & Flags
+#----------------------------------------------
+# flags
 # default (nvfortran)
-SCC = nvcc
-SFC = nvfortran
+SCC = nvcc 
+SFC = nvfortran -DPGI
 CC = mpicc
 FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
@@ -89,12 +83,16 @@ ifdef PWR
  OPT = -O3 -qassert=contig
 endif
 #
+#----------------------------------------------
+# precision used
+#----------------------------------------------
 ifdef DOUBLE
  DBL = -DDOUBLE_P
 endif
 #
 #----------------------------------------------
-# module
+# module & subroutines
+#----------------------------------------------
 MOD0 = get_mem_mod.o \
 
 MOD1 = precision.o \
@@ -156,6 +154,8 @@ OBJ3 = get_mem.o \
 OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 
 #----------------------------------------------
+# target 
+#----------------------------------------------
 #
 all: VER := doconcurrent
 all: FC := $(SFC) $(DC) 
@@ -197,6 +197,8 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 #
 #----------------------------------------------
+# rules 
+#----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
 	$(FC) $(FOPT) $(DBL) $(PREPROC) $(TRY) $(FIX) -c $<
@@ -211,6 +213,8 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(CC) $(COPT)                          -c $<
 
 
+#----------------------------------------------
+# utilities
 #----------------------------------------------
 clean:
 	rm -f *.o;
@@ -232,19 +236,15 @@ info:  $(INC)
 #----------------------------------------------
 test:
 	make clean;
-	make mpi;
-	make clean;
-	make serial
-	make clean;
-	make hdf5;
-	make clean;
-	make openmp;
-	make clean;
-	make hybrid;
-	make clean;
-	make mic;
+	make;
 	make clean;
 	make openacc;
+	make clean;
+	make offload;
+	make clean;
+	make serial;
+	make clean;
+	make multicore;
 #----------------------------------------------
 tar:
 	make clean
@@ -258,16 +258,10 @@ tar:
 #----------------------------------------------
 help:
 	@echo "different target available"
-	@echo "mpi (default)"
-	@echo "serial (raw I/O)"
-	@echo "hdf5  (paralle+hdf5)"
-	@echo "openmp (serial+openmp)"
-	@echo "hybrid (mpi+openmp)"
-	@echo "openacc (serial+openac)"
-	@echo "mic (mpi for intel MIC)"
-	@echo "couette"
-	@echo "try (regularized, not working"
-	@echo "cudaf"
-	@echo "mb (multiblock, not working)"
+	@echo "do concurrent (defaul, GPU) "
+	@echo "serial (CPU)"
+	@echo "multicore (CPU)"
+	@echo "offload (GPU)"
+	@echo "openacc (GPU)"
 #----------------------------------------------
 
