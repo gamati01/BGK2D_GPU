@@ -20,8 +20,6 @@ FINE = "******** End Compilation step  *******"
 # default (nvfortran)
 SCC = nvcc 
 SFC = nvfortran -DPGI
-CC = mpicc
-FC = mpifort
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
 OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc80,managed
 MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
@@ -33,7 +31,6 @@ OPT  = -O2  -Mnodepchk  -Mcontiguous
 ifdef FLANG
  SFC = flang -DPGI
  SCC = clang -DPGI
- DC  =
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
  FOPT =  -O3
  COPT =  -O3
@@ -51,22 +48,18 @@ ifdef CRAY
 endif
 #
 ifdef GNU
- CC = mpicc
- FC = mpif90
  SFC = gfortran 
  SCC = gcc 
  OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
  MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
- DC  = 
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
 endif
 #
-ifdef SKL
+ifdef INTEL
  SFC = ifort
  SCC = icc
- FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
  OPENMP = -qopenmp
@@ -77,7 +70,6 @@ ifdef PWR
  SCC = xlc_r  
  SFC = xlf_r 
  OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
- DC  = -DPGI
  FOPT = -O3 -qassert=contig
  COPT = -O3 -qassert=contig
  OPT = -O3 -qassert=contig
@@ -87,8 +79,14 @@ endif
 # precision used
 #----------------------------------------------
 #
+# default
+ifdef SINGLE
+ PREC =
+endif
+#
+#
 ifdef MIXED1
- PREC ="-DHALF_P -DMIXEDPRECISION "
+ PREC =-DHALF_P -DMIXEDPRECISION 
 endif
 #
 ifdef MIXED2
@@ -100,6 +98,43 @@ ifdef DOUBLE
 endif
 #
 #----------------------------------------------
+# implementations 
+#----------------------------------------------
+# default, ORIGINAL
+ifdef ORIG
+ FIX = 
+endif
+#
+# default, ORIGINAL
+ifdef FUSED
+ FIX = -DFUSED
+endif
+#
+#
+#----------------------------------------------
+# test case
+#----------------------------------------------
+# default, Lid Driven Cavit
+ifdef LDC
+ PREPROC =
+endif
+#
+# Poiseulle Flow
+ifdef POF
+ PREPROC =  -DCHANNEL 
+endif
+#
+# Taylor Green Vortex
+ifdef TGF
+ PREPROC =  -DPERIODIC
+endif
+#
+# Von Karman Streets 
+ifdef VKS
+ PREPROC =-DINFLOW -DOBSTACLE -DDRAG
+endif
+#
+#----------------------------------------------
 # module & subroutines
 #----------------------------------------------
 MOD0 = get_mem_mod.o \
@@ -107,7 +142,6 @@ MOD0 = get_mem_mod.o \
 MOD1 = precision.o \
       storage.o \
       mod_tools.o \
-
 
 # 0th level subroutine
 OBJ0 = bgk2d.o \
@@ -163,7 +197,7 @@ OBJ3 = get_mem.o \
 OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 
 #----------------------------------------------
-# target 
+# targets
 #----------------------------------------------
 #
 all: VER := doconcurrent
@@ -172,7 +206,7 @@ all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(LIB) -o ../RUN/bgk2d.$(VER).x 
 	@echo $(FINE)
-
+#
 #----------------------------------------------
 offload: FOPT += $(OFFLOAD)
 offload: OPT  += $(OFFLOAD)
@@ -190,6 +224,7 @@ openacc: FC := $(SFC)
 openacc: CC := $(SCC)
 openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+#
 #----------------------------------------------
 serial: VER:= serial
 serial: DC := -DPGI
@@ -197,7 +232,7 @@ serial: FC := $(SFC)
 serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -DSERIAL -o ../RUN/bgk2d.$(VER).x
-
+#
 #----------------------------------------------
 multicore: VER:= multicore
 multicore: FC := $(SFC) $(MULTI)
@@ -220,8 +255,7 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
-
-
+#
 #----------------------------------------------
 # utilities
 #----------------------------------------------
@@ -266,7 +300,7 @@ tar:
 #----------------------------------------------
 help:
 	@echo "different target available"
-	@echo "do concurrent (defaul, GPU) "
+	@echo "do concurrent (default, GPU) "
 	@echo "serial (CPU)"
 	@echo "multicore (CPU)"
 	@echo "offload (GPU)"
