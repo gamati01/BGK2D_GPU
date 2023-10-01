@@ -28,6 +28,9 @@ FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
 OPT  = -O2  -Mnodepchk  -Mcontiguous
 #
+ifdef NVIDIA
+# do nothing	
+endif
 ifdef FLANG
  SFC = flang -DPGI
  SCC = clang -DPGI
@@ -84,7 +87,6 @@ ifdef SINGLE
  PREC =
 endif
 #
-#
 ifdef MIXED1
  PREC =-DHALF_P -DMIXEDPRECISION 
 endif
@@ -100,6 +102,7 @@ endif
 #----------------------------------------------
 # implementations 
 #----------------------------------------------
+#
 # default, ORIGINAL
 ifdef ORIG
  FIX = 
@@ -114,7 +117,8 @@ endif
 #----------------------------------------------
 # test case
 #----------------------------------------------
-# default, Lid Driven Cavit
+#
+# default, Lid Driven Cavity
 ifdef LDC
  PREPROC =
 endif

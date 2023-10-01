@@ -9,7 +9,6 @@ echo " ---> nvfortran                "
 echo " ---> single precision         "
 echo " ---> fused                    "
 echo " ---> serial                   "
-echo " ---> doconcurrent             "
 echo " ---> "$EXE
 echo " ---> "$DIR
 echo "-------------------------------"
@@ -22,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make serial FIX="-DFUSED -DCHANNEL -DPGI" GNU=1
+make serial GNU=1 FUSED=1 POF=1
 if ($?) then
    echo "compiling fails..."
    exit 1

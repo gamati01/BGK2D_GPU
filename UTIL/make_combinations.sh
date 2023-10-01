@@ -9,7 +9,7 @@ for target in `cat target.list`; do
 		        for prec in `cat precision.list`; do 
                         	# loop over testcase.list
 				for test in `cat testcase.list`; do 
-					echo "make " $comp $target $imp $prec $test
+					echo "make clean; make " $comp $target $imp $prec $test
 				done
 			done
 		done
