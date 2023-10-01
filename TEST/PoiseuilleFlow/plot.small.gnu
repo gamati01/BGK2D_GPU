@@ -78,8 +78,7 @@ set datafile separator whitespace
 unset hidden3d
 set cntrparam order 4
 set cntrparam linear
-set cntrparam levels auto 5 unsorted
-set cntrparam firstlinetype 0
+set cntrparam levels auto 5 
 set cntrparam points 5
 set size ratio 0 1,1
 set origin 0,0
@@ -168,7 +167,6 @@ GNUTERM = "qt"
 set ylabel " Streamiwise velocity "
 set xlabel " Normal to wall direction (y)"
 set grid
-rep  -4.0*0.1*((x/64)^2(x/64))                                t " Parabolic profile"
 p   'RUN_SINGLE_SERIAL_FUSED_GNU/prof_j.0000.dat'  u ($1-0.5):2  w p lw 2 t " Fused  "
 rep 'RUN_SINGLE_SERIAL_ORIGINAL_GNU/prof_j.0000.dat'  u ($1-0.5):2     w l lw 3 t " Original "
 rep  -4.0*0.1*((x/64)*(x/64)-x/64)                  w l lw 5              t " Parabolic profile"
@@ -176,7 +174,7 @@ pause -1 "Press any key to continue "
 #
 set ylabel " Total Energy "
 set xlabel " timestep     "
-set ket box opaque bottom
+set key box opaque bottom
 p   'RUN_SINGLE_SERIAL_FUSED_GNU/diagno.dat'     u 1:5  w p lw 2 t " Fused  "
 rep 'RUN_SINGLE_SERIAL_ORIGINAL_GNU/diagno.dat'  u 1:5  w l lw 3 t " Original "
 #    EOF
