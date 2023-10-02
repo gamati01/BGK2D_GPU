@@ -27,10 +27,12 @@ DC  = -DPGI -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
 OPT  = -O2  -Mnodepchk  -Mcontiguous
+CHECK1=NVIDIA
 #
 ifdef NVIDIA
 # do nothing	
 endif
+#
 ifdef FLANG
  SFC = flang -DPGI
  SCC = clang -DPGI
@@ -38,6 +40,7 @@ ifdef FLANG
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
+ CHECK1=FLANG
 endif
 #
 ifdef CRAY
@@ -48,6 +51,7 @@ ifdef CRAY
  FOPT = -O3
  COPT =
  OPT = -O3
+ CHECK1=CRAY
 endif
 #
 ifdef GNU
@@ -58,6 +62,7 @@ ifdef GNU
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
+ CHECK1=GNU
 endif
 #
 ifdef INTEL
@@ -67,6 +72,7 @@ ifdef INTEL
  COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
  OPENMP = -qopenmp
  MULTI =   -parallel
+ CHECK1=INTEL
 endif
 #
 ifdef PWR
@@ -76,6 +82,7 @@ ifdef PWR
  FOPT = -O3 -qassert=contig
  COPT = -O3 -qassert=contig
  OPT = -O3 -qassert=contig
+ CHECK1=PWR
 endif
 #
 #----------------------------------------------
@@ -85,18 +92,22 @@ endif
 # default
 ifdef SINGLE
  PREC =
+ CHECK2=SINGLE
 endif
 #
 ifdef MIXED1
  PREC =-DHALF_P -DMIXEDPRECISION 
+ CHECK2=MIXED1
 endif
 #
 ifdef MIXED2
  PREC =-DMIXEDPRECISION 
+ CHECK2=MIXED2
 endif
 #
 ifdef DOUBLE
  PREC =-DDOUBLE_P
+ CHECK2=DOUBLE
 endif
 #
 #----------------------------------------------
@@ -106,11 +117,12 @@ endif
 # default, ORIGINAL
 ifdef ORIG
  FIX = 
+ CHECK3=ORIG
 endif
 #
-# default, ORIGINAL
 ifdef FUSED
  FIX = -DFUSED
+ CHECK3=FUSED
 endif
 #
 #
@@ -121,21 +133,25 @@ endif
 # default, Lid Driven Cavity
 ifdef LDC
  PREPROC =
+ CHECK4=LDC
 endif
 #
 # Poiseulle Flow
 ifdef POF
  PREPROC =  -DCHANNEL 
+ CHECK4=POF
 endif
 #
 # Taylor Green Vortex
 ifdef TGF
  PREPROC =  -DPERIODIC
+ CHECK4=TGF
 endif
 #
 # Von Karman Streets 
 ifdef VKS
  PREPROC =-DINFLOW -DOBSTACLE -DDRAG
+ CHECK4=VKS
 endif
 #
 #----------------------------------------------
@@ -209,7 +225,10 @@ all: FC := $(SFC) $(DC)
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(LIB) -o ../RUN/bgk2d.$(VER).x 
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
+	@echo "-------------------------------------------------"
 #
 #----------------------------------------------
 offload: FOPT += $(OFFLOAD)
