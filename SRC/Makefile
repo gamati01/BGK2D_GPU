@@ -238,6 +238,10 @@ offload: FC := $(SFC)
 offload: CC := $(SCC)
 offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo $(FINE)
+	@echo "-------------------------------------------------"
 #
 #----------------------------------------------
 openacc: FOPT += $(OPENACC)
@@ -247,6 +251,10 @@ openacc: FC := $(SFC)
 openacc: CC := $(SCC)
 openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo $(FINE)
+	@echo "-------------------------------------------------"
 #
 #----------------------------------------------
 serial: VER:= serial
@@ -255,6 +263,10 @@ serial: FC := $(SFC)
 serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -DSERIAL -o ../RUN/bgk2d.$(VER).x
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo $(FINE)
+	@echo "-------------------------------------------------"
 #
 #----------------------------------------------
 multicore: VER:= multicore
