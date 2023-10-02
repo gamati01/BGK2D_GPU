@@ -13,6 +13,8 @@
 #----------------------------------------------
 DATE = $(shell date +%d%m%y)
 FINE = "******** End Compilation step  *******"
+CHECK1 = NVIDIA
+CHECK2 = SINGLE
 #----------------------------------------------
 # Compilers & Flags
 #----------------------------------------------
@@ -274,6 +276,10 @@ multicore: FC := $(SFC) $(MULTI)
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4)
+	@echo $(FINE)
+	@echo "-------------------------------------------------"
 #
 #----------------------------------------------
 # rules 

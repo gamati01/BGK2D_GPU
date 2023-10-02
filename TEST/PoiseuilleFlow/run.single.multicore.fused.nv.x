@@ -1,6 +1,6 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_MULTICORE_FUSED_DC_NV
+setenv DIR RUN_SINGLE_MULTICORE_FUSED_NV
 setenv EXE bgk2d.multicore.x
 #
 echo "-------------------------------"
@@ -22,7 +22,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make multicore FIX="-DFUSED -DCHANNEL -DPGI"
+make multicore FUSED=1 NVIDIA=1 POF=1 SINGLE=1
 if ($?) then
    echo "compiling fails..."
    exit 1

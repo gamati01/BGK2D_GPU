@@ -1,6 +1,6 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_SERIAL_FUSED_DC_NV
+setenv DIR RUN_SINGLE_SERIAL_FUSED_NV
 setenv EXE bgk2d.serial.x
 #
 echo "-------------------------------"
@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make serial FIX="-DFUSED -DCHANNEL -DPGI"
+make serial NVIDIA=1 FUSED=1 POF=1 SINGLE=1
 if ($?) then
    echo "compiling fails..."
    exit 1
