@@ -63,7 +63,7 @@
         write(61,1005) itime
 !
         do i=1,l
-           write(61,1002) i+(offset(1)), u(i), w(i), den(i)
+           write(61,1002) (i-0.5), u(i), w(i), den(i)
         end do
         write(61,'(a1)') 
         write(61,'(a1)') 
@@ -75,7 +75,7 @@
 #endif
 !
 !	format
-1002    format(i5,3(e14.6,1x))
+1002    format(4(e14.6,1x))
 1005    format("# t=",i7)
 1111    format("#pause")
 !        

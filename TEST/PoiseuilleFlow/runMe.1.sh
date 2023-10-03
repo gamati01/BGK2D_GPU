@@ -1,4 +1,4 @@
-echo "Poiseuille Flow with differen code"
+echo "Poiseuille Flow with different code"
 echo "------------------------------"
 echo "run #1 of 3: serial (single CPU)"
 sleep 5

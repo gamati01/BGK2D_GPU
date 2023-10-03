@@ -70,7 +70,7 @@
         write(64,1005) itime
 !
         do j=1,m
-           write(64,1002) j+(offset(2)), u(j),w(j),den(j)
+           write(64,1002) (j-0.5), u(j),w(j),den(j)
         end do
         write(64,'(a1)') 
         write(64,'(a1)') 
@@ -82,7 +82,7 @@
 #endif
 !
 !	format
-1002    format(i5,3(e14.6,1x))
+1002    format(4(e14.6,1x))
 1005    format("# t=",i7)
 !       
         end subroutine prof_j
