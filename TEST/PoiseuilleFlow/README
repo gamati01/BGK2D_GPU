@@ -4,8 +4,8 @@ Description
 In this directory you can perform some sumulation of poiuseulle flow (POF).
 The initial condition is rest flow and a volume forcing is used. 
 Periodic B.C. along x direction (streamwise) and no-slip B.C. along y direction (normal to wall).
-Different scripts (*.x) will allo you to
-	1) Compile the code 
+Different scripts (*.x) will allow you to:
+	1) Compile the code in different configurations
 	2) Run the code, in a "ad hoc" created directory
 
 There are some script (runMe.*.sh) to perform multiple simulation and check the results using gnuplot

@@ -1,8 +1,8 @@
 
 Description
 
-In this directory you can perform some sumulation of Taylor-Gren Vortez (TGV).
-The initial condition is TG vortices flow and no forcing is used
+In this directory you can perform some sumulation of Taylor-Gren Vortex (TGV).
+The initial condition is TG vortices flow and no forcing is used.
 Periodic B.C. along x direction (streamwise) and along y direction (normal to wall) are applied.
 Different scripts (*.x) will allow you to:
         1) Compile the code in different configurations
@@ -13,10 +13,7 @@ There are some script (runMe.*.sh) to perform multiple simulation and check the 
 Files
 
 ├── bgk.1024.input
-├── bgk.input
-├── bgk.input.big
 ├── bgk.input.small
-├── diagno.dat
 ├── plot.gnu
 ├── plot.small.gnu
 ├── README
@@ -38,22 +35,25 @@ Files
   
 To run Taylor-Green test use the following scripts (each one create a different directory)
 
-run.single.multicore.gnu.x	---> single precision, multicore, fused, using GNU compiler
-run.single.multicore.intel.x	---> single precision, multicore, fused, using intel compiler
-run.single.multicore.nv.x	---> single precision, multicore, fused, using nvidia compiler
+run.mixed1.gpu.fused.dc.nv.x	--> mixed1 precision, gpu, fused using NVIDIA compiler
+run.single.gpu.fused.dc.nv.x	--> single precision, gpu, fused using NVIDIA compiler
+run.mixed2.gpu.fused.dc.nv.x	--> mixed2 precision, gpu, fused using NVIDIA compiler
+run.double.gpu.fused.dc.nv.x	--> double precision, gpu, fused using NVIDIA compiler
+run.single.serial.fused.gnu.x   --> mixed1 precision, serial, fused using GNU compiler
+run.mixed2.serial.fused.gnu.x   --> mixed1 precision, serial, fused using GNU compiler
+run.double.serial.fused.gnu.x   --> mixed1 precision, serial, fused using GNU compiler
 
-run.mixed1.serial.fused.gnu.x	---> mixed1 precision, serial, fused, using GNU compiler
-run.double.serial.fused.gnu.x	---> double precision, serial, fused, using GNU compiler
-run.mixed2.serial.fused.gnu.x	---> mixed2 precision, serial, fused, using GNU compiler
-run.single.serial.fused.gnu.x	---> single precision, serial, fused, using GNU compiler
+* run.single.multicore.gnu.x	---> single precision, multicore, fused, using GNU compiler
+* run.single.multicore.intel.x	---> single precision, multicore, fused, using intel compiler
+* run.single.multicore.nv.x	---> single precision, multicore, fused, using nvidia compiler
 
 
-bgk.input        --> input file used for the simulation
+bgk.1024.input        --> input file used for the simulation
 bgk.input.small  --> input file used for the simulation (small one)
-plot.gnu         --> gnuplot file to check the results (to modify accordingly)
-plot.gnu.small   --> gnuplot file to check the results between original and fused version (GNU)
+plot.gnu         --> gnuplot file to check the results between different precisions (NVIDIA)
+plot.gnu.small   --> gnuplot file to check the results between different precisions (GNU)
 
 
 runMe.1.sh --> Running 4 simulation using GPU,FUSED and nvidia compiler (mixed1,single,mixed2,double) 
-runMe.2.sh --> Running 3 simulation using single precision and GNU compiler (fused,original)
+runMe.2.sh --> Running 3 simulation using CPU, fused and GNU compiler (,single,mixed2,double)
 

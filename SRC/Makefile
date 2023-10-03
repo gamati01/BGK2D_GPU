@@ -25,7 +25,7 @@ SFC = nvfortran -DPGI
 OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
 OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc80,managed
 MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
-DC  = -DPGI -stdpar=gpu
+DC  = -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous
 COPT = -O2
 OPT  = -O2  -Mnodepchk  -Mcontiguous
@@ -260,7 +260,6 @@ openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 #
 #----------------------------------------------
 serial: VER:= serial
-serial: DC := -DPGI
 serial: FC := $(SFC)
 serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
