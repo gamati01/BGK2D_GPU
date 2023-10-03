@@ -145,9 +145,9 @@ ifdef POF
 endif
 #
 # Taylor Green Vortex
-ifdef TGF
+ifdef TGV
  PREPROC =  -DPERIODIC
- CHECK4=TGF
+ CHECK4=TGV
 endif
 #
 # Von Karman Streets 

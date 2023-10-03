@@ -1,7 +1,7 @@
 #!/bin/tcsh
 #
 setenv DIR RUN_DOUBLE_SERIAL_FUSED_GNU
-setenv EXE bgk2d.doconcurrent.x
+setenv EXE bgk2d.serial.x
 #
 echo "---------------------------"
 echo "starting test TG vortices  "
@@ -20,7 +20,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make GNU=1 DOUBLE=1 FUSED=1 TGV=1
+make serial GNU=1 DOUBLE=1 FUSED=1 TGV=1
 if ($?) then
    echo "compiling fails..."
    exit 1
