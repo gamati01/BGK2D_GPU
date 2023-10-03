@@ -1,4 +1,4 @@
-echo "Poiseuille Flow with differen implementation"
+echo "Poiseuille Flow with different implementations"
 echo "------------------------------"
 echo "run #1 of 2: fused (CPU)"
 sleep 5

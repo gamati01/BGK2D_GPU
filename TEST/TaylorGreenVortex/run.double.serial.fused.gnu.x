@@ -20,7 +20,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make FIX="-DFUSED -DPERIODIC " GNU=1 DOUBLE=1
+make GNU=1 DOUBLE=1 FUSED=1 TGV=1
 if ($?) then
    echo "compiling fails..."
    exit 1

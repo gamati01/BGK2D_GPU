@@ -35,7 +35,6 @@
 !
        real(mykind):: rtot,xtot,ytot,stot
        real(mykind):: xj, yj, rho, rhoinv, rdv
-       real(mykind):: loctot(5), glotot(5)
        real(mykind):: x01,x03,x05,x08,x10
        real(mykind):: x12,x14,x17,x19
        real(mykind):: cte1
@@ -47,12 +46,6 @@
 #endif
 !
        rdv = uno/(real(l,mykind)*real(m,mykind))
-!
-       glotot(1) = zero
-       glotot(2) = zero
-       glotot(3) = zero
-       glotot(4) = zero
-       glotot(5) = zero
 !
        rtot = zero
        xtot = zero
@@ -106,7 +99,7 @@
        xtot = (xtot/float(l))/float(m)
        ytot = (ytot/float(l))/float(m)
        stot = (stot/float(l))/float(m)
-
+!
        if(myrank.eq.0) then
           write(16,1001) itime
           write(16,1002) rtot
@@ -129,5 +122,4 @@
 1003   format("       mean vel ",3(e14.6,1x))
 1004   format(i8,4(e14.6,1x))
 !
-       return
        end subroutine diagno

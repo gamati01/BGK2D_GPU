@@ -6,7 +6,7 @@ setenv EXE bgk2d.doconcurrent.x
 echo "---------------------------"
 echo "starting test TG vortices  "
 echo " ---> gfortran             "
-echo " ---> mixed-single precision "
+echo " ---> mixed2     precision "
 echo " ---> fused                "
 echo " ---> " $EXE
 echo " ---> " $DIR
@@ -20,7 +20,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make FIX="-DFUSED -DPERIODIC -DMIXEDPRECISION " GNU=1
+make FUSED=1 MIXED2=1 GNU=1 TGV=1
 if ($?) then
    echo "compiling fails..."
    exit 1
