@@ -27,7 +27,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make offload FIX="-DFUSED -DINFLOW -DOBSTACLE -DDRAG"
+make offload NVIDIA=1 SINGLE=1 FUSED=1 VKS=1
 if ($?) then
    echo "compiling fails..."
    exit 1

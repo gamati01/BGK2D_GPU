@@ -31,8 +31,6 @@ Files
 ├── run.single.multicore.nv.x
 ├── run.single.serial.fused.gnu.x
 
-
-  
 To run Taylor-Green test use the following scripts (each one create a different directory)
 
 run.mixed1.gpu.fused.dc.nv.x	--> mixed1 precision, gpu, fused using NVIDIA compiler
@@ -47,12 +45,10 @@ run.double.serial.fused.gnu.x   --> mixed1 precision, serial, fused using GNU co
 * run.single.multicore.intel.x	---> single precision, multicore, fused, using intel compiler
 * run.single.multicore.nv.x	---> single precision, multicore, fused, using nvidia compiler
 
-
-bgk.1024.input        --> input file used for the simulation
+bgk.1024.input   --> input file used for the simulation (big one)
 bgk.input.small  --> input file used for the simulation (small one)
 plot.gnu         --> gnuplot file to check the results between different precisions (NVIDIA)
 plot.gnu.small   --> gnuplot file to check the results between different precisions (GNU)
-
 
 runMe.1.sh --> Running 4 simulation using GPU,FUSED and nvidia compiler (mixed1,single,mixed2,double) 
 runMe.2.sh --> Running 3 simulation using CPU, fused and GNU compiler (,single,mixed2,double)
