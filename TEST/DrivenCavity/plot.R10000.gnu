@@ -170,16 +170,18 @@ set xlabel "Streamwise velocity (u) "
 set ylabel "normal to wall direction (y) "
 set size square
 GNUTERM = "wxt"
-p   'RUN_SINGLE_GPU_FUSED_OPENACC_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/1024) w p lw 2 t " Re=10000"
-rep 'RUN_DOUBLE_GPU_FUSED_OPENACC_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/1024) w l lw 2 t " Re=10000 (dp)"
-rep 'ghia.y.dat' u 4:1 w p lw 5                                                                  t " Ghia,Re=10000"
+p   'RUN_SINGLE_GPU_FUSED_DC_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/1024)      w l lw 4 t " Re=10000 (do concurrent)"
+rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/1024) w l lw 3 t " Re=10000 (openacc)"
+rep 'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/1024) w l lw 2 t " Re=10000 (offload)"
+rep 'ghia.y.dat' u 4:1 w p lw 5                                                                t " Ghia,Re=10000"
 pause -1 "press any key to continue"
 #
 set key left
 set xlabel "Spanwise velocity (v) "
 set ylabel "direction (x) "
-p   'RUN_SINGLE_GPU_FUSED_OPENACC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/1024) w p lw 2 t " Re=10000 (sp)"
-rep 'RUN_DOUBLE_GPU_FUSED_OPENACC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/1024) w l lw 2 t " Re=10000 (dp)"
+p   'RUN_SINGLE_GPU_FUSED_DC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/1024)      w l lw 4 t " Re=10000 (do concurrent)"
+rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/1024) w l lw 3 t " Re=10000 (openacc)"
+rep 'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/1024) w l lw 2 t " Re=10000 (offload)"
 rep 'ghia.x.dat' u 4:1 w p lw 5                                                                      t "Ghia,Re=10000"
 #
 #    EOF
