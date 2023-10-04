@@ -68,12 +68,16 @@ ifdef GNU
 endif
 #
 ifdef INTEL
- SFC = ifort
+ SFC = ifx
+ #SFC = ifort
  SCC = icc
- FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
- COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
+# FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
+# COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
+ FOPT = -O3 
+ COPT = -O3 
+ OPT =  -O3
  OPENMP = -qopenmp
- MULTI =   -parallel
+ MULTI =  -Qparallel
  CHECK1=INTEL
 endif
 #

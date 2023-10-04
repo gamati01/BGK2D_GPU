@@ -170,15 +170,14 @@ set xlabel "Streamwise velocity (u) "
 set ylabel "normal to wall direction (y) "
 set size square
 GNUTERM = "wxt"
-p 'RUN_SINGLE_FUSED_GPU_DC_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1-0.5)/512) w l lw 2 t " Re=1000"
-rep 'ghia.y.dat' u 3:1 w p lw 5                                                            t " Ghia,Re=1000"
+p 'RUN_SINGLE_MULTICORE_FUSED_NV/prof_j.0000.dat' index 20 u ($2/0.1):(($1)/512) w l lw 2 t " Re=1000"
+rep 'ghia.y.dat' u 3:1 w p lw 5                                                           t " Ghia,Re=1000"
 pause -1 "press any key to continue"
 #
 set key left
 set xlabel "Spanwise velocity (v) "
 set ylabel "direction (x) "
-p   'RUN_SINGLE_GPU_FUSED_DC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1-0.5)/512) w l lw 2 t " Re=1000 (sp)"
-rep 'RUN_DOUBLE_GPU_FUSED_DC_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1-0.5)/512) w l lw 2 t " Re=1000 (dp)"
+p   'RUN_SINGLE_MULTICORE_FUSED_NV/prof_i.0000.dat' index 20 u ($3/0.1):(($1)/512) w l lw 2 t " Re=1000"
 rep 'ghia.x.dat' u 3:1 w p lw 5                                                            t "Ghia,Re=1000"
 #
 #    EOF
