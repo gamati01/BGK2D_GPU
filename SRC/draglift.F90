@@ -52,6 +52,11 @@
 !          
 ! computing drag (force along x) 
         forceX = zero
+!
+#ifdef OFFLOAD
+!$omp target update from(a01,a03,a05,a08,a10,a12,a14,a17,a19)
+#endif
+!
         do j = jstart, jstop
            do i = istart, istop
               if(obs(i,j)==0) then

@@ -182,6 +182,6 @@ set auto
 set ylabel " Cl (Lift) "
 p   'RUN_SINGLE_GPU_FUSED_OFFLOAD_NV/drag.lift.dat' u 1:3 w p  lw 5 t " Lift (Offload) "
 rep 'RUN_SINGLE_GPU_FUSED_OPENACC_NV/drag.lift.dat' u 1:3 w l  lw 3 t " Lift (OpenACC) "
-rep 'RUN_SINGLE_GPU_FUSED_DC_NV/fdrag.lift.dat'      u 1:3 w lp lw 1 t " Lift (Do concurrent) "
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/drag.lift.dat'      u 1:3 w lp lw 1 t " Lift (Do concurrent) "
 #
 #    EOF
