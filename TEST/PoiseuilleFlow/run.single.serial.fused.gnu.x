@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make serial GNU=1 FUSED=1 POF=1
+make serial GNU=1 FUSED=1 POF=1 SINGLE=1
 if ($?) then
    echo "compiling fails..."
    exit 1
