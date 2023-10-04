@@ -1,19 +1,19 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_TRICK1_OFFLOAD_NV
-setenv EXE bgk2d.offload.x
+setenv DIR RUN_DOUBLE_SERIAL_FUSED_GNU
+setenv EXE bgk2d.serial.x
 #
 echo "---------------------------"
 echo "starting test driven cavity"
-echo " ---> nvfortran            "
+echo " ---> gfrotran             "
 echo " ---> single precision     "
-echo " ---> fused+trick1         "
-echo " ---> doconcurrent         "
-echo " ---> " $EXE
-echo " ---> " $DIR
+echo " ---> fused                "
+echo " ---> serial               "
+echo " ---> "$EXE
+echo " ---> "$DIR
 echo "---------------------------"
 #
-rm -r $DIR
+rm -rf $DIR
 mkdir $DIR
 cd $DIR
 
@@ -21,14 +21,14 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make offload FIX="-DFUSED -DTRICK1"
+make serial GNU=1 FUSED=1 DOUBLE=1 LDC=1
 if ($?) then
    echo "compiling fails..."
    exit 1
 else
    cd -
    cp ../../../RUN/$EXE  .
-   cp ../../../UTIL/bgk.256*  bgk.input
+   cp ../../../UTIL/bgk.128*  bgk.input
    echo "compiling  ended succesfully..."
 endif
 

@@ -5,7 +5,7 @@ setenv EXE bgk2d.serial.x
 #
 echo "---------------------------"
 echo "starting test driven cavity"
-echo " ---> gfrotran             "
+echo " ---> gfortran             "
 echo " ---> single precision     "
 echo " ---> original             "
 echo " ---> serial              "
@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make serial GNU=1 
+make serial GNU=1 SINGLE=1 ORIGINAL=1 LDC=1
 if ($?) then
    echo "compiling fails..."
    exit 1
