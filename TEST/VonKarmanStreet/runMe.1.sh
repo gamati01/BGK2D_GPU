@@ -1,6 +1,6 @@
 echo "VK stress for different paradigm"
 echo "------------------------------"
-echo "run #1 of 3: Do concurrent i  "
+echo "run #1 of 3: Do concurrent    "
 sleep 5
 ./run.single.gpu.fused.dc.nv.x
 echo "------------------------------"

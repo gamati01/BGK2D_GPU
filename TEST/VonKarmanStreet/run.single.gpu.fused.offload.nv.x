@@ -1,11 +1,11 @@
 #!/bin/tcsh
 #
 # trick for leonardo ....
-module purge
-module load nvhpc/23.1
-module li
+#module purge
+#module load nvhpc/23.1
+#module li
 #
-echo "WARNING: rel 23.1 used....."
+#echo "WARNING: rel 23.1 used....."
 setenv DIR RUN_SINGLE_GPU_FUSED_OFFLOAD_NV
 setenv EXE bgk2d.offload.x
 #
