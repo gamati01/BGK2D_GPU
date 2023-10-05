@@ -47,9 +47,7 @@
 !
         file_name = 'tec_xy.xxxx.xxxxxxxx.vtk'
 !
-#ifdef SERIAL
         myrank = 0
-#endif
 !
 #ifdef NOSHIFT
        cte1 = zero

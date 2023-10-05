@@ -22,8 +22,8 @@ CHECK2 = SINGLE
 # default (nvfortran)
 SCC = nvcc 
 SFC = nvfortran -DPGI
-OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel -DPGI
-OPENACC = -Minfo=acc -O2 -acc -DOPENACC   -DPGI -ta=tesla:cc80,managed
+OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
+OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
 MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
 DC  = -stdpar=gpu
 FOPT = -O2 -Mnodepchk  -Mcontiguous

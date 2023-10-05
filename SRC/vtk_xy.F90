@@ -1,4 +1,3 @@
-!=======================================================================
 !     ****** LBE/vtk_xy
 !
 !     COPYRIGHT
@@ -42,10 +41,8 @@
 !
         file_name = 'tec_xy.xxxx.xxxxxxxx.vtk'
 !
-#ifdef SERIAL
         myrank = 0
-#endif
-
+!
         write(file_name(8:11),3100) myrank
         write(file_name(13:20),4000) itime
         open(52,file=file_name,status='unknown')
