@@ -35,14 +35,14 @@ ifdef NVIDIA
 # do nothing	
 endif
 #
-ifdef FLANG
+ifdef AMD
  SFC = flang -DPGI
  SCC = clang -DPGI
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
- CHECK1=FLANG
+ CHECK1=AMD
 endif
 #
 ifdef CRAY
@@ -196,7 +196,6 @@ OBJ2 = check_case.o \
        init.o\
        hencol.o \
        outdat.o \
-       vtk_rho.binary.o \
        vtk_obstacle.o \
        vtk_xy.o \
        vtk_xy.binary.o \
@@ -226,6 +225,10 @@ OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 # targets
 #----------------------------------------------
 #
+#
+doconcurrent: all
+#
+#----------------------------------------------
 all: VER := doconcurrent
 all: FC := $(SFC) $(DC) 
 all: CC := $(SCC)
