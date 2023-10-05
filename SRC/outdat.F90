@@ -104,6 +104,5 @@
          write(6,*) "DEBUG1: Exiting from sub. outdat"
       endif
 #endif
-
-      return
+!
       end subroutine outdat

@@ -137,12 +137,11 @@
         endif
 #endif
 
-
+! formats
 1004    format(3(e14.6,1x))
 1005    format(1(e14.6,1x))
 3100    format(i4.4)
 4000    format(i8.8)
 
-       return 
        end subroutine vtk_xy
 

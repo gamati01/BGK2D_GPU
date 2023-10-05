@@ -254,5 +254,4 @@
         endif
 #endif
 !
-        return 
         end subroutine col_MC

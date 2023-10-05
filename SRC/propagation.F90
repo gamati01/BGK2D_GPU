@@ -49,5 +49,5 @@
            write(6,*) "DEBUG2: Exiting from sub. propagation"
         endif
 #endif
-!       return
+!        
         end subroutine propagation

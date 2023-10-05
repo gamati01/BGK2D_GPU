@@ -56,5 +56,5 @@
          write(6,*) "DEBUG1: Exiting from sub. build_bcond"
       endif
 #endif
-      return
+!
       end subroutine build_bcond

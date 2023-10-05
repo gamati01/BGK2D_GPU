@@ -155,5 +155,4 @@
 4100  format(i3.3)
 3100  format(i6.6)
 !
-      return
       end subroutine setup

@@ -52,5 +52,4 @@
         endif
 #endif
 !
-        return
         end subroutine collision

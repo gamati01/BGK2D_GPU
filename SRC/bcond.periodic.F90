@@ -98,5 +98,5 @@
            write(6,*) "DEBUG2: Exiting from sub. bcond_periodic"
         endif
 #endif
-        return
+!       
         end subroutine bcond_periodic

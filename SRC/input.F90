@@ -88,5 +88,4 @@
       endif
 # endif
 !
-      return
       end subroutine input

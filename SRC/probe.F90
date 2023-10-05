@@ -70,5 +70,4 @@
 ! format
 1002    format(i8,3(e14.6,1x))
 !
-       return
        end subroutine probe

@@ -114,5 +114,4 @@
         endif
 #endif
 !
-        return
         end subroutine diagnostic

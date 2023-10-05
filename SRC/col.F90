@@ -191,5 +191,4 @@
            write(6,*) "DEBUG2: Exiting from sub. coll"
         endif
 #endif
-        return 
         end subroutine col

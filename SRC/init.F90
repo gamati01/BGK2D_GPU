@@ -158,5 +158,4 @@
         endif
 #endif
 !
-        return
         end subroutine init

@@ -59,6 +59,5 @@
           write(6,*) "DEBUG1: Exiting from sub. hencol"
        endif
 #endif
-
-        return
+!
         end subroutine hencol
