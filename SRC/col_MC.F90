@@ -207,7 +207,7 @@
         c17 => a17
 !!        c19 => a19
 !
-! new ---> current
+! swap: new ---> current
 !
         a01 => b01
         a03 => b03

@@ -71,31 +71,24 @@
         real(qp), parameter :: p2_qp = uno_qp/(rf_qp*rf_qp*(uno_qp+tre_qp))
 #endif
 !
-        integer:: nprocs, myrank, lbecomm, localcomm
-        integer:: rear_task, front_task
-        integer:: left_task, right_task
+        integer:: nprocs, myrank
         integer:: imax, imin                    ! obstacle stuff
         integer:: jmax, jmin                    ! obstacle stuff
         integer:: nobs                          ! #of obstacles per task
         integer:: xyplane, myxrank
         integer:: prgrid(mpid)
         integer:: mpicoords(0:3)
-        integer:: gsizes(2),lsizes(2),start_idx(2)
         integer:: offset(2)
-        integer:: dump2d
         integer:: buffer_size
         integer:: i_shift
         integer:: ipad,jpad
         integer:: flag1, flag2, flag3
-        integer:: flip, flop
-        integer:: current, next
 !
         real(mykind), dimension(1:19) ::  cx, cy
         integer, dimension(1:19) :: icx,icy
 !
         logical remdims(mpid)
         logical periodic(mpid)
-        logical rreorder
 !
 #ifdef FUSED
         real(mystorage), dimension(:,:), pointer, CONTIGUOUS :: a01,a03,a05

@@ -132,9 +132,6 @@
 
       open(62,file=file_name4, status='unknown')
 !
-      current = 0
-      next = 1
-!      
       call alloca()
 
 #ifdef DEBUG_1
