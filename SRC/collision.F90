@@ -5,13 +5,13 @@
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond
+!       collision
 !     DESCRIPTION
 !       Simple wrapper for movef routine...
 !       - none (if -DFUSED) 
 !       - movef else
 !     INPUTS
-!       none
+!       itime
 !     OUTPUT
 !       none
 !     TODO

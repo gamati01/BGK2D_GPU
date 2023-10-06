@@ -5,11 +5,11 @@
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond
+!       diagnostic
 !     DESCRIPTION
 !       Simple wrapper for different diagnostic routines..
 !     INPUTS
-!       none
+!       itime,ivtim,icheck,itsave
 !     OUTPUT
 !       none
 !     TODO
@@ -35,7 +35,6 @@
 ! get macroscopic values
 !
         if (mod(itime,ivtim).eq.0) then
-!
 !
 ! start timing...
            call SYSTEM_CLOCK(countA0, count_rate, count_max)

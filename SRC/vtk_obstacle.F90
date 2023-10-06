@@ -1,13 +1,13 @@
 !=====================================================================
-!     ****** LBE/build_obs
+!     ****** LBE/vtk_obs
 !
 !     COPYRIGHT
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
-!       bcond
+!       vtk_obs
 !     DESCRIPTION
-!       set obstacles 
+!       visualization routine: vtk file with obstacle (ASCII file)
 !     INPUTS
 !       none
 !     OUTPUT
