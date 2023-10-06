@@ -37,7 +37,6 @@
          open(69,file='bgk.perf',  status='unknown')
          write(69,9999) 
          write(69,*)  "# Run info "
-         write(69,*)  lx, ly
          write(69,*)  l, m
          write(69,9999) 
          write(69,*)  "# Time for section "
@@ -59,13 +58,13 @@
          write(69,1207) time_obs/time_loop , time_obs1/time_loop1
          write(69,9999) 
          write(69,*)  "# Derived (global) metrics "
-         write(69,1106) float(lx)*float(ly)* & 
+         write(69,1106) float(l)*float(m)* & 
                         (itfin-itstart)/(time_loop1)/1000.0/1000.0
-         write(69,1107) float(130)*float(lx)*float(ly)*  &
+         write(69,1107) float(130)*float(l)*float(m)*  &
                         (itfin-itstart)/(time_coll)/1000.0/1000.0
-         write(69,1108) float(9*8)*float(lx)*float(ly)* &
+         write(69,1108) float(9*8)*float(l)*float(m)* &
                         (itfin-itstart)/(time_coll)/1000.0/1000.0
-         write(69,1109) float(8*8)*float(lx)*float(ly)* &
+         write(69,1109) float(8*8)*float(l)*float(m)* &
                         (itfin-itstart)/(time_move)/1000.0/1000.0
          write(69,9999) 
          write(69,*)  "# Memory (task 0) metrics "
@@ -74,7 +73,7 @@
          write(69,9999) 
          close(69)   ! bgk.perf
 !
-         write(6,1106) float(lx)*float(ly)* &
+         write(6,1106) float(l)*float(m)* &
                        (itfin-itstart)/(time_loop1)/1000.0/1000.0
 
 !
@@ -108,7 +107,6 @@
 1114  format(" # diagno time",2(e14.6,1x))
 1116  format(" # Obst   time",2(e14.6,1x))
 1117  format(" # Check      ",1(e14.6,1x))
-1201  format(" # Ratio MPI  ",2(f7.3,1x))
 1202  format(" # Ratio I/O  ",2(f7.3,1x))
 1203  format(" # Ratio BC   ",2(f7.3,1x))
 1204  format(" # Ratio Coll ",2(f7.3,1x))

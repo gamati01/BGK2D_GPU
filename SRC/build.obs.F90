@@ -51,13 +51,15 @@
       write( 6,*) "INFO: creating obstacle (cylinder)" 
       write(16,*) "INFO: creating obstacle (cylinder)" 
 !
-      icoord = 2*lx/5
-      jcoord = ly/2
+      icoord = 2*l/5
+      jcoord = m/2
+!      
       if (m.gt.256) then
           radius = 32
       else
           radius = ly/8  
       endif
+!      
       write(16,*) "WARNING: radius hardwired ", radius
       write( 6,*) "WARNING: radius hardwired ", radius
       write( 6,*) "INFO: Cyl radius    -->", radius

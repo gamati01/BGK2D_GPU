@@ -46,10 +46,6 @@
       use timing
       use real_kinds
 !
-#ifdef _OPENMP
-      use omp_lib
-#endif
-!
       implicit none
 !
       INTEGER:: itfin, itstart, ivtim, ierr

@@ -34,10 +34,6 @@
         use real_kinds
         use timing
 !
-#ifdef _OPENMP
-        use omp_lib
-#endif
-!
         implicit none
 !
         integer:: i,j,itime
@@ -64,7 +60,7 @@
         write(file_nameD(11:13),3300) myrank
         open(41,file=file_nameD, status='unknown')        ! debug file
 !
-        call probe_global(itime,(3*lx/4),(ly/2))
+        call probe_global(itime,(3*l/4),(m/2))
 # endif
 !
 # ifdef NOSHIFT

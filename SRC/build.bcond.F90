@@ -47,7 +47,7 @@
 !
       write(16,*) "INFO: reference velocities --->", u0, u00
 !
-#  ifdef _OPENACC
+#  ifdef OPENACC
       write(38,*) "#", myrank, ":my GPU  is ------>", mydev, ndev
 #  endif
 !

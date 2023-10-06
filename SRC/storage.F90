@@ -26,7 +26,7 @@
 !
         use real_kinds
 !
-        integer:: lx, ly              ! global size        (MPI stuff)
+        integer:: lx, ly          ! global size        
         integer:: proc_x, proc_y  ! task decomposition (MPI stuff)
 !
         integer:: l, m                    ! local (task) size
