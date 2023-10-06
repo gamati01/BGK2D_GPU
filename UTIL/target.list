@@ -2,4 +2,4 @@ serial
 multicore
 openacc
 offload
-all
+doconcurrent
