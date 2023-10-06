@@ -7,7 +7,7 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       Simple check of the configuration...
+!       Simple check of the simulation
 !     INPUTS
 !       none
 !     OUTPUT
@@ -71,22 +71,20 @@
 #endif
 !
 #ifdef QUAD_P
-        write(16,*) "INFO: using quad precision"
-#else
-# ifdef DOUBLE_P
-        write(16,*) "INFO: using double precision"
-# else
-#  ifdef HALF_P
-        write(16,*) "INFO: using half precision"
+        write(16,*) "INFO: using quad precision (storage)"
+#elif DOUBLE_P
+        write(16,*) "INFO: using double precision (storage)"
+#elif HALF_P
+        write(16,*) "INFO: using half precision (storage)"
         write(6,*)  "WARNING: pure half precision has some problem"
-#  else
-        write(16,*) "INFO: using single precision"
-#  endif
-# endif
+#else
+        write(16,*) "INFO: using single precision (storage)"
 #endif
 !
 #ifdef MIXEDPRECISION
        write(16,*) "INFO: using mixed precision"
+#else
+       write(16,*) "INFO: using the same precision for computation"
 #endif
 !
        write(16,*) "INFO: mykind=   ", mykind, "range  =", range(u0)
@@ -102,14 +100,27 @@
        write(16,*) "INFO: using RAW I/O"
 !
 #ifdef PGI
-       write(16,*) "INFO: using PGI compiler"
+       write(16,*) "INFO: using NVIDIA compiler"
        write(16,*) "      quad precision not supported"
 #endif
 !
 #ifdef SERIAL
-       write(16,*) "INFO: serial version"
+       write(6,*)  "INFO: serial version (CPU)"
+       write(16,*) "INFO: serial version (CPU)"
+#elif MULTICORE
+       write(6,*)  "INFO: multicore parallelization (CPU)"
+       write(16,*) "INFO: multicore parallelization (CPU)"
+#elif OFFLOAD
+       write(6,*)  "INFO: offload version (GPU)"
+       write(16,*) "INFO: offload version (GPU)"
+#elif OPENACC
+       write(6,*)  "INFO: openacc version (GPU)"
+       write(16,*) "INFO: openacc version (GPU)"
+#else
+       write(6,*)  "INFO: do concurrent version (GPU)"
+       write(16,*) "INFO: do concurrent version (GPU)"
 #endif
-
+!
 #ifdef FUSED
        write(16,*) "INFO: using Fused version"
 #else
