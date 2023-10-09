@@ -55,11 +55,6 @@
         write(16,*)  "INFO: The test case has an obstacle in the flow"
 #endif
 !
-#ifdef MULTICORE
-        write(6 ,*)  "INFO: multicore (CPU) parallelization "
-        write(16,*)  "INFO: multicore (CPU) parallelization "
-#endif
-!
 #ifdef NOSHIFT
         write(6,*)  "INFO: using NOSHIFT preprocessing flag"
         write(16,*) "INFO: using NOSHIFT preprocessing flag"

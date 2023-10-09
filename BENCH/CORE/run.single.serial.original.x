@@ -31,7 +31,7 @@ if ($?) then
 else
    cd -
    cp ../../../RUN/$EXE  .
-   cp ../../../UTIL/bgk.512.core.input  bgk.input
+   cp ../../../UTIL/bgk.core.input  bgk.input
    echo "compiling  ended succesfully..."
 endif
 
