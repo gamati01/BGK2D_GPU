@@ -69,7 +69,7 @@ endif
 #
 ifdef INTEL
  SFC = ifx
- #SFC = ifort
+ SFC = ifort
  SCC = icc
 # FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
 # COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
