@@ -94,6 +94,11 @@
 !
        write(16,*) "INFO: using RAW I/O"
 !
+#ifdef NO_BINARY
+       write(6,*) "INFO: vtk output in ASCII (debug mode)"
+       write(16,*) "INFO: vtk output in ASCII (debug mode)"
+#endif
+
 #ifdef PGI
        write(16,*) "INFO: using NVIDIA compiler"
        write(16,*) "      quad precision not supported"
@@ -158,16 +163,6 @@
        endif
 #endif
 !
-#ifdef OFFLOAD
-       write(6,*) "INFO: offload version"
-       write(16,*) "INFO: offload version"
-#endif
-!       
-#ifdef OPENACC
-       write(6,*) "INFO: openacc version"
-       write(16,*) "INFO: openacc version"
-#endif
-!       
 #ifdef TRICK2
        write(6,*) "WARNING: forced offload num_threads(TRICK2)!"
        write(16,*) "WARNING: forced offload num_threads(TRICK2)!"

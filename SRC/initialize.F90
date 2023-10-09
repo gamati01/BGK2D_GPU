@@ -102,12 +102,12 @@
              itstart = 0
              call init(init_v)
 !             call diagno(itstart)
-#ifdef NO_OUTPUT
-! do nothing
-#else
              call varm(itstart)
              call prof_i(itstart,m/2)
              call prof_j(itstart,l/2)
+#ifdef NO_BINARY
+             call vtk_xy(itstart)
+#else
              call vtk_xy_bin(itstart)
 #endif
           endif

@@ -33,15 +33,23 @@
         use storage
         implicit none
 !
-        integer i,j,itime
+        integer :: i,j,itime
 !	
         character*24 file_name
 !
         real(sp) :: u,w,v,den
+        real(sp) :: cte1
+
 !
         file_name = 'tec_xy.xxxx.xxxxxxxx.vtk'
 !
         myrank = 0
+!
+#ifdef NOSHIFT
+       cte1 = zero
+#else
+       cte1 = uno
+#endif
 !
         write(file_name(8:11),3100) myrank
         write(file_name(13:20),4000) itime
@@ -80,9 +88,10 @@
                  -a01(i,j)-a10(i,j)-a17(i,j)
 !
               den = a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
-                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)
+                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 !
               write(52,1004) u/den, w/den, 0.0
+              write(6,*) i,j, u, w,den
            end do
         end do
 !
@@ -95,7 +104,7 @@
                  -a10(i,j)-a12(i,j)-a14(i,j)
 !
               den = a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
-                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)
+                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 
               write(52,1005) u/den
            end do
@@ -110,7 +119,7 @@
                  -a01(i,j)-a10(i,j)-a17(i,j)
 !
               den = a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
-                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)
+                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 
               write(52,1005) w/den
            end do
@@ -122,7 +131,7 @@
            do i = 1,l
 !
               den = a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
-                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)
+                   +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 !
               write(52,1005) den
            end do

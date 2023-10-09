@@ -122,12 +122,12 @@ endif
 #
 # default, ORIGINAL
 ifdef ORIG
- FIX = 
+ IMPL = 
  CHECK3=ORIG
 endif
 #
 ifdef FUSED
- FIX = -DFUSED
+ IMPL = -DFUSED
  CHECK3=FUSED
 endif
 #
@@ -233,7 +233,7 @@ all: VER := doconcurrent
 all: FC := $(SFC) $(DC) 
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(LIB) -o ../RUN/bgk2d.$(VER).x 
+	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x 
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
@@ -246,7 +246,7 @@ offload: VER := offload
 offload: FC := $(SFC)
 offload: CC := $(SCC)
 offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
@@ -259,7 +259,7 @@ openacc: VER := openacc
 openacc: FC := $(SFC)
 openacc: CC := $(SCC)
 openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
@@ -270,7 +270,7 @@ serial: VER:= serial
 serial: FC := $(SFC) -DSERIAL
 serial: CC := $(SCC)
 serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
@@ -281,7 +281,7 @@ multicore: VER:= multicore
 multicore: FC := $(SFC) $(MULTI)
 multicore: CC := $(SCC)
 multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(TRY) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4)
 	@echo $(FINE)
@@ -292,13 +292,13 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 #----------------------------------------------
 
 %.o %.mod: $(INC) %.f90
-	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(IMPL) $(FIX) -c $<
 
 %.o: $(INC) %.F90
-	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(IMPL) $(FIX) -c $<
 
 %.o: $(INC) %.f
-	$(FC) $(FOPT) $(PREC) $(PREPROC) $(TRY) $(FIX) -c $<
+	$(FC) $(FOPT) $(PREC) $(PREPROC) $(IMPL) $(FIX) -c $<
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
@@ -318,7 +318,7 @@ info:  $(INC)
 	@echo "Compiler  flags  =  "$(OPT);
 	@echo "Preproc   flags  =  "$(PREPROC);
 	@echo "Fix       flags  =  "$(FIX);
-	@echo "Other     flags  =  "$(TRY);
+	@echo "Implemet. flags  =  "$(IMPL);
 	@echo "Precision flags  =  "$(PREC);
 	@echo "Version          =  "$(VER);
 
