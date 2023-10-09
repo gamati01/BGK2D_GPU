@@ -92,6 +92,7 @@
 !$acc kernels
 !$acc loop independent
         do j=1,m
+!        
 !$acc loop independent
            do i=1,l
 #else
