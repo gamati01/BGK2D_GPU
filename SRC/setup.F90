@@ -88,7 +88,7 @@
 !
       if(myrank==0) then 
          write(6,*) "================================"
-         write(6,*) " Uniform LBE...          "
+         write(6,*) "        Uniform LBE...          "
 ! 
 ! implementation
 #ifdef FUSED
@@ -100,18 +100,25 @@
 ! parallelization
 #ifdef SERIAL
          write(6,*) " Serial"
+#elif MULTICORE
+         write(6,*) " CPU Parallelization: multicore"
 #elif OFFLOAD
-         write(6,*) " Parallelization: OpenMP offload"
+         write(6,*) " GPU Parallelization: OpenMP offload"
 #elif OPENACC 
-         write(6,*) " Parallelization: OpenACC"
+         write(6,*) " GPU Parallelization: OpenACC"
 #else  
-         write(6,*) " Parallization: DO concurrent   "
+         write(6,*) " GPU Parallization: DO concurrent   "
 #endif
 ! 
 ! test case
-#ifdef PERIODIC
+#ifdef TGV
          write(6,*) " Test Case: Taylor-Green Vortices"
-#else  
+         write(6,*) " Set initial contition = 3       "
+#elif  POF  
+         write(6,*) " Test Case: Poiseuille Flow"
+#elif  VTS  
+         write(6,*) " Test Case: Von Karman Streets"
+#else         
          write(6,*) " Test Case: Lid-Driven Cavity "
 #endif
 !
@@ -133,13 +140,13 @@
       open(62,file=file_name4, status='unknown')
 !
       call alloca()
-
+!
 #ifdef DEBUG_1
       if(myrank == 0) then
          write(6,*) "DEBUG1: Exiting from sub. setup"
       endif
 #endif
-
+!
 # ifdef MEM_CHECK
       if(myrank == 0) then
          mem_stop = get_mem();
