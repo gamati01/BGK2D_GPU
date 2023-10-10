@@ -121,7 +121,7 @@ endif
 #----------------------------------------------
 #
 # default, ORIGINAL
-ifdef ORIG
+ifdef ORIGINAL
  IMPL = 
  CHECK3=ORIG
 endif

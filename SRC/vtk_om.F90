@@ -115,7 +115,9 @@
         end do
 !
         close(55)
-        write(16,*) "vorticity (vtk) done"
+!        
+        write(6,*)  "I/O : vorticity (vtk) done"
+        write(16,*) "I/O : vorticity (vtk) done"
 !
 #ifdef DEBUG_1
         if(myrank == 0) then
