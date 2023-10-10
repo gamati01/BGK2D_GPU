@@ -136,7 +136,8 @@
         end do
 !
         close(52)
-        write(16,*) "plane xy (vtk) done"
+        write(6,*)  "I/O : plane xy (vtk) done"
+        write(16,*) "I/O : plane xy (vtk) done"
 !
 #ifdef DEBUG_1
         if(myrank == 0) then
