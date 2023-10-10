@@ -40,6 +40,7 @@
       character*19 file_name6
       character*21 file_name7
       character*21 file_name8   ! draglift
+      character*21 file_name9   ! bgktime.log
 !
 ! set values for serial version...
       myrank = 0
@@ -50,39 +51,35 @@
 !
       call system("date       > time.log")
 !
+! prof_i
+      file_name2 = 'prof_i.dat'
+!
 ! probe
-      file_name3 = 'probe.xxxx.dat'
-      write(file_name3(7:10),4000) myrank
+      file_name3 = 'probe.dat'
+!
+! task
+      file_name5 = 'task.log'
+!
+! prof_j
+      file_name6 = 'prof_j.dat'
 !
 ! probe_g
-      file_name7 = 'probe_g.xxxx.dat'
-      write(file_name7(9:12),4000) myrank
+      file_name7 = 'probe_g.dat'
 !
 ! draglift
       file_name8 = 'drag.lift.dat'
 !
-! lift
-!
-! prof_j
-      file_name6 = 'prof_j.xxxx.dat'
-      write(file_name6(8:11),4000) myrank
-!
-! prof_i
-      file_name2 = 'prof_i.xxxx.dat'
-      write(file_name2(8:11),4000) myrank
-!
-! task
-      file_name5 = 'task.xxxxxx.log'
-      write(file_name5(6:11),3100) myrank
+! time
+      file_name9 = 'bgk.time.log'
 !
       open(16,file='bgk.log',  status='unknown')
-!        
       open(61,file=file_name2, status='unknown')        ! prof_i
-      open(64,file=file_name6, status='unknown')        ! prof_j
-      open(66,file=file_name8, status='unknown')        ! drag
-      open(67,file=file_name7, status='unknown')        ! probe_gb
       open(68,file=file_name3, status='unknown')        ! probe
       open(38,file=file_name5, status='unknown')        ! task.XXXXXX.log
+      open(64,file=file_name6, status='unknown')        ! prof_j
+      open(67,file=file_name7, status='unknown')        ! probe_gb
+      open(66,file=file_name8, status='unknown')        ! drag
+      open(99,file=file_name9, status='unknown')        ! bgk.time.log
 !
       open(63,file='diagno.dat',status='unknown')       ! diagno.dat
 !

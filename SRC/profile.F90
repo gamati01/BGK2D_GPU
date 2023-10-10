@@ -44,7 +44,7 @@
                            (time_coll-old2), & 
                            (time_move-old3)
 #else
-       write(100,2001) itime, (time_mp-old1),   &
+       write(99,2001) itime, (time_mp-old1),   &
                               (time_coll-old2), & 
                               (time_move-old3)
 #endif
