@@ -100,14 +100,13 @@
        ytot = (ytot/float(l))/float(m)
        stot = (stot/float(l))/float(m)
 !
-       if(myrank.eq.0) then
-          write(16,1001) itime
-          write(16,1002) rtot
-          write(16,1003) xtot,ytot,stot
-          write(63,1004) itime, xtot, ytot, rtot, stot
-          flush(16)
-          flush(63)
-       endif
+       write(16,1001) itime
+       write(16,1002) rtot
+       write(16,1003) xtot,ytot,stot
+       flush(16)
+!       
+       write(63,1004) itime, xtot, ytot, rtot, stot
+       flush(63)
 !
 #ifdef DEBUG_1
        if (myrank == 0) then

@@ -40,9 +40,7 @@
         real(mykind) :: vxpy,vxmy,vxpz,vxmz,vypz,vymz,rp1,rp2,rp0
         real(mykind) :: qxpy,qxmy,qxpz,qxmz,qypz,qymz,qx,qy,qz,q0
         real(mykind) :: forcex, forcey
-        real(mykind) :: pi,cte1,cte0
-!
-        parameter(pi=3.14159265358979)
+        real(mykind) :: cte1,cte0
 !
 #ifdef DEBUG_3
         real(mykind) :: cte
@@ -73,7 +71,7 @@
 !$acc loop independent
            do i = 1,l
 #else
-        do concurrent (j=1:m, i=1:l)
+         do concurrent (j=1:m, i=1:l)
 #endif
 !
            x01 = b01(i,j)
@@ -184,7 +182,7 @@
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
-           write(6,*) "DEBUG2: Exiting from sub. coll"
+           write(6,*) "DEBUG2: Exiting from sub. coll", forcex, forcey
         endif
 #endif
         end subroutine col
