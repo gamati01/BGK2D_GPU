@@ -41,7 +41,7 @@
 !
 #ifdef NO_OUTPUT
       if(myrank==0) then 
-         write(6,*) "INFO: no output mode enabled, no dump at all"
+         write(6,*)  "INFO: no output mode enabled, no dump at all"
          write(16,*) "INFO: no output mode enabled, no dump at all"
       endif
 #endif

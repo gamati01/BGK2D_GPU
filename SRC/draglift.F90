@@ -16,6 +16,7 @@
 !
 !     NOTES
 !       drag/lift on file drag.lift (unit=66)
+!       verify that the obstacle is inside the box       
 !
 !     *****
 !=====================================================================

@@ -23,8 +23,6 @@
 !       max time allowed  99'999'999
 !       single precision only, to saving space..
 !
-!     BUGS
-!
 !     *****
 !=======================================================================
 !

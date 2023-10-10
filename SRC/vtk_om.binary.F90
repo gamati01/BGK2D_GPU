@@ -27,8 +27,6 @@
 !       max task allowed  9999
 !       single precision only, to saving space..
 !
-!     BUGS
-!
 !     *****
 !=======================================================================
 !

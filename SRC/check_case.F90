@@ -7,7 +7,8 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       Simple check of the simulation
+!       Simple check of the simulation and differen pre-proc flags 
+!       activated
 !     INPUTS
 !       none
 !     OUTPUT
@@ -63,6 +64,10 @@
 #ifdef DRAG
         write(6,*)  "INFO: using DRAG preprocessing flag"
         write(16,*) "INFO: using DRAG preprocessing flag"
+        write(6,*)  "WARNING: the  box for drag/lift is hard-coded, & 
+                     please check!"
+        write(16,*) "WARNING: the  box for drag/lift is hard-coded, & 
+                     please check!"
 #endif
 !
 #ifdef QUAD_P
