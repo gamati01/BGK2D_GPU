@@ -40,24 +40,33 @@
 !
 ! some info about time...
 #ifdef CRAY
-       write(99,*) itime, (time_mp-old1),   &
-                           (time_coll-old2), & 
-                           (time_move-old3)
+       write(99,*) itime, (time_bc  -old1), &
+                          (time_coll-old2), & 
+                          (time_move-old3), &
+                          (time_dg  -old4), &
+                          (time_io  -old5), &
+                          (time_obs -old6)
 #else
-       write(99,2001) itime, (time_mp-old1),   &
-                              (time_coll-old2), & 
-                              (time_move-old3)
+       write(99,2001) itime, (time_bc  -old1), &
+                             (time_coll-old2), & 
+                             (time_move-old3), &
+                             (time_dg  -old4), &
+                             (time_io  -old5), &
+                             (time_obs -old6)
 #endif
 !
-       old1 = time_mp
+       old1 = time_bc
        old2 = time_coll
        old3 = time_move
+       old4 = time_dg
+       old5 = time_io
+       old6 = time_obs
 !
        call SYSTEM_CLOCK(countD0, count_rate, count_max)
        call time(tcountD0)
 !
 ! formats...
 1001  format(" Mean   time",1(e14.6,1x),i8,"/",i8)
-2001  format(i8, 3(e14.6,1x))
+2001  format(i8, 6(e14.6,1x))
 !
       end subroutine profile

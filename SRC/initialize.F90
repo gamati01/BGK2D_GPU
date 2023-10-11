@@ -56,7 +56,9 @@
        old1       = 0.0
        old2       = 0.0
        old3       = 0.0
-       i_shift = 1
+       old4       = 0.0
+       old5       = 0.0
+       old6       = 0.0
 !
 ! set boundary condition flags..
 !

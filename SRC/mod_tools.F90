@@ -34,7 +34,7 @@ module timing
       REAL(sp) :: tcountA1,tcountB1,tcountC1            ! single prec.
       REAL(sp) :: tcountD1,tcountE1,tcountF1,tcountG1   ! single prec.
       REAL(sp) :: tcountO1                              ! single prec.
-      REAL(sp) :: old1, old2, old3                      ! single prec.
+      REAL(sp) :: old1, old2, old3, old4, old5, old6    ! single prec.
       REAL(sp) :: tcountZ0,tcountZ1
       REAL(sp) :: tcountY0,tcountY1
       REAL(sp) :: tcountX0,tcountX1

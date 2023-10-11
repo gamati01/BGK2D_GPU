@@ -80,7 +80,6 @@
         integer:: mpicoords(0:3)
         integer:: offset(2)
         integer:: buffer_size
-        integer:: i_shift
         integer:: ipad,jpad
         integer:: flag1, flag2, flag3
 !
