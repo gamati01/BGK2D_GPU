@@ -162,12 +162,11 @@ set fontpath
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "qt"
-## Last datafile plotted: "RUN_SINGLE_SERIAL_FUSED_DC_NV/prof_j.0000.dat"
 set ylabel " Streamiwise velocity "
 set xlabel " Normal to wall direction (y)"
 set grid
-p   'RUN_SINGLE_SERIAL_FUSED_GNU/prof_j.0000.dat'  u ($1-0.5):2  w p lw 2 t " Fused  "
-rep 'RUN_SINGLE_SERIAL_ORIGINAL_GNU/prof_j.0000.dat'  u ($1-0.5):2     w l lw 3 t " Original "
+p   'RUN_SINGLE_SERIAL_FUSED_GNU/prof_j.dat'  u ($1-0.5):2  w p lw 2 t " Fused  "
+rep 'RUN_SINGLE_SERIAL_ORIGINAL_GNU/prof_j.dat'  u ($1-0.5):2     w l lw 3 t " Original "
 rep  -4.0*0.1*((x/64)*(x/64)-x/64)                  w l lw 5              t " Parabolic profile"
 pause -1 "Press any key to continue "
 #
@@ -176,4 +175,5 @@ set xlabel " timestep     "
 set key box opaque bottom
 p   'RUN_SINGLE_SERIAL_FUSED_GNU/diagno.dat'     u 1:5  w p lw 2 t " Fused  "
 rep 'RUN_SINGLE_SERIAL_ORIGINAL_GNU/diagno.dat'  u 1:5  w l lw 3 t " Original "
+rep 8.0*(0.1*0.1)/(15.0)                               w l lw 5 t " Reference "
 #    EOF
