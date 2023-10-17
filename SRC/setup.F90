@@ -109,13 +109,12 @@
 ! test case
 #ifdef TGV
          write(6,*) " Test Case: Taylor-Green Vortices"
-         write(6,*) " Set initial contition = 3       "
-#elif  POF  
+#elif POF  
          write(6,*) " Test Case: Poiseuille Flow"
-#elif  VTS  
-         write(6,*) " Test Case: Von Karman Streets"
+#elif VTS  
+         write(6,*) " Test Case: Von Karman Street"
 #else         
-         write(6,*) " Test Case: Lid-Driven Cavity "
+         write(6,*) " Test Case: Lid-Driven Cavity"
 #endif
 !
          write(6,*) "================================"

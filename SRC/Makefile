@@ -123,7 +123,7 @@ endif
 # default, ORIGINAL
 ifdef ORIGINAL
  IMPL = 
- CHECK3=ORIG
+ CHECK3=ORIGINAL
 endif
 #
 ifdef FUSED
@@ -138,25 +138,25 @@ endif
 #
 # default, Lid Driven Cavity
 ifdef LDC
- PREPROC =
+ PREPROC = -DLDC
  CHECK4=LDC
 endif
 #
 # Poiseulle Flow
 ifdef POF
- PREPROC =  -DCHANNEL 
+ PREPROC = -DCHANNEL -DPOF
  CHECK4=POF
 endif
 #
 # Taylor Green Vortex
 ifdef TGV
- PREPROC =  -DPERIODIC
+ PREPROC = -DPERIODIC -DTGV
  CHECK4=TGV
 endif
 #
 # Von Karman Streets 
 ifdef VKS
- PREPROC =-DINFLOW -DOBSTACLE -DDRAG
+ PREPROC =-DINFLOW -DOBSTACLE -DDRAG -DVKS
  CHECK4=VKS
 endif
 #
