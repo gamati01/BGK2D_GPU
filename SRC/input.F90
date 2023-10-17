@@ -43,7 +43,7 @@
 !
       namelist /parameters/ svisc, u0, itfin, ivtim, isignal, & 
                             itsave, icheck, irestart, init_v, &
-                            lx, ly, proc_x, proc_y,           &
+                            lx, ly,                           &
                             flag1, flag2, flag3, ipad, jpad,  & 
                             radius
 !
@@ -60,9 +60,6 @@
       read(15,parameters)
       close(15)
 
-      proc_x = 1
-      proc_y = 1
-      nprocs = 1
       l = lx
       m = ly
 !

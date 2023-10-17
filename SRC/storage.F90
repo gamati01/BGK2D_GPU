@@ -27,7 +27,6 @@
         use real_kinds
 !
         integer:: lx, ly          ! global size        
-        integer:: proc_x, proc_y  ! task decomposition (MPI stuff)
 !
         integer:: l, m                    ! local (task) size
         integer:: l1, m1
@@ -71,13 +70,13 @@
         real(qp), parameter :: p2_qp = uno_qp/(rf_qp*rf_qp*(uno_qp+tre_qp))
 #endif
 !
-        integer:: nprocs, myrank
+        integer:: myrank
         integer:: imax, imin                    ! obstacle stuff
         integer:: jmax, jmin                    ! obstacle stuff
         integer:: nobs                          ! #of obstacles per task
         integer:: xyplane, myxrank
         integer:: prgrid(mpid)
-        integer:: mpicoords(0:3)
+        integer:: mpicoords(1:3)
         integer:: offset(2)
         integer:: buffer_size
         integer:: ipad,jpad

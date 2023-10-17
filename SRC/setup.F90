@@ -35,7 +35,7 @@
       INTEGER:: idev
       character*19 file_name2
       character*19 file_name3
-      character*23 file_name4
+      character*8  file_name4
       character*15 file_name5
       character*19 file_name6
       character*21 file_name7
@@ -44,7 +44,6 @@
 !
 ! set values for serial version...
       myrank = 0
-      nprocs = 0
       mpicoords(1) = 0
       mpicoords(2) = 0
       mpicoords(3) = 0
@@ -129,11 +128,7 @@
       call input(itfin,ivtim,isignal,itsave,icheck, & 
                    itrestart,init_v)
 !
-      file_name4 = 'u_med.xxx.xxx.xxx.dat'
-      write(file_name4(7:9),4100) mpicoords(1)
-      write(file_name4(11:13),4100) mpicoords(2)
-      write(file_name4(15:17),4100) mpicoords(3)
-
+      file_name4 = 'u_med.dat'
       open(62,file=file_name4, status='unknown')
 !
       call alloca()
