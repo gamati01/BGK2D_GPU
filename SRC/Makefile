@@ -39,6 +39,7 @@ ifdef AMD
  SFC = flang -DPGI
  SCC = clang -DPGI
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
+ OPENACC = not yet supported
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
@@ -73,6 +74,7 @@ ifdef INTEL
  SCC = icc
 # FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
 # COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
+ OPENACC = not yet supported
  FOPT = -O3 
  COPT = -O3 
  OPT =  -O3
@@ -121,9 +123,9 @@ endif
 #----------------------------------------------
 #
 # default, ORIGINAL
-ifdef ORIGINAL
+ifdef ORIG
  IMPL = 
- CHECK3=ORIGINAL
+ CHECK3=ORIG
 endif
 #
 ifdef FUSED
@@ -329,7 +331,7 @@ test:
 	make clean;
 	make multicore;
 	make clean;
-	make;
+	make doconcurrent;
 	make clean;
 	make openacc;
 	make clean;
