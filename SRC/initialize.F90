@@ -9,7 +9,13 @@
 !     DESCRIPTION
 !       Simple wrapper for different initializations routines..
 !     INPUTS
-!       none
+!       itrestart
+!       init_v
+!       itfin
+!       itstart
+!       ivtim  
+!       isignal
+!       itsave
 !     OUTPUT
 !       none
 !     TODO
@@ -27,10 +33,10 @@
 !
        implicit none
 !
-       integer:: i
-       integer:: ierr
-       integer:: itstart,itrestart,init_v
-       integer:: itfin,ivtim,isignal,itsave,icheck
+       integer             :: i
+       integer             :: itstart
+       integer, INTENT(in) :: itrestart,init_v, icheck
+       integer, INTENT(in) :: itfin,ivtim,isignal,itsave
 !
 ! some other initializations
 !

@@ -26,7 +26,7 @@
         use storage
 !
         implicit none
-        integer:: ierr, i
+        integer     :: i
         real(mykind):: temp1, temp2
 !
 ! different b.c. (selected at compile-time)

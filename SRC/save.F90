@@ -7,9 +7,7 @@
 !     NAME
 !       save
 !     DESCRIPTION
-!       Simple wrapper for saving in:
-!        - raw
-!        - hdf5
+!       Simple wrapper for saving in raw
 !     INPUTS
 !       itime --> timestep
 !     OUTPUT
@@ -29,7 +27,7 @@
 !
       implicit none
 !
-      integer:: itime, ierr
+      integer, INTENT(in) :: itime
 !
       call system("date")
       call time(tcountF0)

@@ -28,7 +28,7 @@
 !
         implicit none
 !
-        integer:: itime, ierr, istat
+        integer, INTENT(in) :: itime
 !
 ! start timing
         call SYSTEM_CLOCK(countC0, count_rate, count_max)

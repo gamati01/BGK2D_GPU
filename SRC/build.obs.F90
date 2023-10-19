@@ -7,7 +7,7 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       set obstacles 
+!       build obstacles: setting 1 in obs(i,j) field 
 !     INPUTS
 !       none
 !     OUTPUT
@@ -26,7 +26,7 @@
 !
       implicit none
 !
-      integer:: i, j, ierr
+      integer:: i, j
       integer:: icoord, jcoord
       integer:: sizeX, sizeY
       integer:: startX, startY

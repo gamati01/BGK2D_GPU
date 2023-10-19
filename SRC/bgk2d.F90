@@ -48,7 +48,7 @@
 !
       implicit none
 !
-      INTEGER:: itfin, itstart, ivtim, ierr
+      INTEGER:: itfin, itstart, ivtim
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
       integer:: tt

@@ -14,12 +14,7 @@
 !       write on unit 76 (fort.76) x & z coordinates for check
 !     INPUTS
 !       opt ---> 0	rest flow  (default)
-!           ---> 1	poiseuille flow
-!           ---> 2	decayng flow
 !           ---> 3	Kida vortices
-!           ---> 4	couette flow
-!           ---> 5	double periodic shear flow
-!           ---> other	stop simluation
 !     OUTPUT
 !       none
 !     TODO
@@ -40,7 +35,8 @@
         use storage
         implicit none
 !
-        integer :: i,j,opt,ierr
+        integer              :: i,j
+        integer, INTENT(in) :: opt
 !
 #ifdef HALF_P
         real(sp) ::  xj,yj,x,y
@@ -142,16 +138,6 @@
            end do
         end do
 !
-        if (opt == 0) then
-           write(16,*) "INFO: initial condition --> rest flow"
-        else
-           write(6,*) "ERROR: Only rest flow is allowed", opt
-           stop
-        endif
-!
-! check
-!        call vtk_xy_bin(0)
-!        
 #ifdef DEBUG_1
         if(myrank == 0) then
            write(6,*) "DEBUG1: Exiting from sub. init"

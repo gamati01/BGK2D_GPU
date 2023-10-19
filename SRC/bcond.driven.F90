@@ -32,7 +32,6 @@
         implicit none
 !
         integer      :: i,j 
-        integer      :: tag, ierr
         real(mykind) :: force
         real(mykind) :: den,xj,yj,rho,vsq,y,rhoinv
         real(mykind) :: x01,x03,x05

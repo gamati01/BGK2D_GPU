@@ -7,7 +7,7 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       set BC flags (for multiblock & mpi)
+!       set BC flags 
 !       if flag == 0 periodic b.c.
 !               == 1 solid wall
 !               == 2 moving wall
@@ -33,7 +33,7 @@
 !
       implicit none
 !
-      integer:: uni, len, ierr, i
+      integer:: uni, i
 !
       character(len=15) :: hname
 !

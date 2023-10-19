@@ -32,7 +32,6 @@
         implicit none
 !
         integer      :: i,j
-        integer      :: tag, ierr
 !
 #ifdef PERIODIC
 !

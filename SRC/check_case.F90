@@ -7,8 +7,8 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       Simple check of the simulation and differen pre-proc flags 
-!       activated
+!       Simple check of the simulation and of the different 
+!       pre-proc flags activated
 !     INPUTS
 !       none
 !     OUTPUT
@@ -26,9 +26,6 @@
         use timing
 !
         implicit none
-!
-        integer:: ierr
-        real(mykind) :: a
 !
 ! Warning section  (run will proceed...) 
         if((u0.GT.0).AND.(u_inflow.GT.0)) then

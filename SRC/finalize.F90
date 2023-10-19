@@ -9,7 +9,8 @@
 !     DESCRIPTION
 !       Simple wrapper for different finalizations..
 !     INPUTS
-!       none
+!       itstart
+!       itstart      
 !     OUTPUT
 !       none
 !     TODO
@@ -26,8 +27,7 @@
 !
       implicit none
 !
-      integer:: itstart, itfin
-      integer:: ierr
+      integer, INTENT(in) :: itstart, itfin
 !
       real(mykind):: knorm
 !
