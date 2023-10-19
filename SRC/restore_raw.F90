@@ -27,7 +27,7 @@
       use timing
       implicit none
 !
-      character*23 file_name
+      character(len=23) :: file_name
 !
       integer:: itime,i,k,j
 !

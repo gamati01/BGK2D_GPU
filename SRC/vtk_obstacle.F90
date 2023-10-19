@@ -28,7 +28,7 @@
 !
       integer :: i, j
       integer :: itime
-      character*24 file_nameVTK
+      character(len=24) :: file_nameVTK
 !
       file_nameVTK  = 'tec_ob.xxxxxxxx.vtk'
 !

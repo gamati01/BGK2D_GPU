@@ -76,8 +76,6 @@
         integer:: imax, imin                    ! obstacle stuff
         integer:: jmax, jmin                    ! obstacle stuff
         integer:: nobs                          ! #of obstacles per task
-        integer:: xyplane, myxrank
-        integer:: prgrid(mpid)
         integer:: mpicoords(1:3)
         integer:: offset(2)
         integer:: buffer_size
@@ -86,9 +84,6 @@
 !
         real(mykind), dimension(1:19) ::  cx, cy
         integer, dimension(1:19) :: icx,icy
-!
-        logical remdims(mpid)
-        logical periodic(mpid)
 !
 #ifdef FUSED
         real(mystorage), dimension(:,:), pointer, CONTIGUOUS :: a01,a03,a05

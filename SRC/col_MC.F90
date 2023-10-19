@@ -54,7 +54,7 @@
 !
 # ifdef DEBUG_3
         real(mykind) :: cte
-        character*17 file_nameD
+        character(len=17) :: file_nameD
         file_nameD = 'debug.xxx.xxx.log'
         write(file_nameD(7:9),3300) itime
         write(file_nameD(11:13),3300) myrank

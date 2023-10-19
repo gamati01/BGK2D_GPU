@@ -35,7 +35,7 @@
 !
       integer:: uni, len, ierr, i
 !
-      character*15 hname
+      character(len=15) :: hname
 !
 #ifdef CHANNEL
       u00 = 0.0            ! boundary condition

@@ -37,7 +37,7 @@
 !
         integer ::  i,j,itime
 !	
-        character*24 file_name
+        character(len=24) :: file_name
 !
         real(sp) ::  u,v,w
         real(sp) ::  den, uv, vv

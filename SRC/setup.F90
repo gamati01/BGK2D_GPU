@@ -33,14 +33,14 @@
       INTEGER:: ierr
       INTEGER:: provided
       INTEGER:: idev
-      character*19 file_name2
-      character*19 file_name3
-      character*8  file_name4
-      character*15 file_name5
-      character*19 file_name6
-      character*21 file_name7
-      character*21 file_name8   ! draglift
-      character*21 file_name9   ! bgktime.log
+      character(len=19) :: file_name2
+      character(len=19) :: file_name3
+      character(len=8)  :: file_name4
+      character(len=15) :: file_name5
+      character(len=19) :: file_name6
+      character(len=21) :: file_name7
+      character(len=21) :: file_name8   ! draglift
+      character(len=21) :: file_name9   ! bgktime.log
 !
 ! set values for serial version...
       myrank = 0

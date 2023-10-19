@@ -87,9 +87,9 @@
        write(16,*) "INFO: using the same precision for computation"
 #endif
 !
-       write(16,*) "INFO: mykind=   ", mykind, "range  =", range(u0)
-       write(16,*) "INFO: mykind=   ", mykind, "huge   =", huge(u0)
-       write(16,*) "INFO: mykind=   ", mykind, "epsilon=", epsilon(u0)
+       write(16,*) "INFO: mykind=   ", mykind,    "range  =", range(u0)
+       write(16,*) "INFO: mykind=   ", mykind,    "huge   =", huge(u0)
+       write(16,*) "INFO: mykind=   ", mykind,    "epsilon=", epsilon(u0)
        write(16,*) "INFO: mystorage=", mystorage, "range  =", & 
                                        range(a01(1,1))
        write(16,*) "INFO: mystorage=", mystorage, "huge   =", &

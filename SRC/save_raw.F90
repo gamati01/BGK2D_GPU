@@ -33,7 +33,7 @@
 !      use IFCORE
       implicit none
 !
-      character*27 file_name
+      character(len=27) :: file_name
 !
       integer :: itime,i,j
 !
