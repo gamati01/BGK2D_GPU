@@ -30,7 +30,7 @@
       integer:: itime
       character*24 file_nameVTK
 !
-      file_nameVTK  = 'tec_ob.xxxx.xxxxxxxx.vtk'
+      file_nameVTK  = 'tec_ob.xxxxxxxx.vtk'
 !
       myrank = 0
       itime  = 0
@@ -48,8 +48,7 @@
 !
       write(6,*) "task", myrank, "has ", nobs, " obstacles"
 ! 
-      write(file_nameVTK(8:11),3100) myrank
-      write(file_nameVTK(13:20),4000) itime
+      write(file_nameVTK(8:15),4000) itime
       write(6,*) "INFO: obstacle vtk dump ", file_nameVTK
 !
       open(52,file=file_nameVTK,status='unknown')
@@ -90,7 +89,6 @@
       endif
 #endif
 !
-3100    format(i4.4)
 4000    format(i8.8)
 !
       end subroutine vtk_obs

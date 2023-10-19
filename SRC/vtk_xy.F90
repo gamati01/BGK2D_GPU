@@ -9,7 +9,7 @@
 !     DESCRIPTION
 !       Graphic subroutine:
 !       write ASCII output for VTK with velocity + pressure field
-!       write on unit 52 (vtk_xxxx.xxxxxxx.dat, where xxxxxxx is the timestep)
+!       write on unit 52 (vtk_xy.xxxxxx.dat, where xxxxxxx is the timestep)
 !       the file is closed at the end of the subroutine
 !     INPUTS
 !       itime   ---> timestep
@@ -39,7 +39,7 @@
         real(sp) :: cte1
 
 !
-        file_name = 'tec_xy.xxxx.xxxxxxxx.vtk'
+        file_name = 'tec_xy.xxxxxxxx.vtk'
 !
         myrank = 0
 !
@@ -49,8 +49,7 @@
        cte1 = uno
 #endif
 !
-        write(file_name(8:11),3100) myrank
-        write(file_name(13:20),4000) itime
+        write(file_name(8:15),4000) itime
         open(52,file=file_name,status='unknown')
 !
         write(52,'(A26)')'# vtk DataFile Version 2.0'
@@ -148,7 +147,6 @@
 ! formats
 1004    format(3(e14.6,1x))
 1005    format(1(e14.6,1x))
-3100    format(i4.4)
 4000    format(i8.8)
 
        end subroutine vtk_xy

@@ -10,8 +10,7 @@
 !     DESCRIPTION
 !       Graphic subroutine:
 !       write binary output for VTK with vorticity (stream field to do)
-!       write on unit 55 (tec_om.yyyy.xxxxxxx.dat) where 
-!                                yyyy is the task id 
+!       write on unit 55 (tec_om.xxxxxxx.dat) where 
 !                                     xxxxxxx is the timestep 
 !       the file is closed at the end of the subroutine
 !     INPUTS
@@ -47,7 +46,7 @@
         real(sp) :: phi(-1:m1)
         real(sp) :: cte1
 !
-        file_name = 'tec_om.xxxx.xxxxxxxx.vtk'
+        file_name = 'tec_om.xxxxxxxx.vtk'
 !
         myrank = 0
 !
@@ -57,8 +56,7 @@
        cte1 = uno
 #endif
 !
-        write(file_name( 8:11),3100) myrank
-        write(file_name(13:20),4000) itime
+        write(file_name(8:15),4000) itime
         open(55,file=file_name,status='unknown')
 
 !for now only vorticity is computed
@@ -169,7 +167,6 @@
 !
 1004    format((e14.6,1x))
 4000    format(i8.8)
-3100    format(i4.4)
 !
        end subroutine vtk_om_bin
 
