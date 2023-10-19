@@ -3,7 +3,7 @@ BGK2D_GPU is a open-source software foe 2D single phase incompressible flows.
 The code was orignally written and developed by:
 * Giorgio Amati		CINECA, Rome branch	Italy
 
-This is an experimental code. The authors accept no responsibility
+This is an experimental code. The author accept no responsibility
 for the performance of the code or for the correctness of the results.
 
 The code is licensed under MIT Software License 
@@ -37,18 +37,18 @@ You can choose
    			* GPU 
 
 	* 5 different tested compilers
-  		* nvfortran
-		* gnu
-  		* intel
-  		* flang
-  		* ftn (CRAY)
+  		* NVIDIA (nvfortran): default
+		* GNU (gfortran)
+  		* INTEL (ifx)
+  		* AMD (flang)
+  		* CRAY (ftn)
  
 
 	* 4 different precision 
-  		* single precision (default)
-  		* double precision
-  		* mixed precision1 (half/single)
-  		* mixed precision2 (single/double)
+  		* SINGLE: single precision (default)
+  		* DOUBLE: double precision
+  		* MIXED1: mixed precision1 (half/single)
+  		* MIXED2: mixed precision2 (single/double)
 
 	* 4 different test cases
 		* Poiseuille flow
@@ -56,7 +56,7 @@ You can choose
 		* taylor-green vortex
 		* Von Karman street
 
-To be noted that not all combinations are supported (e.g. GNU doesn't support half  precision)
+To be noted that not all possible combinations are supported (e.g. GNU doesn't support half precision)
 
 ------------------------------------------------------------------------------
 2) Directory Structure

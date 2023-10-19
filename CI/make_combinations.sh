@@ -10,7 +10,7 @@ for target in `cat target.list`; do
 	for comp in `cat compiler.list`; do 
 		# loop over implementations
 		for imp in `cat implementation.list`; do 
-! signal
+			# signal (here I'm)
                         echo "testing " $target $comp $imp
                 	# loop over precision
 		        for prec in `cat precision.list`; do 

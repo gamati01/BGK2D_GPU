@@ -40,6 +40,7 @@ ifdef AMD
  SCC = clang -DPGI
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
  OPENACC = not yet supported
+ DC = not yet supported
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
@@ -51,6 +52,7 @@ ifdef CRAY
  SFC = ftn
  OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
  OPENACC = -DPGI -h acc -DNOMANAGED -DOPENACC
+ DC = not yet supported
  FOPT = -O3
  COPT =
  OPT = -O3
@@ -62,6 +64,7 @@ ifdef GNU
  SCC = gcc 
  OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
  MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
+ DC = not yet supported
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
@@ -69,12 +72,15 @@ ifdef GNU
 endif
 #
 ifdef INTEL
- SFC = ifx
  SFC = ifort
  SCC = icc
+ SFC = ifx
+ SCC = icx
 # FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
 # COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
  OPENACC = not yet supported
+ OFFLOAD = 
+ DC = 
  FOPT = -O3 
  COPT = -O3 
  OPT =  -O3
