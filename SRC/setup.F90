@@ -30,7 +30,6 @@
       INTEGER:: itfin, itstart, ivtim
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
-      INTEGER:: ierr
       INTEGER:: provided
       INTEGER:: idev
       character(len=19) :: file_name2

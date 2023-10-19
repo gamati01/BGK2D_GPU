@@ -29,6 +29,7 @@
         integer:: ierr, i
         real(mykind):: temp1, temp2
 !
+! different b.c. (selected at compile-time)
 #ifdef PERIODIC
 ! periodic bc
         call bcond_periodic

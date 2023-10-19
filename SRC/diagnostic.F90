@@ -25,7 +25,7 @@
         use timing
         implicit none
 !
-        integer:: itime,ivtim,icheck,itsave
+        integer, INTENT(IN) :: itime,ivtim,icheck,itsave
         integer:: istart,istop
         integer:: jstart,jstop
         integer:: icoord, jcoord, delta
@@ -78,7 +78,7 @@
            call prof_j(itime,l/2)
 !
 ! global probe:  Set value for VonKarman streets check with OF
-           call probe_global(itime,(32*l/50),(m/2))
+           call probe(itime,(32*l/50),(m/2))
 
 #ifdef DRAG
            call draglift(itime,333)
