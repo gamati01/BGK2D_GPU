@@ -29,7 +29,7 @@
 !
       character*23 file_name
 !
-      integer itime,i,k,j
+      integer:: itime,i,k,j
 !
       file_name = 'restore.xx.xx.xx.bin'
       write(file_name( 9:10),4100) mpicoords(1)

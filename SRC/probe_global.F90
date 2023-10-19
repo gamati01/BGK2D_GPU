@@ -30,7 +30,7 @@
         use storage
         implicit none
 !
-        integer i0,j0,itime
+        integer :: i0,j0,itime
 !
         real(mykind) :: rho, xj, yj
         real(mykind) :: x01,x03,x05,x08,x10

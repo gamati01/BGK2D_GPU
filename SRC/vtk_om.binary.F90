@@ -34,7 +34,7 @@
         use storage
         implicit none
 !
-        integer i,j,itime
+        integer :: i,j,itime
 !	
         character*24 file_name
 !

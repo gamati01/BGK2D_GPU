@@ -40,7 +40,7 @@
         use storage
         implicit none
 !
-        integer i,j,opt,ierr
+        integer :: i,j,opt,ierr
 !
 #ifdef HALF_P
         real(sp) ::  xj,yj,x,y

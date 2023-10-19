@@ -35,8 +35,7 @@
 !
       character*27 file_name
 !
-      integer itime,i,j
-      integer res
+      integer :: itime,i,j
 !
       file_name = 'save.xx.xx.xx.xxxxxxxx.bin'
 !
@@ -64,7 +63,6 @@
       write(20) ((a19(i,j),i=0,l1),j=0,m1)
 !
       flush(20)
-!      res = COMMITQQ(20)
       close(20)
 !
 #ifdef DEBUG_1

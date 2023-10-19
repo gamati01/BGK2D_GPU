@@ -26,7 +26,7 @@
 !
         implicit none
 !
-        integer i,j,k
+        integer :: i,j,k
 !
 !------------------------------------------------------
 ! Best (?) decompsition for BW
