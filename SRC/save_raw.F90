@@ -30,12 +30,12 @@
       subroutine save_raw(itime)
 !
       use storage
-!      use IFCORE
       implicit none
 !
       character(len=27) :: file_name
 !
-      integer :: itime,i,j
+      integer, INTENT(in) :: itime
+      integer             :: i,j
 !
       file_name = 'save.xx.xx.xx.xxxxxxxx.bin'
 !

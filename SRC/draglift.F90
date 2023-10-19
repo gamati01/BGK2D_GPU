@@ -10,7 +10,6 @@
 !       computing total drag/lift  in "easy way" around a box with the obstacle
 !     INPUTS
 !       itime
-!
 !     OUTPUT
 !     TODO
 !
@@ -27,12 +26,11 @@
         use timing
         implicit none
 !
-        integer:: i,j
-        integer:: itime
-        integer:: iunit
-        integer:: istart,istop
-        integer:: jstart,jstop
-        integer:: icoord, jcoord, delta
+        integer             :: i,j
+        integer, INTENT(in) :: itime
+        integer             :: istart,istop
+        integer             :: jstart,jstop
+        integer             :: icoord, jcoord, delta
 !
         real(mykind) :: forceX, forceY, norm
         real(mykind) :: force01, force03, force05, force08

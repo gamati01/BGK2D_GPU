@@ -62,9 +62,6 @@
 ! prof_j
       file_name6 = 'prof_j.dat'
 !
-! probe_g
-      file_name7 = 'probe_g.dat'
-!
 ! draglift
       file_name8 = 'drag.lift.dat'
 !
@@ -76,7 +73,6 @@
       open(68,file=file_name3, status='unknown')        ! probe
       open(38,file=file_name5, status='unknown')        ! task.XXXXXX.log
       open(64,file=file_name6, status='unknown')        ! prof_j
-      open(67,file=file_name7, status='unknown')        ! probe_gb
       open(66,file=file_name8, status='unknown')        ! drag
       open(99,file=file_name9, status='unknown')        ! bgk.time.log
 !

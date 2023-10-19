@@ -30,8 +30,8 @@
        use storage
        implicit none
 !
-       integer:: itime,i,j
-       integer:: ierr
+       integer, INTENT(in) :: itime
+       integer             :: i,j
 !
        real(mykind):: rtot,xtot,ytot,stot
        real(mykind):: xj, yj, rho, rhoinv, rdv

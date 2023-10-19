@@ -84,16 +84,13 @@
 !     closing files...
 !
       close(16)   ! bgk.log
-      close(31)   ! restore_vel.bin
-      close(60)   ! prof_k.XX.dat
-      close(61)   ! prof_i.XX.dat
-      close(64)   ! prof_j.XX.dat
+      close(31)   ! restore.bin
+      close(60)   ! prof_k.dat
+      close(61)   ! prof_i.dat
+      close(64)   ! prof_j.dat
       close(62)   ! u_med.dat
-      close(67)   ! probe_g.xxxx.dat
-      close(68)   ! probe.xxxx.dat
-      if(myrank==0) then
-         close(63)   ! diagno.dat
-      endif
+      close(68)   ! probe.dat
+      close(63)   ! diagno.dat
 !
 ! formats
 !

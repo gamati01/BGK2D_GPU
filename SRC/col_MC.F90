@@ -60,7 +60,7 @@
         write(file_nameD(11:13),3300) myrank
         open(41,file=file_nameD, status='unknown')        ! debug file
 !
-        call probe_global(itime,(3*l/4),(m/2))
+!        call probe(itime,(3*l/4),(m/2))
 # endif
 !
 # ifdef NOSHIFT

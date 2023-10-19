@@ -214,7 +214,6 @@ OBJ2 = check_case.o \
        prof_i.o \
        diagno.o \
        probe.o \
-       probe_global.o \
        movef.o\
        save_raw.o\
        profile.o\

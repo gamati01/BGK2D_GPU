@@ -30,7 +30,8 @@
 !
         implicit none
 !
-        integer:: i,j,itime
+        integer, intent(IN) :: itime
+        integer             :: i,j
 !
         real(mykind) :: x01,x03,x05,x08,x10
         real(mykind) :: x12,x14,x17,x19
@@ -50,7 +51,7 @@
         write(file_nameD(11:13),3300) myrank
         open(41,file=file_nameD, status='unknown')        ! debug file
 !
-!        call probe_global(itime,(3*l/4),(m/2))
+!        call probe(itime,(3*l/4),(m/2))
 #endif
 !
 #ifdef NOSHIFT

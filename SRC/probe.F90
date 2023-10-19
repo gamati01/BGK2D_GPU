@@ -12,8 +12,8 @@
 !       write on unit 68 (probe.dat)
 !     INPUTS
 !       itime --> timestep
-!       i     --> x coordinate
-!       k     --> z coordinate
+!       i0     --> x coordinate
+!       j0     --> y coordinate
 !     OUTPUT
 !       none
 !     TODO
@@ -30,7 +30,7 @@
         use storage
         implicit none
 !
-        integer :: i0,j0,k0,itime
+        integer, INTENT(in) :: i0,j0,itime
 !
         real(mykind) :: rho, xj, yj
         real(mykind) :: x01,x03,x05,x08,x10
@@ -63,7 +63,7 @@
 !
 #ifdef DEBUG_2
       if(myrank == 0) then
-         write(6,*) "DEBUG2: Exiting from sub. probe", i0,j0,k0
+         write(6,*) "DEBUG2: Exiting from sub. probe", i0,j0
       endif
 #endif
 !
