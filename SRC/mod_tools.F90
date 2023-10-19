@@ -2,11 +2,14 @@ module timing
 
       use real_kinds
 !
+!
 #ifdef PGI
 ! do nothing
 #else
       use check_mem
 #endif
+!
+      implicit none
 !
       REAL(sp):: time_coll, time_coll1
       REAL(sp):: time_loop, time_loop1

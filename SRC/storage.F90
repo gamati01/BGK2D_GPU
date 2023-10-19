@@ -26,6 +26,8 @@
 !
         use real_kinds
 !
+        implicit none
+!        
         integer:: lx, ly          ! global size        
 !
         integer:: l, m                    ! local (task) size
