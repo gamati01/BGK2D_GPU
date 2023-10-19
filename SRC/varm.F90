@@ -31,7 +31,8 @@
 !
       implicit none
 !
-      integer :: i,j,itime
+      integer :: i,j
+      integer, INTENT(in) :: itime
 !
       real(mykind) :: u(1:m), w(1:m)     ! mean velocity profiles
       real(mykind) :: den(1:m)           ! mean density profile

@@ -30,8 +30,8 @@
         use storage
         implicit none
 !
-        integer:: itime,j
-        integer:: icoord
+        integer             :: j
+        integer, INTENT(in) :: itime,icoord
 !
         real(mykind) :: u(1:m),w(1:m),v(1:m)      ! istantaneous velocity fields
         real(mykind) :: den(1:m)           ! istantaneous density field
@@ -43,9 +43,8 @@
        cte1 = uno
 #endif
 !
-!        do j = 1,m         ! density
+! density
         do concurrent (j=1:m)
-
            den(j) = ((+a01(icoord,j)+a03(icoord,j) & 
                       +a05(icoord,j)+a08(icoord,j) &
                       +a10(icoord,j)+a12(icoord,j) & 
@@ -53,14 +52,14 @@
                                     +a19(icoord,j)) + cte1
         enddo
 ! 
-!        do j = 1,m         ! streamwise velocity
+! streamwise velocity
         do concurrent (j=1:m)
            u(j) =  ( (a01(icoord,j)-a10(icoord,j)) &
                     +(a03(icoord,j)-a12(icoord,j)) &
                     +(a05(icoord,j)-a14(icoord,j)))/den(j)
         end do
 !
-!        do j = 1,m         ! spanwise velocity
+! normal-to-wall velocity
         do concurrent (j=1:m)
            w(j) =  ( (a03(icoord,j)-a01(icoord,j)) &
                     +(a08(icoord,j)-a17(icoord,j)) &

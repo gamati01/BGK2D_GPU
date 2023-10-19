@@ -12,7 +12,6 @@
 !       write on unit 61 (prof_i.dat)
 !     INPUTS
 !       itime   -->  timestep
-!       icoord  -->  x coordinate
 !       jcoord  -->  y coordinate
 !     OUTPUT
 !       none
@@ -31,8 +30,8 @@
         use storage
         implicit none
 !
-        integer:: itime,i
-        integer:: jcoord
+        integer             :: i
+        integer, INTENT(in) :: itime, jcoord
 !
         real(mykind) :: u(1:l),w(1:l),v(1:l)      ! istantaneous velocity fields
         real(mykind) :: den(1:l)                  ! istantaneous density field
@@ -44,18 +43,21 @@
        cte1 = uno
 #endif
 !
-        do i = 1,l         ! density
+! density
+        do concurrent (i=1:l)
            den(i) = (+a01(i,jcoord)+a03(i,jcoord)+a05(i,jcoord) &
                      +a08(i,jcoord)+a10(i,jcoord)+a12(i,jcoord) &
                      +a14(i,jcoord)+a17(i,jcoord)+a19(i,jcoord)) + cte1
         enddo
- 
-        do i = 1,l         ! streamwise velocity
+
+! streamwise velocity
+        do concurrent (i=1:l)
            u(i) = +( a01(i,jcoord)+a03(i,jcoord)+a05(i,jcoord) &
                     -a10(i,jcoord)-a12(i,jcoord)-a14(i,jcoord)) / den(i)
         end do
 
-        do i = 1,l         ! spanwise velocity
+! normal-to-wall velocity        
+        do concurrent (i=1:l)
            w(i) = +( a03(i,jcoord)+a08(i,jcoord)+a12(i,jcoord) &
                     -a01(i,jcoord)-a10(i,jcoord)-a17(i,jcoord)) / den(i)
         end do
@@ -77,6 +79,5 @@
 !	format
 1002    format(4(e14.6,1x))
 1005    format("# t=",i7)
-1111    format("#pause")
 !        
         end subroutine prof_i

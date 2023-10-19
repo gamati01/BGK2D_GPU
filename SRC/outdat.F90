@@ -31,7 +31,8 @@
       use storage
       implicit none
 !
-      integer:: itfin,itstart,ivtim,isignal,itsave,icheck
+      integer, INTENT(in) :: itfin,itstart,ivtim
+      integer, INTENT(in) :: isignal,itsave,icheck
 !
       write(16,*) ' '
       write(16,*) '*********** size of the lattice **************'
