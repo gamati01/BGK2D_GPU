@@ -15,7 +15,7 @@
 !     TODO
 !
 !     NOTES
-!       integer variables used: i,k
+!       integer variables used: i,j
 !
 !     *****
 !====================================================
@@ -25,8 +25,8 @@
         use storage
 !
         implicit none
-!
-        integer :: i,j,k
+
+        integer :: i,j
 !
 !------------------------------------------------------
 ! Best (?) decompsition for BW
@@ -62,7 +62,8 @@
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
-           write(6,*) "DEBUG2: Exiting from sub. move"
+           write(6,*) "DEBUG2: Exiting from sub. move", & 
+                   b01(l/2+1,m) , a01(l/2,m1)
         endif
 #endif
 !

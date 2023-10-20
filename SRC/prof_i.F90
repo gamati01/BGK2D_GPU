@@ -33,8 +33,8 @@
         integer             :: i
         integer, INTENT(in) :: itime, jcoord
 !
-        real(mykind) :: u(1:l),w(1:l),v(1:l)      ! istantaneous velocity fields
-        real(mykind) :: den(1:l)                  ! istantaneous density field
+        real(mykind) :: u(1:l),v(1:l)      ! istantaneous velocity fields
+        real(mykind) :: den(1:l)           ! istantaneous density field
         real(mykind) :: cte1
 !
 #ifdef NOSHIFT
@@ -58,14 +58,14 @@
 
 ! normal-to-wall velocity        
         do concurrent (i=1:l)
-           w(i) = +( a03(i,jcoord)+a08(i,jcoord)+a12(i,jcoord) &
+           v(i) = +( a03(i,jcoord)+a08(i,jcoord)+a12(i,jcoord) &
                     -a01(i,jcoord)-a10(i,jcoord)-a17(i,jcoord)) / den(i)
         end do
 !
         write(61,1005) itime
 !
         do i=1,l
-           write(61,1002) (i-0.5), u(i), w(i), den(i)
+           write(61,1002) (i-0.5), u(i), v(i), den(i)
         end do
         write(61,'(a1)') 
         write(61,'(a1)') 

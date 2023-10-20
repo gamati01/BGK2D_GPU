@@ -8,7 +8,7 @@
 !       prof_j
 !     DESCRIPTION
 !       Diagnostic subroutine:
-!       istantaneous profile along y-direction (i, k fixed)
+!       istantaneous profile along y-direction (i fixed)
 !       write on unit 64 (prof_j.dat)
 !     INPUTS
 !       itime   -->  timestep
@@ -33,7 +33,7 @@
         integer             :: j
         integer, INTENT(in) :: itime,icoord
 !
-        real(mykind) :: u(1:m),w(1:m),v(1:m)      ! istantaneous velocity fields
+        real(mykind) :: u(1:m),v(1:m)      ! istantaneous velocity fields
         real(mykind) :: den(1:m)           ! istantaneous density field
         real(mykind) :: cte1
 !
@@ -61,7 +61,7 @@
 !
 ! normal-to-wall velocity
         do concurrent (j=1:m)
-           w(j) =  ( (a03(icoord,j)-a01(icoord,j)) &
+           v(j) =  ( (a03(icoord,j)-a01(icoord,j)) &
                     +(a08(icoord,j)-a17(icoord,j)) &
                     +(a12(icoord,j)-a10(icoord,j)))/den(j)
         end do
@@ -69,7 +69,7 @@
         write(64,1005) itime
 !
         do j=1,m
-           write(64,1002) (j-0.5), u(j),w(j),den(j)
+           write(64,1002) (j-0.5), u(j),v(j),den(j)
         end do
         write(64,'(a1)') 
         write(64,'(a1)') 

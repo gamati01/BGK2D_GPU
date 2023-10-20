@@ -26,11 +26,6 @@
         implicit none
 !
         integer, INTENT(IN) :: itime,ivtim,icheck,itsave
-        integer:: istart,istop
-        integer:: jstart,jstop
-        integer:: icoord, jcoord, delta
-!
-        real(mykind) :: fluxX, fluxY
 !
 ! get macroscopic values
 !

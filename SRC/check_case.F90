@@ -151,7 +151,6 @@
 #ifdef MEM_CHECK
        if(myrank == 0) then
           mem_stop = get_mem();
-          write(6,*) "MEM_CHECK: after sub check_case mem =", mem_stop
        endif
 #endif
 !

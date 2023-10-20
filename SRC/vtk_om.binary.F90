@@ -38,7 +38,6 @@
 !	
         character(len=24) :: file_name
 !
-        real(sp) :: u,v,w
         real(sp) :: den, uv, vv
         real(sp) :: up1, down1, left1, right1
         real(sp) :: d_up, d_down, d_left, d_right

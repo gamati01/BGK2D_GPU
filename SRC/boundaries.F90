@@ -26,8 +26,6 @@
         use storage
 !
         implicit none
-        integer     :: i
-        real(mykind):: temp1, temp2
 !
 ! different b.c. (selected at compile-time)
 #ifdef PERIODIC
