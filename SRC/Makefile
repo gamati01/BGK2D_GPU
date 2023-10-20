@@ -86,6 +86,7 @@ ifdef INTEL
  OPT =  -O3
  OPENMP = -qopenmp
  MULTI =  -Qparallel
+ MULTI =  -qopenmp
  CHECK1=INTEL
 endif
 #

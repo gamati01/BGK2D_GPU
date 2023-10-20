@@ -37,9 +37,9 @@
         real(mykind) :: x12,x14,x17,x19
         real(mykind) :: e01,e03,e05,e08,e10
         real(mykind) :: e12,e14,e17,e19
-        real(mykind) :: rho,rhoinv,vx,vy,vz,vx2,vy2,vz2,vsq
-        real(mykind) :: vxpy,vxmy,vxpz,vxmz,vypz,vymz,rp1,rp2,rp0
-        real(mykind) :: qxpy,qxmy,qxpz,qxmz,qypz,qymz,qx,qy,qz,q0
+        real(mykind) :: rho,rhoinv,vx,vy,vx2,vy2,vsq
+        real(mykind) :: vxpy,vxmy,rp1,rp2,rp0
+        real(mykind) :: qxpy,qxmy,qx,qy,q0
         real(mykind) :: forcex, forcey
         real(mykind) :: cte1,cte0
 !
@@ -60,6 +60,10 @@
         cte1 = uno
 #endif
         cte0 = uno - cte1
+!
+! initialize constant.....        
+        forcex = zero
+        forcey = zero
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd collapse(2)
@@ -143,25 +147,30 @@
 !
 # ifdef CHANNEL
 #  ifdef FORCING_Y
-           forcex = zero
            forcey = fgrad*rho
 #  else
            forcex = fgrad*rho     ! default value...
-           forcey = zero
 #  endif
 # endif
 !
 ! loop on populations
-           a01(i,j) = x01 - omega*(x01-e01) + forcex - forcey
-           a03(i,j) = x03 - omega*(x03-e03) + forcex + forcey
-           a05(i,j) = x05 - omega*(x05-e05) + forcex
-           a08(i,j) = x08 - omega*(x08-e08)          + forcey
-           a10(i,j) = x10 - omega*(x10-e10) - forcex - forcey
-           a12(i,j) = x12 - omega*(x12-e12) - forcex + forcey
-           a14(i,j) = x14 - omega*(x14-e14) - forcex
-           a17(i,j) = x17 - omega*(x17-e17)          - forcey
+           a01(i,j) = x01 - omega*(x01-e01) + (+ forcex - forcey)
+           a03(i,j) = x03 - omega*(x03-e03) + (+ forcex + forcey)
+           a05(i,j) = x05 - omega*(x05-e05) + (+ forcex)
+           a08(i,j) = x08 - omega*(x08-e08) + (         + forcey)
+           a10(i,j) = x10 - omega*(x10-e10) + (- forcex - forcey)
+           a12(i,j) = x12 - omega*(x12-e12) + (- forcex + forcey)
+           a14(i,j) = x14 - omega*(x14-e14) + (- forcex)
+           a17(i,j) = x17 - omega*(x17-e17) + (         - forcey)
            a19(i,j) = x19 - omega*(x19-e19)
 !
+!           if((i==l/2+1).AND.(j==m)) then  
+!!              write(6,*) b01(l/2+1,m), a01(l/2+1,m)
+!               write(6,*) x01, omega, e01, forcex, forcey
+!               write(6,*) x01 - omega*(x01-e01) 
+!               pause
+!           endif
+
         end do
 #ifdef OFFLOAD
         end do
@@ -183,7 +192,9 @@
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
-           write(6,*) "DEBUG2: Exiting from sub. coll", forcex, forcey
+           write(6,*) "DEBUG2: Exiting from sub. coll", forcex, forcey, &
+           b01(l/2+1,m) , a01(l/2+1,m)
+
         endif
 #endif
         end subroutine col
