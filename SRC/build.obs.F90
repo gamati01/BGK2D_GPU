@@ -28,12 +28,7 @@
 !
       integer:: i, j
       integer:: icoord, jcoord
-      integer:: sizeX, sizeY
-      integer:: startX, startY
-      integer:: stopX, stopY
-      integer:: offsetX, offsetY
       integer:: itime
-      integer:: check, index
       real(mykind):: d2, R2a, R2b, R
 !
       imin = l

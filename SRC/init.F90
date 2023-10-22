@@ -40,23 +40,21 @@
 !
 #ifdef HALF_P
         real(sp) ::  xj,yj,x,y
-        real(sp) ::  cvsq,crho,pi,rho
+        real(sp) ::  cvsq,crho,pi
         real(sp) ::  cx01,cx03,cx05
         real(sp) ::  cx08,cx10,cx12
         real(sp) ::  cx14,cx17
         real(sp) ::  cx19
         real(sp) ::  kappa, delta
-        real(sp) ::  zstart, ystart, xstart
         real(sp) ::  cte1
 #else
         real(mykind) ::  xj,yj,x,y
-        real(mykind) ::  cvsq,crho,pi,rho
+        real(mykind) ::  cvsq,crho,pi
         real(mykind) ::  cx01,cx03,cx05
         real(mykind) ::  cx08,cx10,cx12
         real(mykind) ::  cx14,cx17
         real(mykind) ::  cx19
         real(mykind) ::  kappa, delta
-        real(mykind) ::  zstart, ystart, xstart
         real(mykind) ::  cte1
 #endif
 !

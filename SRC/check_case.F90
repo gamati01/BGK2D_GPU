@@ -30,7 +30,7 @@
 ! Warning section  (run will proceed...) 
         if((u0.GT.0).AND.(u_inflow.GT.0)) then
            write(16,*) "WARNING: inflow ad volume force & 
-                        at the same time", myrank, u0, u_inflow 
+              &         at the same time", myrank, u0, u_inflow 
         endif
 !
 ! Info section   (boundary conditions)

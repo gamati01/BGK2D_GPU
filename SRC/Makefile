@@ -68,6 +68,7 @@ ifdef GNU
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
+ DEBUG = -Wuninitialized -DDEBUG_1
  CHECK1=GNU
 endif
 #

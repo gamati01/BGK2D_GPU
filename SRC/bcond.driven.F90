@@ -33,19 +33,12 @@
 !
         integer      :: i,j 
         real(mykind) :: force
-        real(mykind) :: den,xj,yj,rho,vsq,y,rhoinv
-        real(mykind) :: x01,x03,x05
-        real(mykind) :: x08,x10,x12
-        real(mykind) :: x14,x17
-        real(mykind) :: cvsq,crho
-        real(mykind) :: cx01,cx02,cx03,cx04,cx05
-        real(mykind) :: cx10,cx11,cx12,cx13,cx14
 !
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
         call time(tcountA0)
 !
-       force =  u00/(6.0)
+        force =  u00/(6.0)
 !
 #ifdef TRICK1
 ! it is correct only if l=m

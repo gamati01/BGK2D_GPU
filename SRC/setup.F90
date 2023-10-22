@@ -30,14 +30,11 @@
       INTEGER:: itfin, itstart, ivtim
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
-      INTEGER:: provided
-      INTEGER:: idev
       character(len=19) :: file_name2
       character(len=19) :: file_name3
-      character(len=8)  :: file_name4
+      character(len=9)  :: file_name4
       character(len=15) :: file_name5
       character(len=19) :: file_name6
-      character(len=21) :: file_name7
       character(len=21) :: file_name8   ! draglift
       character(len=21) :: file_name9   ! bgktime.log
 !
@@ -139,10 +136,5 @@
          write(6,*) "MEM_CHECK: after sub. setup mem =", mem_stop
       endif
 # endif
-!
-! format
-4000  format(i4.4)
-4100  format(i3.3)
-3100  format(i6.6)
 !
       end subroutine setup

@@ -29,8 +29,6 @@
 !
       integer, INTENT(in) :: itstart, itfin
 !
-      real(mykind):: knorm
-!
 ! write on external file some performance figure...
 !
       if(myrank == 0) then 

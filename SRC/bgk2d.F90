@@ -51,7 +51,6 @@
       INTEGER:: itfin, itstart, ivtim
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
-      integer:: tt
 !
 ! set up the simulation...
       call setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 

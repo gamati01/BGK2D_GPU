@@ -38,9 +38,7 @@
         implicit none
 !
         integer      :: i,j
-        real(mykind) :: den,xj,yj,rho
-        real(mykind) :: x01,x03,x05
-        real(mykind) :: x10,x12,x14
+        real(mykind) :: xj,yj
         real(mykind) :: cvsq,crho, rhoinv
         real(mykind) :: cx01,cx03,cx05
         real(mykind) :: cx10,cx12,cx14
