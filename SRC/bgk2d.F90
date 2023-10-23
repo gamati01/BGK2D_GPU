@@ -52,6 +52,9 @@
       INTEGER:: itime, itsave, icheck, itrestart, init_v
       INTEGER:: isignal
 !
+      call SYSTEM_CLOCK(countH0, count_rate, count_max)
+      call time(tcountH0)
+!      
 ! set up the simulation...
       call setup(itfin,ivtim,isignal,itsave,icheck,itrestart, & 
                  init_v)
@@ -64,6 +67,11 @@
 !$acc data copyin(a01,a03,a05,a08,a10,a12,a14,a17,a19,b01,b03,b05,b08,b10,b12,b14,b17,b19,obs)
 #endif
 !
+      call SYSTEM_CLOCK(countH1, count_rate, count_max)
+      call time(tcountH1)
+      time_init =  real(countH1-countH0)/(count_rate)
+      time_init1 = (tcountH1-tcountH0)
+!      
       call SYSTEM_CLOCK(countE0, count_rate, count_max)
       call time(tcountE0)
 !

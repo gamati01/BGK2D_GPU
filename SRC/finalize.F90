@@ -38,6 +38,7 @@
          write(69,*)  l, m
          write(69,9999) 
          write(69,*)  "# Time for section "
+         write(69,1100) time_init, time_init1
          write(69,1101) time_loop, time_loop1
          write(69,1102) time_coll, time_coll1
          write(69,1103) time_move, time_move1
@@ -47,7 +48,7 @@
          write(69,1116) time_obs, time_obs1
          write(69,1117) time_loop-(time_coll+time_move+time_bc+time_io+time_dg+time_mp+time_obs)
          write(69,9999)
-         write(69,*)  "# Ratio per section "
+         write(69,*)  "# Ratio per section (loop)"
          write(69,1202) time_io/time_loop  , time_io1/time_loop1
          write(69,1203) time_bc/time_loop  , time_bc1/time_loop1
          write(69,1204) time_coll/time_loop, time_coll1/time_loop1
@@ -93,7 +94,7 @@
 ! formats
 !
 9999  format(" #--------------------------------")
-1100  format(" # init   time",1(e14.6,1x))
+1100  format(" # init   time",2(e14.6,1x))
 1101  format(" # loop   time",2(e14.6,1x))
 1102  format(" # coll   time",2(e14.6,1x))
 1103  format(" # move   time",2(e14.6,1x))
