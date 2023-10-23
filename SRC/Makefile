@@ -87,7 +87,7 @@ ifdef INTEL
  OPT =  -O3
  OPENMP = -qopenmp
  MULTI =  -Qparallel
- MULTI =  -qopenmp
+ MULTI =  -qopenmp -DMULTICORE
  INFO = -warn all
  CHECK1=INTEL
 endif
