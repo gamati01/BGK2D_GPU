@@ -84,6 +84,7 @@ ifdef INTEL
  OFFLOAD = 
  DC = 
  FOPT = -O3 
+ FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3
  OPENMP = -qopenmp
