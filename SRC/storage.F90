@@ -78,7 +78,6 @@
         integer:: nobs                          ! #of obstacles per task
         integer:: mpicoords(1:3)
         integer:: offset(2)
-        integer:: buffer_size
         integer:: ipad,jpad
         integer:: flag1, flag2, flag3
 !
