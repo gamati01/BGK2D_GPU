@@ -19,21 +19,34 @@ CHECK2 = SINGLE
 # Compilers & Flags
 #----------------------------------------------
 # flags
-# default (nvfortran)
-SCC = nvcc 
-SFC = nvfortran -DPGI
-OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
-#OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
-OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc70,managed
-MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
-DC  = -stdpar=gpu
-FOPT = -O2 -Mnodepchk  -Mcontiguous
-COPT = -O2
-OPT  = -O2  -Mnodepchk  -Mcontiguous
-CHECK1=NVIDIA
+# default (GNU)
+SFC = gfortran
+SCC = gcc
+OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
+MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
+DC = not yet supported
+FOPT =  -O3
+COPT =  -O3
+OPT =   -O3
+DEBUG = -Wuninitialized -DDEBUG_1
+#
+CHECK1=GNU
+CHECK2=SINGLE
+CHECK3=ORIGINAL
+CHECK4=LDC
 #
 ifdef NVIDIA
-# do nothing	
+ SCC = nvcc 
+ SFC = nvfortran -DPGI
+ OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
+ #OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
+ OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc70,managed
+ MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
+ DC  = -stdpar=gpu
+ FOPT = -O2 -Mnodepchk -Mcontiguous
+ COPT = -O2
+ OPT  = -O2 -Mnodepchk -Mcontiguous
+ CHECK1=NVIDIA
 endif
 #
 ifdef AMD
@@ -61,16 +74,7 @@ ifdef CRAY
 endif
 #
 ifdef GNU
- SFC = gfortran 
- SCC = gcc 
- OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
- MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
- DC = not yet supported
- FOPT =  -O3
- COPT =  -O3
- OPT =   -O3
- DEBUG = -Wuninitialized -DDEBUG_1
- CHECK1=GNU
+! do nothing (default)	
 endif
 #
 ifdef INTEL
@@ -330,9 +334,9 @@ info:  $(INC)
 	@echo "Compiler  flags  =  "$(OPT);
 	@echo "Preproc   flags  =  "$(PREPROC);
 	@echo "Fix       flags  =  "$(FIX);
-	@echo "Implemet. flags  =  "$(IMPL);
-	@echo "Precision flags  =  "$(PREC);
-	@echo "Version          =  "$(VER);
+	@echo "Precision flags  =  "$(CHECK2);
+	@echo "Implemet. flags  =  "$(CHECK3);
+	@echo "Version          =  "$(CHECK4);
 
 #----------------------------------------------
 test:

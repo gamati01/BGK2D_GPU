@@ -1,6 +1,7 @@
 
 BGK2D_GPU is a open-source software foe 2D single phase incompressible flows.
 The code was orignally written and developed by:
+
 * Giorgio Amati		CINECA, Rome branch	Italy
 
 This is an experimental code. The author accept no responsibility
@@ -24,7 +25,7 @@ You can choose
 
 	* 2 different implementations 
   		* ORIGINAL (default): Classical implementation, with two different subroutine streaming + collision
-  		* FUSEa:D Implementation with one single fused subroutine (no streaming subroutine).  It asks for less BW but it uses pointers.
+  		* FUSED Implementation with one single fused subroutine (no streaming subroutine).  It asks for less BW but it uses pointers.
 
 	* 5 different exe
   		* SERIAL 
@@ -37,8 +38,8 @@ You can choose
    			* GPU 
 
 	* 5 different tested compilers
-  		* NVIDIA (nvfortran): default
-		* GNU (gfortran)
+		* GNU (gfortran): default
+  		* NVIDIA (nvfortran)
   		* INTEL (ifx)
   		* AMD (flang)
   		* CRAY (ftn)
@@ -51,8 +52,8 @@ You can choose
   		* MIXED2: mixed precision2 (single/double)
 
 	* 4 different test cases
+		* Lid Driven Cavity (default)
 		* Poiseuille flow
-		* lid driven cavity
 		* taylor-green vortex
 		* Von Karman street
 
@@ -63,6 +64,7 @@ To be noted that not all possible combinations are supported (e.g. GNU doesn't s
 
 .
 ├── BENCH
+├── CI
 ├── FIX
 ├── MIT
 ├── README.md
@@ -78,7 +80,8 @@ where:
 	  * Taylor-green vortex
 	  * flow around an obstacle (cylinder: von Karman streets)
 	  * poiseuille flow
-	* BENCH directort: script and input file for bechmarking at core, node and GPU level
+	* BENCH directory: script and input file for bechmarking at core, node and GPU level
+	* CI: an hand-made script to perform compilation of all possible combination between compiler, precision, implementation, test case and targets (still under development)
 
 ------------------------------------------------------------------------------
 3) How to compile
@@ -90,7 +93,7 @@ make <target> <precision>=1 <compiler>=1 <version>=1 w<testcase>=1
 where 
 	* <target>=serial,multicore,offload,openacc,doconcurrent (default)
 	* <precision>=mixed1,single (default),mixed2,double
-	* <compiler>=INTEL,CRAY,AMD,GNU,NVIDIA(default)
+	* <compiler>=INTEL,CRAY,AMD,NVIDIA,GNU (default)
 	* <testcase>=POF,TGV,VKS,LDC(default) where
 		* POF= poiseuille flow
 		* TGV= Taylor Green Vortex
