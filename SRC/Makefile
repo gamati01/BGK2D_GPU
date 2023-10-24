@@ -74,7 +74,7 @@ ifdef CRAY
 endif
 #
 ifdef GNU
-! do nothing (default)	
+# do nothing (default)	
 endif
 #
 ifdef INTEL
