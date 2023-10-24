@@ -8,10 +8,7 @@
 !       save_raw
 !     DESCRIPTION
 !       save all microscopic variables (all populations)
-!       write on unit 20 (save.xx.yy.zz.xxxxxxxx.bin, unformatted, 
-!                          xx is the task x coordinate
-!                          yy is the task y coordinate
-!                          zz is the task z coordinate
+!       write on unit 20 (save.xxxxxxxx.bin, unformatted, 
 !                          xxxxxxxx is timestep)
 !     INPUTS
 !       itime --> timestep
@@ -32,17 +29,14 @@
       use storage
       implicit none
 !
-      character(len=27) :: file_name
+      character(len=18) :: file_name
 !
       integer, INTENT(in) :: itime
       integer             :: i,j
 !
-      file_name = 'save.xx.xx.xx.xxxxxxxx.bin'
+      file_name = 'save.xxxxxxxx.bin'
 !
-      write(file_name( 6: 7),4100) mpicoords(1)
-      write(file_name( 9:10),4100) mpicoords(2)
-      write(file_name(12:13),4100) mpicoords(3)
-      write(file_name(15:22),4000) itime
+      write(file_name(6:13),4000) itime
       open(20,file=file_name,form="unformatted",status='unknown')
 !
       if(myrank == 0) then

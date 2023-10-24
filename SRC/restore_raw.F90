@@ -8,11 +8,11 @@
 !       restore_raw
 !     DESCRIPTION
 !       restore all microscopic variables (all populations)
-!       read from unit 30 (restore.xx.yy.zz.bin, unformatted)
+!       read from unit 30 (restore.bin, unformatted)
 !     INPUTS
-!       itime --> timestep
-!     OUTPUT
 !       none
+!     OUTPUT
+!       itime --> timestep
 !     TODO
 !      
 !     NOTES
@@ -27,19 +27,16 @@
       use timing
       implicit none
 !
-      character(len=23) :: file_name
+      character(len=14) :: file_name
 !
       integer, INTENT(out) :: itime
       integer              :: i,j
 !
-      file_name = 'restore.xx.xx.xx.bin'
-      write(file_name( 9:10),4100) mpicoords(1)
-      write(file_name(12:13),4100) mpicoords(2)
-      write(file_name(15:16),4100) mpicoords(3)
+      file_name = 'restore.bin'
       open(30,file=file_name,form="unformatted",status='unknown')
 !
-      write(16,*) 'INFO: I am task', myrank, 'restoring from ', file_name
-      write(6,*)  'INFO: I am task', myrank, 'restoring from ', file_name
+      write(16,*) 'INFO: I am restoring from ', file_name
+      write(6,*)  'INFO: I am restoring from ', file_name
 !
       read(30) itime
 !

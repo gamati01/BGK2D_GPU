@@ -40,9 +40,6 @@
 !
 ! set values for serial version...
       myrank = 0
-      mpicoords(1) = 0
-      mpicoords(2) = 0
-      mpicoords(3) = 0
 !
       call system("date       > time.log")
 !

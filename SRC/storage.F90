@@ -76,7 +76,6 @@
         integer:: imax, imin                    ! obstacle stuff
         integer:: jmax, jmin                    ! obstacle stuff
         integer:: nobs                          ! #of obstacles per task
-        integer:: mpicoords(1:3)
         integer:: offset(2)
         integer:: ipad,jpad
         integer:: flag1, flag2, flag3
