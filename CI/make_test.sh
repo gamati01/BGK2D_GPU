@@ -11,4 +11,5 @@ for test in `seq 1 $numTest`; do
 	cd -
 	cp ../RUN/bgk2d.try.x .
 	./bgk2d.try.x > output.$test.log
+	mv diagno.dat diagno.$test.dat
 done
