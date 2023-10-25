@@ -164,7 +164,6 @@
         endif
 #endif
 !
-1004    format(3(e14.6,1x))
 4000    format(i8.8)
 !
        end subroutine vtk_xy_bin

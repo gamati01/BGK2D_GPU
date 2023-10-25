@@ -97,7 +97,4 @@
       endif
 !#endif
 !
-3100    format(i4.4)
-4000    format(i8.8)
-!
       end subroutine build_obs

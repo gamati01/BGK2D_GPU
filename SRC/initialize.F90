@@ -33,7 +33,6 @@
 !
        implicit none
 !
-       integer             :: i
        integer             :: itstart
        integer, INTENT(in) :: itrestart,init_v, icheck
        integer, INTENT(in) :: itfin,ivtim,isignal,itsave

@@ -112,6 +112,7 @@
 #endif
 !
         integer, dimension(:,:), allocatable :: obs
+        integer:: radius
 !
         real(mykind):: svisc, u0, u00, fgrad
         real(mykind):: u0x, u0y
@@ -120,7 +121,6 @@
 !
 ! correct casting
         real(mykind) :: omega
-        real(mykind) :: radius
         real(mykind), parameter :: zero = zero_qp
         real(mykind), parameter :: uno  = uno_qp
         real(mykind), parameter :: tre  = tre_qp
