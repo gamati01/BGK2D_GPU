@@ -88,8 +88,13 @@
 !$OMP target teams distribute parallel do simd 
         do j=1,m
 #elif OPENACC
-!$acc kernels
-!$acc loop independent
+ #ifdef KERNELS
+ !$acc kernels
+ !$acc loop independent
+ #else
+ !$acc parallel
+ !$acc loop independent 
+ #endif
         do j=1,m
 #else
         do concurrent (j=1:m)
@@ -107,15 +112,24 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
-!$acc end kernels
+        #ifdef KERNELS
+        !$acc end kernels
+        #else
+        !$acc end parallel
+        #endif
 #endif
 !        
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
         do i=1,l
 #elif OPENACC
-!$acc kernels
-!$acc loop independent
+ #ifdef KERNELS
+ !$acc kernels
+ !$acc loop independent
+ #else
+ !$acc parallel
+ !$acc loop independent
+ #endif
         do i=1,l
 #else
         do concurrent (i=1:l)
@@ -133,7 +147,11 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
-!$acc end kernels
+        #ifdef KERNELS
+        !$acc end kernels
+        #else
+        !$acc end parallel
+        #endif
 #endif
         
 #endif

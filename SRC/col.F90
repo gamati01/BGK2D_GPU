@@ -67,13 +67,15 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd collapse(2)
-        do j=1,m
-           do i=1,l
 #elif OPENACC
+ #ifdef KERNELS
 !$acc kernels
-!$acc loop independent
+!$acc loop independent collapse(2)
+ #else
+!$acc parallel
+!$acc loop independent collapse(2)
+ #endif
         do j = 1,m
-!$acc loop independent
            do i = 1,l
 #else
          do concurrent (j=1:m, i=1:l)
@@ -177,7 +179,11 @@
         !$OMP end target teams distribute parallel do simd
 #elif OPENACC
         end do
+        #ifdef KERNELS
         !$acc end kernels
+        #else
+        !$acc end parallel
+        #endif
 #endif
 
 !
