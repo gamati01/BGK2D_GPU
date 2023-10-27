@@ -84,12 +84,12 @@
 !
         do j = 0, m1
            y = (real(j,mykind)-0.5d0)/real(mm,mykind)  ! 0<x<1 (taylor)
-           write(76,*) j, y
+!           write(76,*) j, y
         enddo
 !	write(76,*) " "
         do i = 0, l1
            x = (real(i,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
-           write(76,*) i, x
+!           write(76,*) i, x
         enddo
 !
 ! rest flow 

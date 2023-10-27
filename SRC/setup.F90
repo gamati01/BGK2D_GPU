@@ -27,9 +27,10 @@
 ! 
       implicit none
 !
-      INTEGER:: itfin, itstart, ivtim
-      INTEGER:: itime, itsave, icheck, itrestart, init_v
+      INTEGER:: itfin, ivtim
+      INTEGER:: itsave, icheck, init_v
       INTEGER:: isignal
+      INTEGER:: itrestart
       character(len=19) :: file_name2
       character(len=19) :: file_name3
       character(len=9)  :: file_name4

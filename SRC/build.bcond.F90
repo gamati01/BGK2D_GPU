@@ -33,10 +33,6 @@
 !
       implicit none
 !
-      integer:: uni, i
-!
-      character(len=15) :: hname
-!
 #ifdef CHANNEL
       u00 = 0.0            ! boundary condition
       u0  = u0             ! volume force

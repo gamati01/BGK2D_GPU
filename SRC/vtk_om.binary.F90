@@ -164,7 +164,6 @@
         endif
 #endif
 !
-1004    format((e14.6,1x))
 4000    format(i8.8)
 !
        end subroutine vtk_om_bin

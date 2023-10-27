@@ -35,7 +35,7 @@
 !	
         character(len=24) :: file_name
 !
-        real(sp) :: u,w,v,den
+        real(sp) :: u,w,den
         real(sp) :: cte1
 
 !
@@ -60,14 +60,14 @@
         write(52,'(A11,I10,A1,I10,A1,I10)')  'DIMENSIONS ',l,' ',m,' ',1
 !
         write(52,'(A14,I10,A7)')'X_COORDINATES ',l,' double'
-        do i = 1,l
-           write(52, *) i + offset(1)
-        enddo
+!        do i = 1,l
+!           write(52, *) i + offset(1)
+!        enddo
 !
         write(52,'(A14,I10,A7)')'Y_COORDINATES ',m,' double'
-        do j = 1,m
-           write(52, *) j + offset(2)
-        enddo
+!        do j = 1,m
+!           write(52, *) j + offset(2)
+!        enddo
 !
         write(52,'(A14,I10,A7)')'Z_COORDINATES ',1,' double'
         write(52, *) 0

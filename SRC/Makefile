@@ -25,10 +25,10 @@ SCC = gcc
 OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
 MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
 DC = not yet supported
-FOPT =  -O3
+FOPT =  -Ofast
 COPT =  -O3
-OPT =   -O3
-DEBUG = -Wuninitialized -DDEBUG_1
+OPT =   -Ofast
+DEBUG = -Wuninitialized -DDEBUG_1 -Wunused
 #
 CHECK1=GNU
 CHECK2=SINGLE
