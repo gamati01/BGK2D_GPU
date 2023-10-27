@@ -35,10 +35,14 @@
         do j=jmin,jmax
         do i=imin,imax
 #elif OPENACC
-!$acc kernels
-!$acc loop independent
+ #ifdef KERNELS
+ !$acc kernels
+ !$acc loop independent collapse(2)
+ #else
+ !$acc parallel
+ !$acc loop independent collapse(2)
+ #endif
         do j=jmin,jmax
-!$acc loop independent
         do i=imin,imax
 #else
         do concurrent (j=jmin:jmax, i=imin:imax)
@@ -59,7 +63,11 @@
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
         end do
-!$acc end kernels
+        #ifdef KERNELS
+        !$acc end kernels
+        #else
+        !$acc end parallel
+        #endif
 #endif
 
 !

@@ -47,6 +47,15 @@
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
         do j=0,m+1
+#elif OPENACC
+ #ifdef KERNELS
+ !$acc kernels
+ !$acc loop independent 
+ #else
+ !$acc parallel
+ !$acc loop independent
+ #endif
+        do j=0,m+1
 #else
         do concurrent (j=0:m+1)
 #endif
@@ -60,6 +69,14 @@
            a12(l1,j) = a12(1,j)
            a14(l1,j) = a14(1,j)
         end do
+#ifdef OPENACC
+ #ifdef KERNELS
+ !$acc end kernels
+ #else
+ !$acc end parallel
+ #endif
+#endif
+
 !
 ! ----------------------------------------------
 ! left (y = 0)  
@@ -68,6 +85,15 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
+        do i=0,l+1
+#elif OPENACC
+ #ifdef KERNELS
+ !$acc kernels
+ !$acc loop independent
+ #else
+ !$acc parallel
+ !$acc loop independent
+ #endif
         do i=0,l+1
 #else
         do concurrent (i=0:l+1)
@@ -82,6 +108,13 @@
            a08(i,0) = a08(i,m)
            a12(i,0) = a12(i,m)
         enddo
+#ifdef OPENACC
+ #ifdef KERNELS
+ !$acc end kernels
+ #else
+ !$acc end parallel
+ #endif
+#endif
 !
 ! ----------------------------------------------
 ! stop timing
