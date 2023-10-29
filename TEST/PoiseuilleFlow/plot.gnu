@@ -167,15 +167,15 @@ GNUTERM = "qt"
 set ylabel " Streamiwise velocity "
 set xlabel " Normal to wall direction (y)"
 set grid
-p   'RUN_SINGLE_SERIAL_FUSED_NV/prof_j.0000.dat'    w p lw 2 t " Serial "
-rep 'RUN_SINGLE_MULTICORE_FUSED_NV/prof_j.0000.dat' w l lw 3 t " Multicore "
-rep 'RUN_SINGLE_GPU_FUSED_NV/prof_j.0000.dat'       w l      t " GPU "
+p   'RUN_SINGLE_SERIAL_FUSED_DC_NV/prof_j.0000.dat'    w p lw 2 t " Serial "
+rep 'RUN_SINGLE_MULTICORE_FUSED_DC_NV/prof_j.0000.dat' w l lw 3 t " Multicore "
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/prof_j.0000.dat'       w l      t " GPU "
 rep  -4.0*0.1*((x/256)*(x/256)-x/256)               w l lw 5              t " Parabolic profile"
 
 pause -1 "Press any key to continue "
 #
 set ylabel " Normal to wall velocity "
-p   'RUN_SINGLE_SERIAL_FUSED_NV/prof_j.0000.dat'    u 1:3 w p lw 2 t " Serial "
-rep 'RUN_SINGLE_MULTICORE_FUSED_NV/prof_j.0000.dat' u 1:3 w l lw 3 t " Multicore "
-rep 'RUN_SINGLE_GPU_FUSED_NV/prof_j.0000.dat'       u 1:3 w l      t " GPU "
+p   'RUN_SINGLE_SERIAL_FUSED_DC_NV/prof_j.0000.dat'    u 1:3 w p lw 2 t " Serial "
+rep 'RUN_SINGLE_MULTICORE_FUSED_DC_NV/prof_j.0000.dat' u 1:3 w l lw 3 t " Multicore "
+rep 'RUN_SINGLE_GPU_FUSED_DC_NV/prof_j.0000.dat'       u 1:3 w l      t " GPU "
 #    EOF

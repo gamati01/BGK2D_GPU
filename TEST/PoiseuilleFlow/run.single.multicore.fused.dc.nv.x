@@ -1,15 +1,15 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_GPU_FUSED_OPENACC_NV
-setenv EXE bgk2d.openacc.x
+setenv DIR RUN_SINGLE_MULTICORE_FUSED_DC_NV
+setenv EXE bgk2d.multicore.x
 #
 echo "-------------------------------"
 echo "starting test Pouiselle flow   " 
 echo " ---> nvfortran                "
 echo " ---> single precision         "
 echo " ---> fused                    "
-echo " ---> gpu                      "
-echo " ---> openacc             "
+echo " ---> multicore                "
+echo " ---> doconcurrent             "
 echo " ---> "$EXE
 echo " ---> "$DIR
 echo "-------------------------------"
@@ -22,7 +22,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make openacc NVIDIA=1 SINGLE=1 FUSED=1 POF=1
+make multicore FUSED=1 NVIDIA=1 POF=1 SINGLE=1
 if ($?) then
    echo "compiling fails..."
    exit 1

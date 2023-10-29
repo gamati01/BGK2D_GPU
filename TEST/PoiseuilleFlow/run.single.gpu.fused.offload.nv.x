@@ -1,14 +1,15 @@
 #!/bin/tcsh
 #
-setenv DIR RUN_SINGLE_SERIAL_FUSED_NV
-setenv EXE bgk2d.serial.x
+setenv DIR RUN_SINGLE_GPU_FUSED_OFFLOAD_NV
+setenv EXE bgk2d.offload.x
 #
 echo "-------------------------------"
 echo "starting test Pouiselle flow   " 
 echo " ---> nvfortran                "
 echo " ---> single precision         "
 echo " ---> fused                    "
-echo " ---> serial                   "
+echo " ---> gpu                      "
+echo " ---> offload                  "
 echo " ---> "$EXE
 echo " ---> "$DIR
 echo "-------------------------------"
@@ -21,7 +22,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make serial NVIDIA=1 FUSED=1 POF=1 SINGLE=1
+make offload NVIDIA=1 SINGLE=1 FUSED=1 POF=1
 if ($?) then
    echo "compiling fails..."
    exit 1
