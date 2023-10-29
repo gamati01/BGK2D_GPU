@@ -67,6 +67,8 @@
 !
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd collapse(2)
+        do j = 1,m
+           do i = 1,l
 #elif OPENACC
  #ifdef KERNELS
  !$acc kernels
