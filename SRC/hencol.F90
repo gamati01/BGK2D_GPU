@@ -31,14 +31,16 @@
 !
 #ifdef HALF_P
 # ifdef MIXEDPRECISION
-! nothing to do        
-# else
 ! issues with namelist and half precision
-        write(6,*) "GA --> Hand-made forcing..."
+        write(6,*)  "WARNING: Hand-made forcing..."
+        write(16,*) "WARNING: Hand-made forcing..."
         u0 = 0.0
-        svisc = 0.05
-        omega = 1.53846153846153846153
-        write(6,*) "GA --> ", omega, uno, svisc
+!        svisc = 0.05
+!        omega = 1.53846153846153846153
+        write(6,*)  "WARNING: ", omega, u0, svisc
+        write(16,*) "WARNING: ", omega, u0, svisc
+# else
+! nothing to do        
 # endif
 #endif
 !

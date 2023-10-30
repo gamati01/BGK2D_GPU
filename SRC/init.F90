@@ -106,8 +106,8 @@
               x = (real(i,mykind)-0.5d0)/real(ll,mykind)! 0<x<1 (taylor)
 !
 !kida(?) vortices
-              xj = 0.1*sin(real(2,mykind)*pi*x)*cos(real(2,mykind)*pi*y)
-              yj =-0.1*cos(real(2,mykind)*pi*x)*sin(real(2,mykind)*pi*y)
+              xj = 0.1d0*sin(real(2,mykind)*pi*x)*cos(real(2,mykind)*pi*y)
+              yj =-0.1d0*cos(real(2,mykind)*pi*x)*sin(real(2,mykind)*pi*y)
 #endif
 
 

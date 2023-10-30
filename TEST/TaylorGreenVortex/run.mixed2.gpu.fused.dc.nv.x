@@ -21,7 +21,7 @@ cd $DIR
 echo "step 1: compiling"
 cd ../../../SRC
 make clean
-make MIXED2=1 FUSED=1 TGV=1 NVIDIA=1 
+make doconcurrent MIXED2=1 FUSED=1 TGV=1 NVIDIA=1 
 if ($?) then
    echo "compiling fails..."
    exit 1

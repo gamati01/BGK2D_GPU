@@ -69,8 +69,8 @@
 !
 ! default value: volume forcing along x
 !
-      u0x = 0.0
-      u0y = 0.0
+      u0x = zero
+      u0y = zero
 !
 #ifdef DEBUG_1
       if(myrank == 0) then
