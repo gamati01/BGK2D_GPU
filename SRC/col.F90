@@ -70,13 +70,13 @@
         do j = 1,m
            do i = 1,l
 #elif OPENACC
- #ifdef KERNELS
+#ifdef KERNELS
  !$acc kernels
  !$acc loop independent collapse(2)
- #else
+#else
  !$acc parallel
  !$acc loop independent collapse(2)
- #endif
+#endif
         do j = 1,m
            do i = 1,l
 #else
@@ -181,11 +181,11 @@
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
         end do
-        #ifdef KERNELS
+#ifdef KERNELS
         !$acc end kernels
-        #else
+#else
         !$acc end parallel
-        #endif
+#endif
 #endif
 
 !

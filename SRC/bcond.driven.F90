@@ -43,16 +43,16 @@
 #ifdef TRICK1
 ! it is correct only if l=m
 
-#ifdef OFFLOAD
+# ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
         do j=1,m
-#elif OPENACC
+# elif OPENACC
 !$acc kernels
 !$acc loop independent
         do j=1,m
-#else
+# else
         do concurrent (j=1:m)
-#endif
+# endif
 ! right (y = m) lid-wall
            a01(j-1,m1) = a12(j,m) + force
            a17(j  ,m1) = a08(j,m)
@@ -74,13 +74,11 @@
            a12(j+1,0)  = a01(j,1)
 
         end do
-#ifdef OFFLOAD
+# ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
-#elif OPENACC
+# elif OPENACC
 !$acc end kernels
-#endif
-
-
+# endif
 
 #else
 
@@ -88,13 +86,13 @@
 !$OMP target teams distribute parallel do simd 
         do j=1,m
 #elif OPENACC
- #ifdef KERNELS
+#ifdef KERNELS
  !$acc kernels
  !$acc loop independent
- #else
+#else
  !$acc parallel
  !$acc loop independent 
- #endif
+#endif
         do j=1,m
 #else
         do concurrent (j=1:m)
@@ -112,24 +110,24 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
-        #ifdef KERNELS
+#ifdef KERNELS
         !$acc end kernels
-        #else
+#else
         !$acc end parallel
-        #endif
+#endif
 #endif
 !        
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
         do i=1,l
 #elif OPENACC
- #ifdef KERNELS
+# ifdef KERNELS
  !$acc kernels
  !$acc loop independent
- #else
+# else
  !$acc parallel
  !$acc loop independent
- #endif
+# endif
         do i=1,l
 #else
         do concurrent (i=1:l)
@@ -147,11 +145,11 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
-        #ifdef KERNELS
+#ifdef KERNELS
         !$acc end kernels
-        #else
+#else
         !$acc end parallel
-        #endif
+#endif
 #endif
         
 #endif

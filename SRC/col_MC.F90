@@ -77,14 +77,14 @@
 #ifdef OFFLOAD
 # ifdef TRICK2
 !! MI250         
-!!$OMP target teams distribute parallel do simd collapse(2) num_teams(208) thread_limit(256)
-        
+!$OMP num_teams(208) thread_limit(256)
+!$OMP target teams distribute parallel do simd collapse(2) 
 ! V100         
-!$OMP target teams distribute parallel do simd collapse(2) num_teams(80) thread_limit(128)
+!!$OMP target teams distribute parallel do simd collapse(2) num_teams(80) thread_limit(128)
 # else
 !mandatory for AMD to avoid NaN
-!$OMP target teams distribute parallel do simd collapse(2) !& 
-!!$OMP$              map(present,alloc:x01,x03,x05,x08,x10,x12,x14,x17,x19) & 
+!$OMP target teams distribute parallel do simd collapse(2) & 
+!!$OMP$             map(present,alloc:x01,x03,x05,x08,x10,x12,x14,x17,x19) 
 !!$OMP$              map(present,alloc:e01,e03,e05,e08,e10,e12,e14,e17,e19) & 
 !!$OMP$              map(present,alloc:rho,vx,vy,vz,vx2,vy2,vsq,rhoinv,forcex,forcey) &
 !!$OMP$              map(present,alloc:q0,qx,qy,qxmy,qxpy,vxmy,vxpy)  &  
@@ -93,13 +93,13 @@
         do j=1,m
            do i=1,l
 #elif OPENACC
- #ifdef KERNELS
+#ifdef KERNELS
  !$acc kernels
  !$acc loop independent collapse(2)
- #else
+#else
  !$acc parallel
  !$acc loop independent collapse(2)
- #endif
+#endif
 
         do j=1,m
            do i=1,l
@@ -198,11 +198,11 @@
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
         end do
-        #ifdef KERNELS
+#ifdef KERNELS
         !$acc end kernels
-        #else
+#else
         !$acc end parallel
-        #endif
+#endif
 #endif
 !
 ! fix
