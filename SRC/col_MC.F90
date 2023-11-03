@@ -83,7 +83,7 @@
 !!$OMP target teams distribute parallel do simd collapse(2) num_teams(80) thread_limit(128)
 # else
 !mandatory for AMD to avoid NaN
-!$OMP target teams distribute parallel do simd collapse(2) & 
+!$OMP target teams distribute parallel do simd collapse(2) !& 
 !!$OMP$             map(present,alloc:x01,x03,x05,x08,x10,x12,x14,x17,x19) 
 !!$OMP$              map(present,alloc:e01,e03,e05,e08,e10,e12,e14,e17,e19) & 
 !!$OMP$              map(present,alloc:rho,vx,vy,vz,vx2,vy2,vsq,rhoinv,forcex,forcey) &
@@ -94,11 +94,11 @@
            do i=1,l
 #elif OPENACC
 #ifdef KERNELS
- !$acc kernels
- !$acc loop independent collapse(2)
+!$acc kernels
+!$acc loop independent collapse(2)
 #else
- !$acc parallel
- !$acc loop independent collapse(2)
+!$acc parallel
+!$acc loop independent collapse(2)
 #endif
 
         do j=1,m

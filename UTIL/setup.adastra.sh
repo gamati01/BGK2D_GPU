@@ -12,6 +12,8 @@ module load cray-libsci/23.05.1.4
 module load PrgEnv-cray/8.3.3
 module load craype-accel-amd-gfx90a
 module load rocm/5.3.0
+module load aocc-mixed/3.2.0
+module load user-GPU-2.0.0
 module li
 #
 

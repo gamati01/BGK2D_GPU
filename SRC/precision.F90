@@ -8,7 +8,8 @@ module real_kinds
 #endif
   integer, parameter :: sp = kind(1.0)
   integer, parameter :: dp = selected_real_kind(2*precision(1.0_sp))
-  integer, parameter :: qp = selected_real_kind(2*precision(1.0_dp))
+  integer, parameter :: qp = selected_real_kind(2*precision(1.0_sp))
+!  integer, parameter :: qp = selected_real_kind(2*precision(1.0_dp))
 !
 #ifdef DOUBLE_P
   integer, parameter :: mystorage = dp
