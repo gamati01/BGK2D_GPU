@@ -20,11 +20,12 @@ CHECK2 = SINGLE
 #----------------------------------------------
 # flags
 # default (GNU)
+MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
+OPENACC = 
+OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
+DC = not supported
 SFC = gfortran
 SCC = gcc
-OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
-MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
-DC = not yet supported
 FOPT =  -Ofast
 COPT =  -O3
 OPT =   -Ofast
@@ -36,13 +37,13 @@ CHECK3=ORIGINAL
 CHECK4=LDC
 #
 ifdef NVIDIA
- SCC = nvcc 
- SFC = nvfortran -DPGI
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
  #OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc70,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
  DC  = -stdpar=gpu
+ SCC = nvcc 
+ SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
  COPT = -O2
  OPT  = -O2 -Mnodepchk -Mcontiguous
@@ -50,11 +51,12 @@ ifdef NVIDIA
 endif
 #
 ifdef AMD
+ MULTI = -DMULTICORE
+ OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
+ OPENACC = not supported
+ DC = not supported
  SFC = flang -DPGI
  SCC = clang -DPGI
- OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
- OPENACC = not yet supported
- DC = not yet supported
  FOPT =  -O3
  COPT =  -O3
  OPT =   -O3
@@ -62,11 +64,12 @@ ifdef AMD
 endif
 #
 ifdef CRAY
- SCC = cc
- SFC = ftn
+ MULTI =
  OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
  OPENACC = -DPGI -h acc -DNOMANAGED -DOPENACC
- DC = not yet supported
+ DC = not supported
+ SCC = cc
+ SFC = ftn
  FOPT = -O3
  COPT =
  OPT = -O3
@@ -78,35 +81,31 @@ ifdef GNU
 endif
 #
 ifdef INTEL
- SFC = ifort
- SCC = icc
- SFC = ifx
- SCC = icx
-# FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
-# COPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512
- OPENACC = not yet supported
+ MULTI =  -qopenmp -DMULTICORE
+ OPENACC = not supported
  OFFLOAD = 
  DC = 
- FOPT = -O3 
+ SFC = ifx
+ SCC = icx
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3
  OPENMP = -qopenmp
- MULTI =  -Qparallel
- MULTI =  -qopenmp -DMULTICORE
  INFO = -warn all
  CHECK1=INTEL
 endif
 #
-ifdef PWR
- SCC = xlc_r  
- SFC = xlf_r 
- OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
- FOPT = -O3 -qassert=contig
- COPT = -O3 -qassert=contig
- OPT = -O3 -qassert=contig
- CHECK1=PWR
-endif
+#
+# to remove
+#ifdef PWR
+# SCC = xlc_r  
+# SFC = xlf_r 
+# OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
+# FOPT = -O3 -qassert=contig
+# COPT = -O3 -qassert=contig
+# OPT = -O3 -qassert=contig
+# CHECK1=PWR
+#endif
 #
 #----------------------------------------------
 # precision used
