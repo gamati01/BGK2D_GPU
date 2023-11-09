@@ -4,17 +4,15 @@
 #----------------------------------------------
 # targets:
 #
-#		<none> default ---> GPU code with do concurrent (nvfortran)
+#		<none>/serial default ---> Serial CPU code
 #		offload ---> GPU code with openmp offload
 #		openacc ---> GPU code with openACC
-#		serial  ---> Serial CPU code
-#		mulitcore -> Multicore CPU code 
+#		do concurrent ---> GPU code with do concurrent 
+#		multicore -> Multicore CPU code  (with do concurrent)
 # 
 #----------------------------------------------
 DATE = $(shell date +%d%m%y)
 FINE = "******** End Compilation step  *******"
-CHECK1 = NVIDIA
-CHECK2 = SINGLE
 #----------------------------------------------
 # Compilers & Flags
 #----------------------------------------------
@@ -241,19 +239,31 @@ OBJ = $(OBJ1) $(OBJ0) $(OBJ2) $(OBJ3)
 #----------------------------------------------
 #
 #
-doconcurrent: all
+serial: all
 #
 #----------------------------------------------
-all: VER := doconcurrent
-all: FC := $(SFC) $(DC) 
+all: VER := serial
+all: FC := $(SFC) 
 all: CC := $(SCC)
 all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x 
+	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x 
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #
+##----------------------------------------------
+doconcurrent: VER := doconcurrent
+doconcurrent: FC := $(SFC) $(DC)
+doconcurrent: CC := $(SCC)
+doconcurrent: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
+	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x
+	@echo "-------------------------------------------------"
+	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4)
+	@echo $(FINE)
+	@echo "-------------------------------------------------"
+#
+
 #----------------------------------------------
 offload: FOPT += $(OFFLOAD)
 offload: OPT  += $(OFFLOAD)
@@ -274,17 +284,6 @@ openacc: VER := openacc
 openacc: FC := $(SFC)
 openacc: CC := $(SCC)
 openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
-	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
-	@echo "-------------------------------------------------"
-	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
-	@echo $(FINE)
-	@echo "-------------------------------------------------"
-#
-#----------------------------------------------
-serial: VER:= serial
-serial: FC := $(SFC) -DSERIAL
-serial: CC := $(SCC)
-serial: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
