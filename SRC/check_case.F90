@@ -7,7 +7,7 @@
 !     NAME
 !       bcond
 !     DESCRIPTION
-!       Simple check of the simulation and of the different 
+!       check of the simulation and of the different 
 !       pre-proc flags activated
 !     INPUTS
 !       none
@@ -33,7 +33,10 @@
               &         at the same time", myrank, u0, u_inflow 
         endif
 !
-! Info section   (boundary conditions)
+! Info section   
+        call git_info
+!        
+! boundary conditions
 #ifdef PERIODIC
         write(6 ,*) "INFO: The test case has periodic bc (-DPERIODIC)" 
         write(16,*) "INFO: The test case has periodic bc (-DPERIODIC)" 

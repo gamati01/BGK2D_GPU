@@ -223,6 +223,7 @@ OBJ2 = check_case.o \
        movef.o\
        save_raw.o\
        profile.o\
+       git_info.o \
        draglift.o \
        dealloca.o
 
@@ -316,6 +317,12 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
+#
+git_info.F90:
+	 echo "    subroutine git_info"                              >> git_info.F90
+	 echo "    write( 6,*) \""INFO: `git log  | head  -n 1` \"   >> git_info.F90
+	 echo "    write(16,*) \""INFO: `git log  | head  -n 1` \"   >> git_info.F90
+	 echo "    end subroutine git_info"                          >> git_info.F90
 #
 #----------------------------------------------
 # utilities
