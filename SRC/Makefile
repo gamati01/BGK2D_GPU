@@ -49,7 +49,7 @@ ifdef NVIDIA
 endif
 #
 ifdef AMD
- MULTI = -DMULTICORE
+ MULTI = -DMULTICORE  --tocheck
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
  OPENACC = not supported
  DC = not supported
@@ -62,7 +62,7 @@ ifdef AMD
 endif
 #
 ifdef CRAY
- MULTI =
+ MULTI = -DMULTICORE -h thread_do_concurrent -DPGI
  OFFLOAD = -DPGI -h omp -DOFFLOAD -DCRAY
  OPENACC = -DPGI -h acc -DNOMANAGED -DOPENACC
  DC = not supported
@@ -85,6 +85,7 @@ ifdef INTEL
  DC = 
  SFC = ifx
  SCC = icx
+ FOPT = -O3 -assume contiguous_pointer
  FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3

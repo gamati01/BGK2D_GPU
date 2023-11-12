@@ -105,13 +105,12 @@
 #endif
 
 #ifdef PGI
-       write(16,*) "INFO: using NVIDIA compiler"
        write(16,*) "      quad precision not supported"
 #endif
 !
-#ifdef SERIAL
-       write(6,*)  "INFO: serial version (CPU)"
-       write(16,*) "INFO: serial version (CPU)"
+#ifdef DOCONCURRENT
+       write(6,*)  "INFO: do concurrent version (GPU)"
+       write(16,*) "INFO: do concurrent version (GPU)"
 #elif MULTICORE
        write(6,*)  "INFO: multicore parallelization (CPU)"
        write(16,*) "INFO: multicore parallelization (CPU)"
@@ -122,8 +121,8 @@
        write(6,*)  "INFO: openacc version (GPU)"
        write(16,*) "INFO: openacc version (GPU)"
 #else
-       write(6,*)  "INFO: do concurrent version (GPU)"
-       write(16,*) "INFO: do concurrent version (GPU)"
+       write(6,*)  "INFO: serial version (CPU)"
+       write(16,*) "INFO: serial version (CPU)"
 #endif
 !
 #ifdef FUSED
