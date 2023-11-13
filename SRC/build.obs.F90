@@ -49,8 +49,8 @@
       icoord = 2*l/5
       jcoord = m/2
 !      
-      if (m.gt.256) then
-          radius = 32
+      if (m.gt.512) then
+          radius = 64
       else
           radius = ly/8  
       endif
