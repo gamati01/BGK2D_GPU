@@ -81,12 +81,12 @@ endif
 ifdef INTEL
  MULTI =  -qopenmp -DMULTICORE
  OPENACC = not supported
- OFFLOAD = 
- DC = 
+ OFFLOAD =  -fiopenmp -fopenmp-targets=spir64_gen -Xopenmp-target-backend "-device *" -DOFFLOAD 
+ DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64
  SFC = ifx
  SCC = icx
  FOPT = -O3 -assume contiguous_pointer
- FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
+# FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3
  OPENMP = -qopenmp
