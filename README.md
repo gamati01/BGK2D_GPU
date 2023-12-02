@@ -65,6 +65,7 @@ To be noted that not all possible combinations are supported (e.g. GNU doesn't s
 .
 ├── BENCH
 ├── CI
+├── DOC
 ├── FIX
 ├── MIT
 ├── README.md
@@ -73,6 +74,7 @@ To be noted that not all possible combinations are supported (e.g. GNU doesn't s
 └── UTIL
 
 where:
+	* DOC directory: some documentation, in pdf format
 	* SRC directory: all source files + Makefile. The exe will be copied in ../RUN directory (to create)
 	* UTIL directory: some utilities like scripts or input file
 	* TEST directory: four test case
