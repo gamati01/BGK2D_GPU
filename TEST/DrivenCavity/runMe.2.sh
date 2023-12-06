@@ -10,7 +10,7 @@ sleep 5
 echo "------------------------------"
 echo "run #3 of 3: gnu"
 sleep 5 
-./run.single.multicore.fused.gnu.x
+#./run.single.multicore.fused.gnu.x
 echo "------------------------------"
 echo "to plot: use gnuplot and load 'plot.R01000.gnu'"
 
