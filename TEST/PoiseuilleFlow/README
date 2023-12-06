@@ -38,5 +38,5 @@ bgk.input.small  --> input file used for the simulation (small one)
 plot.gnu         --> gnuplot file to check the results 
 plot.gnu.small   --> gnuplot file to check the results between original and fused version (GNU)
 
-runMe.1.sh --> Running 3 simulation using single precision e nvidia compiler (serial,multicore,GPU via "do concurrent") 
-runMe.2.sh --> Running 3 simulation using single precision e GNU compiler (fused,original)
+runMe.1.sh --> Running 3 simulation using single precision and NVIDIA compiler (serial,multicore,GPU via "do concurrent") 
+runMe.2.sh --> Running 3 simulation using single precision and GNU compiler (fused,original)
