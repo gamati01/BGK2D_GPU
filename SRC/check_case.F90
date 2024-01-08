@@ -145,14 +145,6 @@
 !
 #ifdef DEBUG_1
        if(myrank == 0) then
-          write(6,*) "INFO: DEBUG1 mode enabled"
-          write(6,*) "DEBUG1: Exiting from sub. check_case"
-       endif
-#endif
-!
-#ifdef MEM_CHECK
-       if(myrank == 0) then
-          mem_stop = get_mem();
        endif
 #endif
 !
@@ -173,6 +165,7 @@
 !
 #ifdef DEBUG_1
        if(myrank == 0) then
+          write(6,*) "INFO: DEBUG1 mode enabled"
           write(6,*) "DEBUG1: Exiting from sub. check_case"
        endif
 #endif
