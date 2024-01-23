@@ -27,15 +27,15 @@
 !                                68 (probe.dat)
 !                                69 (bgk.perf)
 !       velocity directions:
-!        direction  1    unit vector = ( 1,-1)   tipo 2
-!        direction  3    unit vector = ( 1, 1)   tipo 2
-!        direction  5    unit vector = ( 1, 0)   tipo 1
-!        direction  8    unit vector = ( 0, 1)   tipo 1
-!        direction 10    unit vector = (-1,-1)   tipo 2
-!        direction 12    unit vector = (-1, 1)   tipo 2
-!        direction 14    unit vector = (-1, 0)   tipo 1
-!        direction 17    unit vector = ( 0,-1)   tipo 1
-!        direction 19    unit vector = ( 0, 0)   tipo 0
+!        direction  1    unit vector = ( 1,-1)   kind 2 (diagonal)
+!        direction  3    unit vector = ( 1, 1)   kind 2 (diagonal)
+!        direction  5    unit vector = ( 1, 0)   kind 1 (horizontal)
+!        direction  8    unit vector = ( 0, 1)   kind 1 (vertical)
+!        direction 10    unit vector = (-1,-1)   kind 2 (diagonal)
+!        direction 12    unit vector = (-1, 1)   kind 2 (diagonal)
+!        direction 14    unit vector = (-1, 0)   kind 1 (horizontal)
+!        direction 17    unit vector = ( 0,-1)   kind 1 (vertical)
+!        direction 19    unit vector = ( 0, 0)   kind 0 (rest population)
 !                              
 !     *****
 ! =====================================================================
