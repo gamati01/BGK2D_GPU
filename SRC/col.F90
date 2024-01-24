@@ -37,11 +37,15 @@
         real(mykind) :: x12,x14,x17,x19
         real(mykind) :: e01,e03,e05,e08,e10
         real(mykind) :: e12,e14,e17,e19
+        real(mykind) :: n01,n03,n05,n08,n10
+        real(mykind) :: n12,n14,n17,n19
         real(mykind) :: rho,rhoinv,vx,vy,vx2,vy2,vsq
         real(mykind) :: vxpy,vxmy,rp1,rp2,rp0
         real(mykind) :: qxpy,qxmy,qx,qy,q0
         real(mykind) :: forcex, forcey
         real(mykind) :: cte1,cte0
+        real(mykind) :: Pxx,Pxy,Pyx,Pyy,Ptotal
+        real(mykind) :: Ts,cteS
 !
 #ifdef DEBUG_3
         real(mykind) :: cte
@@ -146,6 +150,63 @@
            e14 = rp1*(-vx  +qx  )+cte1*(rp1-p1)
            e17 = rp1*(-vy  +qy  )+cte1*(rp1-p1)
            e19 = rp0*(     +q0  )+cte1*(rp0-p0)
+!           
+#ifdef LES           
+! compute les           
+!           
+!non-equilibrium distribution
+           n01 = x01-e01
+           n03 = x03-e03
+           n05 = x05-e05
+           n08 = x08-e08
+           n10 = x10-e10
+           n12 = x12-e12
+           n14 = x14-e14
+           n17 = x17-e17
+           n19 = x19-e19
+!
+! compute Pij           
+           Pxx = cx(01)*cx(01)*n01 + &
+                 cx(03)*cx(03)*n03 + &
+                 cx(05)*cx(05)*n05 + &
+                 cx(08)*cx(08)*n08 + &
+                 cx(10)*cx(10)*n10 + &
+                 cx(12)*cx(12)*n12 + &
+                 cx(14)*cx(14)*n14 + &
+                 cx(17)*cx(17)*n17 + &
+                 cx(19)*cx(19)*n19
+!
+           Pyy = cy(01)*cy(01)*n01 + &
+                 cy(03)*cy(03)*n03 + &
+                 cy(05)*cy(05)*n05 + &
+                 cy(08)*cy(08)*n08 + &
+                 cy(10)*cy(10)*n10 + &
+                 cy(12)*cy(12)*n12 + &
+                 cy(14)*cy(14)*n14 + &
+                 cy(17)*cy(17)*n17 + &
+                 cy(19)*cy(19)*n19
+!
+           Pxy = cx(01)*cy(01)*n01 + &
+                 cx(03)*cy(03)*n03 + &
+                 cx(05)*cy(05)*n05 + &
+                 cx(08)*cy(08)*n08 + &
+                 cx(10)*cy(10)*n10 + &
+                 cx(12)*cy(12)*n12 + &
+                 cx(14)*cy(14)*n14 + &
+                 cx(17)*cy(17)*n17 + &
+                 cx(19)*cy(19)*n19
+!
+           Pyx = Pxy
+!           
+! calculate Pi total
+           Ptotal =sqrt((Pxx)**2 + (2*Pxy*Pyx) + (Pyy)**2)
+           cteS = 0.1
+!           
+! adding turbulent viscosity
+           Ts = 1/(2*omega1) + sqrt(18*(cteS)**2 *Ptotal+(1/omega1)**2)/2
+           omega = 1/Ts
+!
+#endif
 !
 ! forcing term
 !

@@ -121,6 +121,7 @@
 !
 ! correct casting
         real(mykind) :: omega
+        real(mykind) :: omega1
         real(mykind), parameter :: zero = zero_qp
         real(mykind), parameter :: uno  = uno_qp
         real(mykind), parameter :: tre  = tre_qp

@@ -27,7 +27,8 @@
         use storage
         implicit none
 !
-        omega = (uno+uno)/((6.0*svisc)+1.0)
+        omega  = (uno+uno)/((6.0*svisc)+1.0)
+        omega1 = (uno+uno)/((6.0*svisc)+1.0)
 !
 #ifdef HALF_P
 # ifdef MIXEDPRECISION

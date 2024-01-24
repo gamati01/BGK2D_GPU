@@ -46,11 +46,11 @@
 !
 #ifdef INFLOW
 !
-# ifdef NOSHIFT
+#ifdef NOSHIFT
        cte1 = uno
-# else
+#else
        cte1 = zero
-# endif
+#endif
 
 !
 ! start timing...
@@ -66,13 +66,13 @@
 !$OMP target teams distribute parallel do simd
         do j=0,m+1
 #elif OPENACC
- #ifdef KERNELS
- !$acc kernels
- !$acc loop independent
- #else
- !$acc parallel
- !$acc loop independent
- #endif
+#ifdef KERNELS
+!$acc kernels
+!$acc loop independent
+#else
+!$acc parallel
+!$acc loop independent
+#endif
         do j=0,m+1
 #else
         do concurrent (j=0:m+1)
@@ -116,11 +116,11 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
- #ifdef KERNELS
- !$acc end kernels
- #else
- !$acc end parallel
- #endif
+#ifdef KERNELS
+!$acc end kernels
+#else
+!$acc end parallel
+#endif
 #endif
 !
 ! ----------------------------------------------
@@ -132,13 +132,13 @@
 !$OMP target teams distribute parallel do simd 
         do i=0,l+1
 #elif OPENACC
- #ifdef KERNELS
- !$acc kernels
- !$acc loop independent
- #else
- !$acc parallel
- !$acc loop independent
- #endif
+#ifdef KERNELS
+!$acc kernels
+!$acc loop independent
+#else
+!$acc parallel
+!$acc loop independent
+#endif
         do i=0,l+1
 #else
         do concurrent (i=0:l+1)
@@ -156,11 +156,11 @@
 #ifdef OFFLOAD
 !$OMP end target teams distribute parallel do simd
 #elif OPENACC
- #ifdef KERNELS
- !$acc end kernels
- #else
- !$acc end parallel
- #endif
+#ifdef KERNELS
+!$acc end kernels
+#else
+!$acc end parallel
+#endif
 #endif
 
 !

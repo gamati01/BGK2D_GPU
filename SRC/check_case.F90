@@ -100,10 +100,15 @@
        write(16,*) "INFO: using RAW I/O"
 !
 #ifdef NO_BINARY
-       write(6,*) "INFO: vtk output in ASCII (debug mode)"
+       write(6,*)  "INFO: vtk output in ASCII (debug mode)"
        write(16,*) "INFO: vtk output in ASCII (debug mode)"
 #endif
-
+!
+#ifdef LES
+       write(6,*) "WARNING: LES (Smagorinsky) enabled UNDER DEVELOPMENT"
+       write(16,*)"WARNING: LES (Smagorinsky) enabled UNDER DEVELOPMENT"
+#endif
+!
 #ifdef PGI
        write(16,*) "      quad precision not supported"
 #endif

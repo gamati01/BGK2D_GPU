@@ -18,8 +18,8 @@ FINE = "******** End Compilation step  *******"
 #----------------------------------------------
 # flags
 # default (GNU)
-MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=4
-OPENACC = 
+MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=16
+OPENACC =  -fopenacc -DOPENACC
 OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
 DC = not supported
 SFC = gfortran
@@ -86,7 +86,7 @@ ifdef INTEL
  SFC = ifx
  SCC = icx
  FOPT = -O3 -assume contiguous_pointer
-# FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
+ FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3
  OPENMP = -qopenmp
