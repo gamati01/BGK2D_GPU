@@ -101,7 +101,7 @@
          write(6,*) " Test Case: Taylor-Green Vortices"
 #elif POF  
          write(6,*) " Test Case: Poiseuille Flow"
-#elif VTS  
+#elif VKS  
          write(6,*) " Test Case: Von Karman Street"
 #else         
          write(6,*) " Test Case: Lid-Driven Cavity"
