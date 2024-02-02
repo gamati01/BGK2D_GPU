@@ -36,8 +36,7 @@ CHECK4=LDC
 #
 ifdef NVIDIA
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
- #OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
- OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc70,managed
+ OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
  DC  = -stdpar=gpu -DDCONCURRENT
  SCC = nvcc 
