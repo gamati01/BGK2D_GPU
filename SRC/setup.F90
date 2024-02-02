@@ -84,8 +84,8 @@
 #endif
 ! 
 ! parallelization
-#ifdef SERIAL
-         write(6,*) " Serial"
+#ifdef DOCONCURRENT
+         write(6,*) " GPU Parallization: DO concurrent   "
 #elif MULTICORE
          write(6,*) " CPU Parallelization: multicore"
 #elif OFFLOAD
@@ -93,7 +93,7 @@
 #elif OPENACC 
          write(6,*) " GPU Parallelization: OpenACC"
 #else  
-         write(6,*) " GPU Parallization: DO concurrent   "
+         write(6,*) " Serial"
 #endif
 ! 
 ! test case

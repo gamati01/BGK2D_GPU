@@ -73,7 +73,7 @@
            call prof_j(itime,l/2)
 !
 ! global probe:  Set value for VonKarman streets check with OF
-           call probe(itime,(32*l/50),(m/2))
+!           call probe(itime,(32*l/50),(m/2))
 
 #ifdef DRAG
            call draglift(itime,333)

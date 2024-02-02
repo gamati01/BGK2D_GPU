@@ -21,7 +21,7 @@ FINE = "******** End Compilation step  *******"
 MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=16
 OPENACC =  -fopenacc -DOPENACC
 OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
-DC = not supported
+DC = not supported 
 SFC = gfortran
 SCC = gcc
 FOPT =  -Ofast
@@ -39,7 +39,7 @@ ifdef NVIDIA
  #OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc70,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
- DC  = -stdpar=gpu
+ DC  = -stdpar=gpu -DDCONCURRENT
  SCC = nvcc 
  SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
@@ -52,7 +52,7 @@ ifdef AMD
  MULTI = -DMULTICORE  --tocheck
  OFFLOAD = -fopenmp --offload-arch=gfx90a -DOFFLOAD
  OPENACC = not supported
- DC = not supported
+ DC = not supported 
  SFC = flang -DPGI
  SCC = clang -DPGI
  FOPT =  -O3
@@ -82,7 +82,7 @@ ifdef INTEL
  MULTI =  -qopenmp -DMULTICORE
  OPENACC = not supported
  OFFLOAD =  -fiopenmp -fopenmp-targets=spir64_gen -Xopenmp-target-backend "-device *" -DOFFLOAD 
- DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64
+ DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64 -DDCONCURRENT
  SFC = ifx
  SCC = icx
  FOPT = -O3 -assume contiguous_pointer
