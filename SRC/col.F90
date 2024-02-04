@@ -45,7 +45,7 @@
         real(mykind) :: forcex, forcey
         real(mykind) :: cte1,cte0
         real(mykind) :: Pxx,Pxy,Pyx,Pyy,Ptotal
-        real(mykind) :: Ts,cteS
+        real(mykind) :: Ts
 !
 #ifdef DEBUG_3
         real(mykind) :: cte
@@ -200,7 +200,6 @@
 !           
 ! calculate Pi total
            Ptotal =sqrt((Pxx)**2 + (2*Pxy*Pyx) + (Pyy)**2)
-           cteS = 0.1
 !           
 ! adding turbulent viscosity
            Ts = 1/(2*omega1) + sqrt(18*(cteS)**2 *Ptotal+(1/omega1)**2)/2

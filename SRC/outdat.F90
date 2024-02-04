@@ -60,6 +60,7 @@
       write(16,*) 'ipad         =',ipad
       write(16,*) 'jpad         =',jpad
       write(16,*) 'radius       =',radius
+      write(16,*) 'LES: cteS    =',cteS
       write(16,*) '************** Further check ****************'
       write(16,*) 'zero         =', zero, zero_qp
       write(16,*) 'uno          =', uno, uno_qp
@@ -84,6 +85,7 @@
       write(6,*) 'forcing1     =',fgrad
       write(6,*) 'forcing2     =',u00/(6.0)
       write(6,*) 'u_inflow     =',u_inflow
+      write(6,*) 'LES: cteS    =',cteS
       write(6,*) '**************** run data********************'
       write(6,*) 'itfin        =',itfin
       write(6,*) 'itstart      =',itstart

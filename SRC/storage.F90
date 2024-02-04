@@ -115,6 +115,7 @@
         integer:: radius
 !
         real(mykind):: svisc, u0, u00, fgrad
+        real(mykind):: cteS                ! smagorinsy constant 
         real(mykind):: u0x, u0y
         real(mykind):: u_inflow
         integer:: mydev, ndev              ! openacc variables

@@ -50,7 +50,7 @@
         real(mykind) :: forcex, forcey
         real(mykind) :: pi,cte1,cte0
         real(mykind) :: Pxx,Pxy,Pyx,Pyy,Ptotal
-        real(mykind) :: Ts,cteS
+        real(mykind) :: Ts
 !
         parameter(pi=3.14159265358979)
 !
@@ -189,39 +189,58 @@
            n17 = x17-e17
 !
 ! compute Pij
-           Pxx = cx(01)*cx(01)*n01 + &
-                 cx(03)*cx(03)*n03 + &
-                 cx(05)*cx(05)*n05 + &
-                 cx(08)*cx(08)*n08 + &
-                 cx(10)*cx(10)*n10 + &
-                 cx(12)*cx(12)*n12 + &
-                 cx(14)*cx(14)*n14 + &
-                 cx(17)*cx(17)*n17
+!           Pxx = cx(01)*cx(01)*n01 + &
+!                 cx(03)*cx(03)*n03 + &
+!                 cx(05)*cx(05)*n05 + &
+!                 cx(08)*cx(08)*n08 + &
+!                 cx(10)*cx(10)*n10 + &
+!                 cx(12)*cx(12)*n12 + &
+!                 cx(14)*cx(14)*n14 + &
+!                 cx(17)*cx(17)*n17
 !
-           Pyy = cy(01)*cy(01)*n01 + &
-                 cy(03)*cy(03)*n03 + &
-                 cy(05)*cy(05)*n05 + &
-                 cy(08)*cy(08)*n08 + &
-                 cy(10)*cy(10)*n10 + &
-                 cy(12)*cy(12)*n12 + &
-                 cy(14)*cy(14)*n14 + &
-                 cy(17)*cy(17)*n17
+           Pxx = n01 + &
+                 n03 + &
+                 n05 + &
+                 n10 + &
+                 n12 + &
+                 n14 
 !
-         !
-           Pxy = cx(01)*cy(01)*n01 + &
-                 cx(03)*cy(03)*n03 + &
-                 cx(05)*cy(05)*n05 + &
-                 cx(08)*cy(08)*n08 + &
-                 cx(10)*cy(10)*n10 + &
-                 cx(12)*cy(12)*n12 + &
-                 cx(14)*cy(14)*n14 + &
-                 cx(17)*cy(17)*n17
+!           Pyy = cy(01)*cy(01)*n01 + &
+!                 cy(03)*cy(03)*n03 + &
+!                 cy(05)*cy(05)*n05 + &
+!                 cy(08)*cy(08)*n08 + &
+!                 cy(10)*cy(10)*n10 + &
+!                 cy(12)*cy(12)*n12 + &
+!                 cy(14)*cy(14)*n14 + &
+!                 cy(17)*cy(17)*n17
+!
+!
+           Pyy = n01 + &
+                 n03 + &
+                 n08 + &
+                 n10 + &
+                 n12 + &
+                 n17
+!
+!
+!           Pxy = cx(01)*cy(01)*n01 + &
+!                 cx(03)*cy(03)*n03 + &
+!                 cx(05)*cy(05)*n05 + &
+!                 cx(08)*cy(08)*n08 + &
+!                 cx(10)*cy(10)*n10 + &
+!                 cx(12)*cy(12)*n12 + &
+!                 cx(14)*cy(14)*n14 + &
+!                 cx(17)*cy(17)*n17
+!
+           Pxy = -n01 + &
+                 +n03 + &
+                 +n10 + &
+                 -n12 
 !
            Pyx = Pxy
 !           
 ! calculate Pi total
            Ptotal =sqrt((Pxx)**2 + (2*Pxy*Pyx) + (Pyy)**2)
-           cteS = 0.1
 !           
 ! adding turbulent viscosity
            Ts = 1/(2*omega1) + sqrt(18*(cteS)**2 *Ptotal+(1/omega1)**2)/2

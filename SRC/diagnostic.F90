@@ -66,7 +66,7 @@
 !$omp target update from(a01,a03,a05,a08,a10,a12,a14,a17,a19)
 #endif
            call diagno(itime)
-           call probe(itime,l,m/2)
+           call probe(itime,l/2,m/2)
 !
            call varm(itime)
            call prof_i(itime,m/2)

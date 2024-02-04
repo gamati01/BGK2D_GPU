@@ -52,6 +52,7 @@
       flag2 = 0         ! obstacles           (1-sphere/2-cilinder)
       flag3 = 0 
       init_v= 0
+      cteS  = 0.1
 !
       ipad  = 0         ! no memory padding (x)
       jpad  = 0         ! no memory padding (y)
