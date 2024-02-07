@@ -45,18 +45,21 @@
                             itsave, icheck, irestart, init_v, &
                             lx, ly,                           &
                             flag1, flag2, flag3, ipad, jpad,  & 
-                            radius
+                            radius,cteS
 !
 ! default values
       flag1 = 0         ! creating obstacles  (1-file/2-creating)
       flag2 = 0         ! obstacles           (1-sphere/2-cilinder)
       flag3 = 0 
       init_v= 0
-      cteS  = 0.1
+      cteS  = 0.1       ! smagorinsky constant
 !
       ipad  = 0         ! no memory padding (x)
       jpad  = 0         ! no memory padding (y)
 !
+! Radius for flow around a cylinder      
+      radius = 16
+!      
       open(15,FILE='bgk.input',STATUS='old')
       read(15,parameters)
       close(15)
@@ -67,6 +70,18 @@
 ! some fix..
       l1 = l+1
       m1 = m+1
+!
+! a check
+#ifdef OBSTACLE
+      if (radius.gt.m/8) then
+         write(6,*) "WARNING: radius size =", radius, m
+      endif      
+!
+      if (radius.gt.(m-2)) then
+         write(6,*) "ERROR: radius too big =", radius, m
+         stop
+      endif      
+#endif      
 !
 ! default value: volume forcing along x
 !
