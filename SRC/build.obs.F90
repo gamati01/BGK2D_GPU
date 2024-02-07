@@ -49,17 +49,9 @@
       icoord = 2*l/5
       jcoord = m/2
 !      
-      if (m.gt.512) then
-          radius = 64
-      else
-          radius = ly/8  
-      endif
-!      
-      write(16,*) "WARNING: radius hardwired ", radius
-      write( 6,*) "WARNING: radius hardwired ", radius
-      write( 6,*) "INFO: Cyl radius    -->", radius
-      write( 6,*) "INFO: Cyl icoord    -->", icoord
-      write( 6,*) "INFO: Cyl jcoord    -->", jcoord
+      write( 6,*) "INFO: Cyl radius    -->", radius, radius/m
+      write( 6,*) "INFO: Cyl icoord    -->", icoord, icoord/l
+      write( 6,*) "INFO: Cyl jcoord    -->", jcoord, jcoord/m
 !
       R = radius*uno
       R2a = (R-2)*(R-2)   ! lower radius
