@@ -1,0 +1,123 @@
+ INFO: commit 934c2415298a3f2080d96a9aa0c79c42838bc23b 
+ INFO: The test case is driven cavity (default)
+ INFO: using single precision (storage)
+ INFO: using the same precision for computation
+ INFO: mykind=               4 range  =           37
+ INFO: mykind=               4 huge   =   3.4028235E+38
+ INFO: mykind=               4 epsilon=   1.1920929E-07
+ INFO: mystorage=            4 range  =           37
+ INFO: mystorage=            4 huge   =   3.4028235E+38
+ INFO: mystorage=            4 epsilon=   1.1920929E-07
+ INFO: using RAW I/O
+       quad precision not supported
+ INFO: openacc version (GPU)
+ INFO: using Fused version
+ INFO: reference velocities --->    0.000000       0.1000000    
+ I/O: plane xy (vtk,binary) done
+ WARNING: volume forcing below 10e-7
+  
+ *********** size of the lattice **************
+ l (width x)  =          512
+ m (width y)  =          512
+ *********** fluid data **********************
+ viscosity    =   5.1199999E-02
+ u0           =    0.000000    
+ u00          =   0.1000000    
+ omega        =    1.529988    
+ Reynolds     =    500.0000    
+ forcing1     =    0.000000    
+ forcing2     =   1.6666668E-02
+ u_inflow     =    0.000000    
+ *********** run data ************************
+ itfin        =      1000000
+ itstart      =            0
+ ivtim        =       500000
+ isignal      =         5000
+ itsave       =      1000000
+ icheck       =        50000
+ flag1        =            0
+ flag2        =            0
+ flag3        =            0
+ ipad         =            0
+ jpad         =            0
+ radius       =           16
+ LES: cteS    =   0.1000000    
+ ************** Further check ****************
+ zero         =    0.000000        0.000000000000000     
+ uno          =    1.000000        1.000000000000000     
+ tre          =    3.000000        3.000000000000000     
+ rf           =    3.000000        3.000000000000000     
+ qf           =    1.500000        1.500000000000000     
+ p0           =   0.4444444       0.4444444444444444     
+ p1           =   0.1111111       0.1111111111111111     
+ p2           =   2.7777778E-02   2.7777777777777776E-002
+ *********************************************
+  
+ Timestep    50000
+       mean rho   0.999999E+00
+       mean vel   0.207243E-03   0.437313E-05   0.567815E-03
+ Timestep   100000
+       mean rho   0.999993E+00
+       mean vel   0.995371E-04   0.410899E-05   0.797075E-03
+ Timestep   150000
+       mean rho   0.999991E+00
+       mean vel   0.558752E-04   0.303955E-05   0.859127E-03
+ Timestep   200000
+       mean rho   0.999990E+00
+       mean vel   0.319964E-04   0.414612E-06   0.871789E-03
+ Timestep   250000
+       mean rho   0.999990E+00
+       mean vel   0.303494E-04   0.737345E-06   0.875365E-03
+ Timestep   300000
+       mean rho   0.999990E+00
+       mean vel   0.324238E-04   0.123744E-05   0.876801E-03
+ Timestep   350000
+       mean rho   0.999990E+00
+       mean vel   0.327179E-04   0.157309E-05   0.877484E-03
+ Timestep   400000
+       mean rho   0.999990E+00
+       mean vel   0.325458E-04   0.157506E-05   0.877829E-03
+ Timestep   450000
+       mean rho   0.999989E+00
+       mean vel   0.325133E-04   0.143796E-05   0.878003E-03
+ I/O: plane xy (vtk,binary) done
+ I/O: vorticity xy (vtk) done
+ Timestep   500000
+       mean rho   0.999989E+00
+       mean vel   0.325188E-04   0.144609E-05   0.878092E-03
+ Timestep   550000
+       mean rho   0.999989E+00
+       mean vel   0.325153E-04   0.145050E-05   0.878136E-03
+ Timestep   600000
+       mean rho   0.999989E+00
+       mean vel   0.325226E-04   0.145030E-05   0.878161E-03
+ Timestep   650000
+       mean rho   0.999989E+00
+       mean vel   0.325088E-04   0.145002E-05   0.878174E-03
+ Timestep   700000
+       mean rho   0.999989E+00
+       mean vel   0.325033E-04   0.144750E-05   0.878182E-03
+ Timestep   750000
+       mean rho   0.999989E+00
+       mean vel   0.325050E-04   0.144730E-05   0.878185E-03
+ Timestep   800000
+       mean rho   0.999989E+00
+       mean vel   0.325091E-04   0.144679E-05   0.878187E-03
+ Timestep   850000
+       mean rho   0.999989E+00
+       mean vel   0.325233E-04   0.144156E-05   0.878187E-03
+ Timestep   900000
+       mean rho   0.999989E+00
+       mean vel   0.325107E-04   0.144633E-05   0.878187E-03
+ Timestep   950000
+       mean rho   0.999990E+00
+       mean vel   0.325194E-04   0.144978E-05   0.878187E-03
+ I/O: plane xy (vtk,binary) done
+ I/O: vorticity xy (vtk) done
+ Timestep  1000000
+       mean rho   0.999989E+00
+       mean vel   0.325217E-04   0.144739E-05   0.878187E-03
+ task             0 saving t=      1000000 save.01000000.bin 
+ Timestep  1000000
+       mean rho   0.999989E+00
+       mean vel   0.325217E-04   0.144739E-05   0.878187E-03

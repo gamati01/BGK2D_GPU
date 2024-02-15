@@ -34,12 +34,25 @@ CHECK2=SINGLE
 CHECK3=ORIGINAL
 CHECK4=LDC
 #
+ifdef DAITARN
+ OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
+ OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc75,managed
+ MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
+ DC  = -stdpar=gpu -DDCONCURRENT
+ SCC = nvc
+ SFC = nvfortran -DPGI
+ FOPT = -O2 -Mnodepchk -Mcontiguous
+ COPT = -O2
+ OPT  = -O2 -Mnodepchk -Mcontiguous
+ CHECK1=DAITARN
+endif
+#
 ifdef NVIDIA
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
  DC  = -stdpar=gpu -DDCONCURRENT
- SCC = nvcc 
+ SCC = nvcc
  SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
  COPT = -O2
