@@ -52,7 +52,7 @@ ifdef NVIDIA
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
  DC  = -stdpar=gpu -DDCONCURRENT
- SCC = nvcc
+ SCC = nvc
  SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
  COPT = -O2
@@ -263,6 +263,7 @@ all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x 
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #
@@ -274,6 +275,7 @@ doconcurrent: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(DC) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(LIB) $(FIX) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4)
+	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #
@@ -288,6 +290,7 @@ offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #
@@ -301,6 +304,7 @@ openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4) 
+	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #
@@ -312,6 +316,7 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	$(FC) $(OPT) $(MOD1) $(OBJ) $(OBJ4) $(IMPL) $(FIX) $(LIB) -o ../RUN/bgk2d.$(VER).x
 	@echo "-------------------------------------------------"
 	@echo "options: "$(CHECK1) $(CHECK2) $(CHECK3) $(CHECK4)
+	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
 #

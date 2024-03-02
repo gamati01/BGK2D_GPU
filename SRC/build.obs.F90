@@ -30,6 +30,7 @@
       integer:: icoord, jcoord
       integer:: itime
       real(mykind):: d2, R2a, R2b, R
+      real(mykind):: hsize
 !
       imin = l
       jmin = m
@@ -42,7 +43,40 @@
 !
 ! creating  obstacle 
 !
-! creating obstacles
+#ifdef SQUARE
+! creating square
+      write( 6,*) "INFO: creating obstacle (square)" 
+      write(16,*) "INFO: creating obstacle (square)" 
+!
+! center of the square
+      icoord = 2*l/5
+      jcoord = m/2
+      hsize  = radius  ! half size of the square
+!      
+      write( 6,*) "INFO: square size   -->", 2*hsize, 2*hsize/m
+      write( 6,*) "INFO: Cyl icoord    -->", icoord, icoord/l
+      write( 6,*) "INFO: Cyl jcoord    -->", jcoord, jcoord/m
+!
+      do j = 1, m
+         if((j.ge.(jcoord-hsize)).and.(j.le.(jcoord+hsize))) then
+            do i = 1, l
+               if((i.ge.(icoord-hsize)).and.(i.le.(icoord+hsize))) then
+!                    
+                   obs(i,j) = 1
+                   nobs = nobs + 1
+!
+                   imin = min(imin,i)
+                   jmin = min(jmin,j)
+!
+                   imax = max(imax,i)
+                   jmax = max(jmax,j)
+!
+               endif
+            enddo
+         endif
+      enddo
+#else
+! creating circle
       write( 6,*) "INFO: creating obstacle (cylinder)" 
       write(16,*) "INFO: creating obstacle (cylinder)" 
 !
@@ -77,6 +111,7 @@
              endif
          end do
       end do
+#endif
 !
       write(6,*) "INFO: num. obs         -->", nobs
       write(6,*) "INFO: ratio obs/size   -->", nobs/float(l*m)
