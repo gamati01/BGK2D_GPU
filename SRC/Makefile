@@ -229,6 +229,8 @@ OBJ2 = check_case.o \
        vtk_om.o \
        vtk_om.binary.o \
        varm.o \
+       w.obs.o \
+       r.obs.o \
        prof_j.o \
        prof_i.o \
        diagno.o \

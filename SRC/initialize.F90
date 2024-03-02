@@ -74,6 +74,8 @@
 #ifdef OBSTACLE
        call build_obs
        call vtk_obs
+!       call w_obs
+       call r_obs
 #endif
 !
 ! build starting configuration
