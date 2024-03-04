@@ -31,6 +31,7 @@
       integer:: itime
       real(mykind):: d2, R2a, R2b, R
       real(mykind):: hsize
+      real(mykind):: soglia,a
 !
       imin = l
       jmin = m
@@ -74,6 +75,37 @@
                endif
             enddo
          endif
+      enddo
+#elif POROUS
+! creating porous 
+      write( 6,*) "INFO: creating obstacle (porous)" 
+      write(16,*) "INFO: creating obstacle (porous)" 
+!      
+! threshold
+      soglia=0.4
+      write( 6,*) "INFO: threshold (porous)", soglia 
+      write(16,*) "INFO: threshold (porous)", soglia 
+!      
+      do j = 5, m-4, 5
+         do i = l/4, 3*l/4, 5
+            a = rand()
+            if(a.gt.soglia) then
+               obs(i+1,j  ) = 1
+               obs(i  ,j+1) = 1
+               obs(i  ,j  ) = 1
+               obs(i-1,j  ) = 1
+               obs(i  ,j-1) = 1
+
+               nobs = nobs + 5
+!
+               imin = min(imin,i-1)
+               jmin = min(jmin,j-1)
+!
+               imax = max(imax,i+1)
+               jmax = max(jmax,j+1)
+!
+            endif
+         enddo
       enddo
 #else
 ! creating circle
