@@ -258,6 +258,14 @@
 #  endif
 # endif
 !
+# ifdef MYVERSION
+#  ifdef FORCING_Y
+           forcey = fgrad*rho
+#  else
+           forcex = fgrad*rho     ! default value...
+#  endif
+# endif
+!
 ! loop on populations
            b01(i,j) = x01 - omega*(x01-e01) + (+ forcex - forcey)    
            b03(i,j) = x03 - omega*(x03-e03) + (+ forcex + forcey)

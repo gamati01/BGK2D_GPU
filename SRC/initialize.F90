@@ -74,8 +74,10 @@
 #ifdef OBSTACLE
        call build_obs
        call vtk_obs
-!       call w_obs
-       call r_obs
+!       
+! to fix       
+       call w_obs               ! write ASCII file
+!       call r_obs              ! read ASCII file
 #endif
 !
 ! build starting configuration

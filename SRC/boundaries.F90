@@ -37,6 +37,9 @@
 #elif INFLOW
 ! inflow bc
         call bcond_inflow
+#elif MYVERSION
+! periodic bc (my version) 
+        call bcond_periodic
 #else
 ! lid_cavity bc (default)
         call bcond_driven

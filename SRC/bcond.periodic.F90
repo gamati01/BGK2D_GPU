@@ -33,8 +33,6 @@
 !
         integer      :: i,j
 !
-#ifdef PERIODIC
-!
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
         call time(tcountA0)
@@ -114,7 +112,6 @@
  #else
  !$acc end parallel
  #endif
-#endif
 !
 ! ----------------------------------------------
 ! stop timing

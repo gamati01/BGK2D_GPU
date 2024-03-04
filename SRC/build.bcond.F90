@@ -36,6 +36,9 @@
 #ifdef CHANNEL
       u00 = 0.0            ! boundary condition
       u0  = u0             ! volume force
+#elif MYVERSION
+      u00 = 0.0            ! boundary condition
+      u0  = u0             ! volume force
 #else
       u00 = u0             ! boundary condition
       u0  = 0.0            ! volume force

@@ -44,7 +44,6 @@
         real(mykind) :: cx10,cx12,cx14
         real(mykind):: cte1
 !
-#ifdef INFLOW
 !
 #ifdef NOSHIFT
        cte1 = uno
@@ -160,7 +159,6 @@
 !$acc end kernels
 #else
 !$acc end parallel
-#endif
 #endif
 
 !

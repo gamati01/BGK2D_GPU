@@ -18,7 +18,7 @@ FINE = "******** End Compilation step  *******"
 #----------------------------------------------
 # flags
 # default (GNU)
-MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=16
+MULTI =   -fopenmp -DMULTICORE -ftree-parallelize-loops=8
 OPENACC =  -fopenacc -DOPENACC
 OFFLOAD = -fopenmp  -foffload=nvptx-none -DOFFLOAD
 DC = not supported 

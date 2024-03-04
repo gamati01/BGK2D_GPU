@@ -46,6 +46,9 @@
 #elif INFLOW
         write(6 ,*) "INFO: The test case has inflow bc (-DINFLOW)" 
         write(16,*) "INFO: The test case has inflow bc (-DINFLOW)" 
+#elif MYVERSION
+        write(6 ,*) "INFO: The test case has ad-hoc bc (-DMYVERSION)" 
+        write(16,*) "INFO: The test case has ad-hoc bc (-DMYVERSION)" 
 #else
         write(6 ,*) "INFO: The test case is driven cavity (default)" 
         write(16,*) "INFO: The test case is driven cavity (default)" 
