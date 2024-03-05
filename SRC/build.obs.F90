@@ -32,6 +32,7 @@
       real(mykind):: d2, R2a, R2b, R
       real(mykind):: hsize
       real(mykind):: soglia,a
+      real(mykind):: rand
 !
       imin = l
       jmin = m
