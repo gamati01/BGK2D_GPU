@@ -232,9 +232,9 @@
 !                 cx(14)*cy(14)*n14 + &
 !                 cx(17)*cy(17)*n17
 !
-           Pxy = -n01 + &
-                 +n03 + &
-                 +n10 + &
+           Pxy = -n01 &
+                 +n03 &
+                 +n10 &
                  -n12 
 !
            Pyx = Pxy
@@ -243,8 +243,23 @@
            Ptotal =sqrt((Pxx)**2 + (2*Pxy*Pyx) + (Pyy)**2)
 !           
 ! adding turbulent viscosity
-           Ts = 1/(2*omega1) + sqrt(18*(cteS)**2 *Ptotal+(1/omega1)**2)/2
+           Ts = 1/(2*omega1) + sqrt(18.0*(cteS**2)*Ptotal + (1.0/omega1)**2)/2
            omega = 1/Ts
+!           
+#ifdef QQQQQQ
+           if (mod(itime,1000).eq.0) then
+               if((i.eq.l/2).AND.(j.eq.m/2)) then
+               !       omega = 2.0/(6.0*svisc+1.0)
+               write(666,*) itime,  &
+                            (2/omega1 -1)/6, &  
+                            (2/omega -1)/6 
+               write(6,*) itime,  &
+                            (2/omega1 -1)/6, &
+                            (2/omega -1)/6 
+
+               endif
+           endif
+#endif
 !
 #endif
 !
