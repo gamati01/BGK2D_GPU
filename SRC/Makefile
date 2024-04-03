@@ -97,7 +97,7 @@ ifdef INTEL
  DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64 -DDCONCURRENT
  SFC = ifx
  SCC = icx
- FOPT = -O3 -assume contiguous_pointer
+ FOPT = -xhost -assume contiguous_pointer
 # FOPT = -O3 -xCORE-AVX512 -mtune=skylake-avx512 -assume contiguous_pointer
  COPT = -O3 
  OPT =  -O3
@@ -224,6 +224,7 @@ OBJ2 = check_case.o \
        hencol.o \
        outdat.o \
        vtk_obstacle.o \
+       vtk_visc.binary.o \
        vtk_xy.o \
        vtk_xy.binary.o \
        vtk_om.o \
