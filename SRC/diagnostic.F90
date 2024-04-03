@@ -79,9 +79,9 @@
            call draglift(itime,333)
 #endif
 !
-#ifdef LES
+!#ifdef LES
            call probe_visc(itime,l/2,m/2)
-#endif
+!#endif
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat
 !           call flush(88)            ! flush fort.88 (convergence)

@@ -42,7 +42,8 @@
       write(16,*) 'viscosity    =',svisc
       write(16,*) 'u0           =',u0
       write(16,*) 'u00          =',u00
-      write(16,*) 'omega        =',omega
+      write(16,*) 'omega        =',omega1
+      write(16,*) 'tau          =',1.0/omega1
       write(16,*) 'Reynolds     =',0.5*u0*l/svisc+0.5*u00*l/svisc
       write(16,*) 'forcing1     =',fgrad
       write(16,*) 'forcing2     =',u00/(6.0)
@@ -80,7 +81,8 @@
       write(6,*) 'viscosity    =',svisc
       write(6,*) 'u0           =',u0
       write(6,*) 'u00          =',u00
-      write(6,*) 'omega        =',omega
+      write(6,*) 'omega        =',omega1
+      write(6,*) 'tau          =',1.0/omega1
       write(6,*) 'Reynolds     =',0.5*u0*l/svisc+0.5*u00*l/svisc
       write(6,*) 'forcing1     =',fgrad
       write(6,*) 'forcing2     =',u00/(6.0)

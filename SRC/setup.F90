@@ -36,6 +36,7 @@
       character(len=9)  :: file_name4
       character(len=15) :: file_name5
       character(len=19) :: file_name6
+      character(len=19) :: file_name7
       character(len=21) :: file_name8   ! draglift
       character(len=21) :: file_name9   ! bgktime.log
 !
@@ -56,6 +57,9 @@
 ! prof_j
       file_name6 = 'prof_j.dat'
 !
+! prof_j
+      file_name7 = 'probe_visc.dat'
+!
 ! draglift
       file_name8 = 'drag.lift.dat'
 !
@@ -67,6 +71,7 @@
       open(68,file=file_name3, status='unknown')        ! probe
       open(38,file=file_name5, status='unknown')        ! task.XXXXXX.log
       open(64,file=file_name6, status='unknown')        ! prof_j
+      open(65,file=file_name7, status='unknown')        ! probe_visc
       open(66,file=file_name8, status='unknown')        ! drag
       open(99,file=file_name9, status='unknown')        ! bgk.time.log
 !
