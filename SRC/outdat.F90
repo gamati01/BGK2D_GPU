@@ -48,6 +48,7 @@
       write(16,*) 'forcing1     =',fgrad
       write(16,*) 'forcing2     =',u00/(6.0)
       write(16,*) 'u_inflow     =',u_inflow
+      write(16,*) 'LES: cteS    =',cteS
       write(16,*) '*********** run data ************************'
       write(16,*) 'itfin        =',itfin
       write(16,*) 'itstart      =',itstart
