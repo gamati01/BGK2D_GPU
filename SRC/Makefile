@@ -91,7 +91,7 @@ ifdef GNU
 endif
 #
 ifdef INTEL
- MULTI =  -qopenmp -DMULTICORE -fopenmp-targets:spir64 
+ MULTI =  -qopenmp -DMULTICORE 
  OPENACC = not supported
  OFFLOAD =  -fiopenmp -fopenmp-targets=spir64_gen -Xopenmp-target-backend "-device *" -DOFFLOAD 
  DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64 -DDCONCURRENT
