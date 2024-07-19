@@ -109,6 +109,27 @@
             endif
          enddo
       enddo
+#elif READ
+      write(6,*) "WARNING: hardwired parameters"
+      write( 6,*) "INFO: reading from file fort.96"
+      write(16,*) "INFO: reading from file fort.96"
+      imin = l
+      jmin = m
+      imax = 0
+      jmax = 0
+      nobs = 0
+      do j = 1, 138*3
+         do i = 1, 138*3
+            read(96,*) x1, y1, obs(i,j)
+            nobs = nobs + 1
+!
+            imin = min(imin,i)
+            jmin = min(jmin,j)
+!
+            imax = max(imax,i)
+            jmax = max(jmax,j)
+         end do
+      end do
 #else
 ! creating circle
       write( 6,*) "INFO: creating obstacle (cylinder)" 
@@ -147,27 +168,6 @@
       end do
 #endif
 !
-#ifdef READ
-      write(6,*) "WARNING: hardwired parameters"
-      write(6,*) "INFO: reading from file fort.96"
-      imin = l
-      jmin = m
-      imax = 0
-      jmax = 0
-      nobs = 0
-      do j = 1, 138*3
-         do i = 1, 138*3
-            read(96,*) x1, y1, obs(i,j)
-            nobs = nobs + 1
-!
-            imin = min(imin,i)
-            jmin = min(jmin,j)
-!
-            imax = max(imax,i)
-            jmax = max(jmax,j)
-         end do
-      end do
-#endif
       write(6,*) "INFO: num. obs         -->", nobs
       write(6,*) "INFO: ratio obs/size   -->", nobs/float(l*m)
       write(6,*) "INFO: obs (x)             ",imax, imin
