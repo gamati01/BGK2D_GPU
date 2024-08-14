@@ -247,6 +247,7 @@ OBJ2 = check_case.o \
        save_raw.o\
        profile.o\
        git_info.o \
+       make_info.o \
        draglift.o \
        dealloca.o
 
@@ -276,6 +277,7 @@ all: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
+	rm -f *_info.F90
 #
 ##----------------------------------------------
 doconcurrent: VER := doconcurrent
@@ -288,8 +290,8 @@ doconcurrent: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
+	rm -f *_info.F90
 #
-
 #----------------------------------------------
 offload: FOPT += $(OFFLOAD)
 offload: OPT  += $(OFFLOAD)
@@ -303,6 +305,7 @@ offload:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
+	rm -f *_info.F90
 #
 #----------------------------------------------
 openacc: FOPT += $(OPENACC)
@@ -317,6 +320,7 @@ openacc:$(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
+	rm -f *_info.F90
 #
 #----------------------------------------------
 multicore: VER:= multicore
@@ -329,6 +333,7 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 	@echo "further option: "$(FIX)
 	@echo $(FINE)
 	@echo "-------------------------------------------------"
+	rm -f *_info.F90
 #
 #----------------------------------------------
 # rules 
@@ -346,12 +351,39 @@ multicore: $(MOD0) $(MOD1) $(OBJ) $(OBJ4)
 %.o: $(INC) %.c
 	$(CC) $(COPT)                          -c $<
 #
+#
+# generated info subroutines...
+#
+# git info
 git_info.F90:
 	 echo "    subroutine git_info"                              >> git_info.F90
 	 echo "    write( 6,*) \""INFO: `git log  | head  -n 1` \"   >> git_info.F90
 	 echo "    write(16,*) \""INFO: `git log  | head  -n 1` \"   >> git_info.F90
 	 echo "    end subroutine git_info"                          >> git_info.F90
+# make info
 #
+make_info.F90:
+	echo "    subroutine make_info"                             >  make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(CHECK1) ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(CHECK2) ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(CHECK3) ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(CHECK4) ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(FIX)    ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(FC)     ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(FOPT)   ` \"         >> make_info.F90
+	echo "    write( 6,*) \""INFO: `echo $(PREPROC)` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(CHECK1) ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(CHECK2) ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(CHECK3) ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(CHECK4) ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(FIX)    ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(FC)     ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(FOPT)   ` \"         >> make_info.F90
+	echo "    write(16,*) \""INFO: `echo $(PREPROC)` \"         >> make_info.F90
+	echo "    end subroutine make_info"                         >> make_info.F90
+#	
+#	echo "    write( 6 *) \""INFO: `$(FC) -v | head -n 1 ` \"   >> make_info.F90
+#	echo "    write( 6 *) \""INFO: `$(FC) -v             ` \"  2>> make_info.F90
 #----------------------------------------------
 # utilities
 #----------------------------------------------

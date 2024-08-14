@@ -33,8 +33,9 @@
               &         at the same time", myrank, u0, u_inflow 
         endif
 !
-! Info section   
+! Info section   (at standard output)
         call git_info
+        call make_info
 !        
 ! boundary conditions
 #ifdef PERIODIC
