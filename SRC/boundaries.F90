@@ -37,6 +37,9 @@
 #elif INFLOW
 ! inflow bc
         call bcond_inflow
+#elif COUETTE
+! couette bc
+        call bcond_couette
 #elif MYVERSION
 ! periodic bc (my version) 
         call bcond_periodic

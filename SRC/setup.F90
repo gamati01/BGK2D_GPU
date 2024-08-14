@@ -103,11 +103,13 @@
 ! 
 ! test case
 #ifdef TGV
-         write(6,*) " Test Case: Taylor-Green Vortices"
+         write(6,*) " Test Case: Taylor-GreenVortices"
 #elif POF  
          write(6,*) " Test Case: Poiseuille Flow"
 #elif VKS  
          write(6,*) " Test Case: Von Karman Street"
+#elif COU  
+         write(6,*) " Test Case: Couette Flow"
 #else         
          write(6,*) " Test Case: Lid-Driven Cavity"
 #endif

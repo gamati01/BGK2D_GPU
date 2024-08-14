@@ -187,6 +187,11 @@ ifdef VKS
  CHECK4=VKS
 endif
 #
+## Couette flow
+ifdef COU
+ PREPROC =-DCOUETTE -DCOU 
+ CHECK4=COU
+endif
 #----------------------------------------------
 # module & subroutines
 #----------------------------------------------
@@ -216,6 +221,7 @@ OBJ2 = check_case.o \
        bcond.periodic.o \
        bcond.channel.o \
        bcond.inflow.o \
+       bcond.couette.o \
        bcond.obs.o \
        build.bcond.o \
        build.obs.o \
