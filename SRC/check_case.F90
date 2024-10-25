@@ -47,6 +47,9 @@
 #elif INFLOW
         write(6 ,*) "INFO: The test case has inflow bc (-DINFLOW)" 
         write(16,*) "INFO: The test case has inflow bc (-DINFLOW)" 
+#elif STEP
+        write(6 ,*) "INFO: The test case has backwrd step  bc (-DSTEP)" 
+        write(16,*) "INFO: The test case has backwrd step  bc (-DSTEP)" 
 #elif MYVERSION
         write(6 ,*) "INFO: The test case has ad-hoc bc (-DMYVERSION)" 
         write(16,*) "INFO: The test case has ad-hoc bc (-DMYVERSION)" 

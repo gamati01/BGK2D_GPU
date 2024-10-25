@@ -106,18 +106,6 @@ ifdef INTEL
  CHECK1=INTEL
 endif
 #
-#
-# to remove
-#ifdef PWR
-# SCC = xlc_r  
-# SFC = xlf_r 
-# OFFLOAD = -qsmp=omp -qoffload -DOFFLOAD
-# FOPT = -O3 -qassert=contig
-# COPT = -O3 -qassert=contig
-# OPT = -O3 -qassert=contig
-# CHECK1=PWR
-#endif
-#
 #----------------------------------------------
 # precision used
 #----------------------------------------------
@@ -158,7 +146,6 @@ ifdef FUSED
  CHECK3=FUSED
 endif
 #
-#
 #----------------------------------------------
 # test case
 #----------------------------------------------
@@ -187,10 +174,16 @@ ifdef VKS
  CHECK4=VKS
 endif
 #
-## Couette flow
+# Couette flow
 ifdef COU
  PREPROC =-DCOUETTE -DCOU 
  CHECK4=COU
+endif
+#
+# Backward facing step
+ifdef STP
+ PREPROC =-DSTEP
+ CHECK4=STP
 endif
 #----------------------------------------------
 # module & subroutines
@@ -218,6 +211,7 @@ OBJ2 = check_case.o \
        input.o \
        alloca.o \
        bcond.driven.o \
+       bcond.step.o \
        bcond.periodic.o \
        bcond.channel.o \
        bcond.inflow.o \

@@ -40,6 +40,9 @@
 #elif COUETTE
 ! couette bc
         call bcond_couette
+#elif STEP
+! couette bc
+        call bcond_step
 #elif MYVERSION
 ! periodic bc (my version) 
         call bcond_periodic
