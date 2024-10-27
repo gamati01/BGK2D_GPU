@@ -111,6 +111,10 @@
         real(mystorage), dimension(:,:), allocatable :: b17,b19
 #endif
 !
+! variable for BFS (size of the step)
+        integer:: stepx, stepy
+!
+! variables for OBD
         integer, dimension(:,:), allocatable :: obs
         integer:: radius
 !

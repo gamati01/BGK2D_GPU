@@ -62,7 +62,10 @@
       write(16,*) 'ipad         =',ipad
       write(16,*) 'jpad         =',jpad
       write(16,*) 'radius       =',radius
-      write(16,*) 'LES: cteS    =',cteS
+#ifdef STEP
+      write(16,*) 'Step X       =',stepx
+      write(16,*) 'Step Y       =',stepY
+#endif
       write(16,*) '************** Further check ****************'
       write(16,*) 'zero         =', zero, zero_qp
       write(16,*) 'uno          =', uno, uno_qp
@@ -102,6 +105,10 @@
       write(6,*) 'ipad         =',ipad
       write(6,*) 'jpad         =',jpad
       write(6,*) 'radius       =',radius
+#ifdef STEP
+      write(6,*) 'Step X       =',stepx
+      write(6,*) 'Step Y       =',stepY
+#endif
       write(6,*) '*********************************************'
       write(6,*) ' '
 

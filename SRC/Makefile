@@ -181,9 +181,9 @@ ifdef COU
 endif
 #
 # Backward facing step
-ifdef STP
+ifdef BFS
  PREPROC =-DSTEP
- CHECK4=STP
+ CHECK4=BFS
 endif
 #----------------------------------------------
 # module & subroutines

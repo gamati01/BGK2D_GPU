@@ -71,6 +71,9 @@
       l1 = l+1
       m1 = m+1
 !
+      stepy = m/4
+      stepx = l/10
+!
 ! a check
 #ifdef OBSTACLE
       if (radius.gt.m/8) then
