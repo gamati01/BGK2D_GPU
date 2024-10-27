@@ -102,8 +102,12 @@
 !
 ! rear, inflow (x=0, parabolic profile)
         do concurrent (j=stepy:m+1)
-           xj = u_inflow*float(j-stepy)*float(m-j)/float(m*m/16)
+           xj = u_inflow*float(j-stepy)*float(m-j) & 
+                   /float((m-stepy)*(m-stepy)/4)
            yj = zero
+!           
+! check, to remove
+!           write(6,*) j, xj, yj
 !           
            cvsq=xj*xj+yj*yj
 !
