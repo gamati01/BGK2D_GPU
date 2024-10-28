@@ -1,4 +1,5 @@
 !=====================================================================
+!=====================================================================
 !     ****** LBE/bcond_step
 !
 !     COPYRIGHT
@@ -46,7 +47,6 @@
         real(mykind) :: cx10,cx12,cx14
         real(mykind) :: cte1
 !
-!
 #ifdef NOSHIFT
        cte1 = uno
 #else
@@ -55,13 +55,13 @@
 !
         u_inflow=0.1
 !        
-!
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
         call time(tcountA0)
 !
 ! ----------------------------------------------
 ! front, outflow  (x = l)
+! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
         do j=0,m+1
@@ -99,9 +99,34 @@
            a12(l1,j) = crho*p2*(cte1+cx12)
            a14(l1,j) = crho*p1*(cte1+cx14)
         end do
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+# ifdef KERNELS
+!$acc end kernels
+# else
+!$acc end parallel
+# endif
+#endif
 !
+! ----------------------------------------------
 ! rear, inflow (x=0, parabolic profile)
+! ----------------------------------------------
+#ifdef OFFLOAD
+!$OMP target teams distribute parallel do simd
+        do j=stepy,m+1
+#elif OPENACC
+#ifdef KERNELS
+!$acc kernels
+!$acc loop independent
+#else
+!$acc parallel
+!$acc loop independent
+#endif
+        do j=stepy,m+1
+#else
         do concurrent (j=stepy:m+1)
+#endif
            xj = u_inflow*float(j-stepy)*float(m-j) & 
                    /float((m-stepy)*(m-stepy)/4)
            yj = zero
@@ -133,7 +158,6 @@
 ! left (y = 0)  
 ! right (y = m) 
 ! ----------------------------------------------
-!
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
         do i=0,l+1
@@ -153,7 +177,7 @@
            a08(i  ,0)  = a17(i,1)
            a12(i+1,0)  = a01(i,1)
            a03(i-1,0)  = a10(i,1)
-
+!           
 ! right, noslip  (y = m) 
            a10(i+1,m1) = a03(i,m)
            a17(i  ,m1) = a08(i,m)
@@ -171,20 +195,68 @@
 !
 ! ----------------------------------------------
 ! step  
-! ----------------------------------------------
 ! left, noslip  (y = m/4)
+! ----------------------------------------------
+#ifdef OFFLOAD
+!$OMP target teams distribute parallel do simd
+        do i=1,stepx
+#elif OPENACC
+#ifdef KERNELS
+!$acc kernels
+!$acc loop independent
+#else
+!$acc parallel
+!$acc loop independent
+#endif
+        do i=1,stepx
+#else
         do concurrent (i=1:stepx)
+#endif
            a08(i  ,stepy-1)  = a17(i,stepy)
            a12(i+1,stepy-1)  = a01(i,stepy)
            a03(i-1,stepy-1)  = a10(i,stepy)
         enddo
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+#ifdef KERNELS
+!$acc end kernels
+#else
+!$acc end parallel
+#endif
+#endif
 !
+! ----------------------------------------------
 ! rear, noslip  (x = l/4)
+! ----------------------------------------------
+#ifdef OFFLOAD
+!$OMP target teams distribute parallel do simd
+        do j=1,stepy
+#elif OPENACC
+#ifdef KERNELS
+!$acc kernels
+!$acc loop independent
+#else
+!$acc parallel
+!$acc loop independent
+#endif
+        do j=1,stepy
+#else
         do concurrent (j=1:stepy)
+#endif
            a03(stepx-1,j-1) = a10(stepx,j)
            a01(stepx-1,j+1) = a12(stepx,j)
            a05(stepx-1,j  ) = a14(stepx,j)
         enddo
+#ifdef OFFLOAD
+!$OMP end target teams distribute parallel do simd
+#elif OPENACC
+#ifdef KERNELS
+!$acc end kernels
+#else
+!$acc end parallel
+#endif
+#endif
 !
 ! ----------------------------------------------
 ! stop timing
@@ -192,7 +264,6 @@
         call SYSTEM_CLOCK(countA1, count_rate, count_max)
         time_bc = time_bc + real(countA1-countA0)/(count_rate)
         time_bc1 = time_bc1 + (tcountA1-tcountA0)
-!
 !
 #ifdef DEBUG_2
         if(myrank == 0) then
