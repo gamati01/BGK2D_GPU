@@ -71,8 +71,8 @@
       l1 = l+1
       m1 = m+1
 !
-      stepy = m/4
-      stepx = l/10
+      stepy = m/2
+      stepx = l/20
 !
 ! a check
 #ifdef OBSTACLE

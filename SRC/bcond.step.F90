@@ -1,5 +1,4 @@
 !=====================================================================
-!=====================================================================
 !     ****** LBE/bcond_step
 !
 !     COPYRIGHT
@@ -54,6 +53,8 @@
 #endif
 !
         u_inflow=0.1
+!        stepy = m/2
+!        stepx = l/20
 !        
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
@@ -127,6 +128,7 @@
 #else
         do concurrent (j=stepy:m+1)
 #endif
+           u_inflow=0.1
            xj = u_inflow*float(j-stepy)*float(m-j) & 
                    /float((m-stepy)*(m-stepy)/4)
            yj = zero
