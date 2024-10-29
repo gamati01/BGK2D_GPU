@@ -38,7 +38,7 @@ ifdef DAITARN
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc75,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
- DC  = -stdpar=gpu -DDCONCURRENT
+ DC  = -stdpar=gpu -DDOCONCURRENT
  SCC = nvc
  SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
@@ -51,7 +51,7 @@ ifdef NVIDIA
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
  OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
- DC  = -stdpar=gpu -DDCONCURRENT
+ DC  = -stdpar=gpu -DDOCONCURRENT -Minfo=all
  SCC = nvc
  SFC = nvfortran -DPGI
  FOPT = -O2 -Mnodepchk -Mcontiguous
@@ -94,7 +94,7 @@ ifdef INTEL
  MULTI =  -qopenmp -DMULTICORE 
  OPENACC = not supported
  OFFLOAD =  -fiopenmp -fopenmp-targets=spir64_gen -Xopenmp-target-backend "-device *" -DOFFLOAD 
- DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64 -DDCONCURRENT
+ DC = -fiopenmp -fopenmp -fopenmp-target-do-concurrent -fopenmp-targets=spir64 -DDOCONCURRENT
  SFC = ifx
  SCC = icx
  FOPT = -xhost -assume contiguous_pointer
