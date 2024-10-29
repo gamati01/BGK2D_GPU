@@ -53,8 +53,8 @@
 #endif
 !
         u_inflow=0.1
-!        stepy = m/2
-!        stepx = l/20
+!        stepy = 0
+!        stepx = 0
 !        
 ! start timing...
         call SYSTEM_CLOCK(countA0, count_rate, count_max)
@@ -129,6 +129,9 @@
         do concurrent (j=stepy:m+1)
 #endif
            u_inflow=0.1
+           crho  =uno
+           rhoinv=uno
+
            xj = u_inflow*float(j-stepy)*float(m-j) & 
                    /float((m-stepy)*(m-stepy)/4)
            yj = zero
@@ -201,7 +204,7 @@
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do i=1,stepx
+        do i=0,stepx
 #elif OPENACC
 #ifdef KERNELS
 !$acc kernels
@@ -210,9 +213,9 @@
 !$acc parallel
 !$acc loop independent
 #endif
-        do i=1,stepx
+        do i=0,stepx
 #else
-        do concurrent (i=1:stepx)
+        do concurrent (i=0:stepx)
 #endif
            a08(i  ,stepy-1)  = a17(i,stepy)
            a12(i+1,stepy-1)  = a01(i,stepy)
@@ -233,7 +236,7 @@
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do j=1,stepy
+        do j=0,stepy
 #elif OPENACC
 #ifdef KERNELS
 !$acc kernels
@@ -242,9 +245,9 @@
 !$acc parallel
 !$acc loop independent
 #endif
-        do j=1,stepy
+        do j=0,stepy
 #else
-        do concurrent (j=1:stepy)
+        do concurrent (j=0:stepy)
 #endif
            a03(stepx-1,j-1) = a10(stepx,j)
            a01(stepx-1,j+1) = a12(stepx,j)
