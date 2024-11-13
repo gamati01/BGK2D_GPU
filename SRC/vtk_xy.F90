@@ -1,3 +1,4 @@
+!=======================================================================
 !     ****** LBE/vtk_xy
 !
 !     COPYRIGHT
@@ -88,7 +89,7 @@
                    +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 !
               write(52,1004) u/den, w/den, 0.0
-              write(6,*) i,j, u, w,den
+!              write(6,*) i,j, u, w,den
            end do
         end do
 !

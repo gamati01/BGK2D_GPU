@@ -227,6 +227,7 @@ OBJ2 = check_case.o \
        vtk_visc.binary.o \
        vtk_xy.o \
        vtk_xy.binary.o \
+       vtk_ff.binary.o \
        vtk_om.o \
        vtk_om.binary.o \
        varm.o \

@@ -123,6 +123,7 @@
       call varm(itime-1)
       call prof_i(itime-1,m/2)
       call prof_j(itime-1,l/2)
+      call vtk_ff_bin(itime-1)
 !
 #ifdef OFFLOAD
 !$omp end target data
