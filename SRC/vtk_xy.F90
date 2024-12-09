@@ -38,7 +38,7 @@
 !
         real(sp) :: u,w,den
         real(sp) :: cte1
-
+        real(sp), parameter :: zerol=0.0
 !
         file_name = 'tec_xy.xxxxxxxx.vtk'
 !
@@ -61,20 +61,20 @@
         write(52,'(A11,I10,A1,I10,A1,I10)')  'DIMENSIONS ',l,' ',m,' ',1
 !
         write(52,'(A14,I10,A7)')'X_COORDINATES ',l,' double'
-!        do i = 1,l
-!           write(52, *) i + offset(1)
-!        enddo
+        do i = 1,l
+           write(52, *) i + offset(1)
+        enddo
 !
         write(52,'(A14,I10,A7)')'Y_COORDINATES ',m,' double'
-!        do j = 1,m
-!           write(52, *) j + offset(2)
-!        enddo
+        do j = 1,m
+           write(52, *) j + offset(2)
+        enddo
 !
         write(52,'(A14,I10,A7)')'Z_COORDINATES ',1,' double'
         write(52, *) 0
 !
         write(52,'(A10,I10)')'POINT_DATA ',l*m*1
-        write(52,'(A24)')'VECTORS velocity double'
+        write(52,'(A24)')'VECTORS velocity float'
 !        write(52,'(A20)')'LOOKUP_TABLE default'
         do j = 1,m
            do i = 1,l
@@ -88,12 +88,12 @@
               den = a01(i,j)+a03(i,j)+a05(i,j)+a08(i,j) &
                    +a10(i,j)+a12(i,j)+a14(i,j)+a17(i,j)+a19(i,j)+cte1
 !
-              write(52,1004) u/den, w/den, 0.0
-!              write(6,*) i,j, u, w,den
+              write(52,1004) u/den, w/den, zerol
+              write(6,*) i,j, u, w,den
            end do
         end do
 !
-        write(52,'(A21)')'SCALARS u double'
+        write(52,'(A21)')'SCALARS u float'
         write(52,'(A20)')'LOOKUP_TABLE default'
         do j = 1,m
            do i = 1,l
