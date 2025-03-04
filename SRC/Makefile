@@ -230,6 +230,7 @@ OBJ2 = check_case.o \
        vtk_ff.binary.o \
        vtk_om.o \
        vtk_om.binary.o \
+       gnuplot.vect.o \
        varm.o \
        w.obs.o \
        r.obs.o \

@@ -45,7 +45,8 @@
 # else           
            call vtk_xy_bin(itime)
            call vtk_om_bin(itime)
-           call vtk_visc_bin(itime)
+           call gnu_vect(itime)
+!           call vtk_visc_bin(itime)
 # endif           
 !
 ! stop timing
