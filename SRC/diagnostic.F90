@@ -45,7 +45,7 @@
 # else           
            call vtk_xy_bin(itime)
            call vtk_om_bin(itime)
-           call gnu_vect(itime)
+!           call gnu_vect(itime)
 !           call vtk_visc_bin(itime)
 # endif           
 !
@@ -73,6 +73,7 @@
            call varm(itime)
            call prof_i(itime,m/2)
            call prof_j(itime,l/2)
+           call gnu_vect(itime)
 !
 ! global probe:  Set value for VonKarman streets check with OF
 !           call probe(itime,(32*l/50),(m/2))
