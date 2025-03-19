@@ -57,17 +57,17 @@
         write(55,'(A11,I10,A1,I10,A1,I10)') &
                               'DIMENSIONS ',l-2,' ',m-2,' ',1
 !
-        write(55,'(A14,I10,A7)')'X_COORDINATES ',l-2,' double'
+        write(55,'(A14,I10,A7)')'X_COORDINATES ',l-2,' float'
         do i = 2,l-1
            write(55, *) i + offset(1)
         enddo
 !
-        write(55,'(A14,I10,A7)')'Y_COORDINATES ',m-2,' double'
+        write(55,'(A14,I10,A7)')'Y_COORDINATES ',m-2,' float'
         do j = 2,m-1
            write(55, *) j + offset(2)
         enddo
 !
-        write(55,'(A14,I10,A7)')'Z_COORDINATES ',1,' double'
+        write(55,'(A14,I10,A7)')'Z_COORDINATES ',1,' float'
         write(55, *) 0
 !
         write(55,'(A10,I10)')'POINT_DATA ',(l-2)*(m-2)

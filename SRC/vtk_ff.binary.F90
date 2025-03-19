@@ -9,7 +9,7 @@
 !       vtk_ff_bin
 !     DESCRIPTION
 !       Graphic subroutine:
-!       write 2D binary output for VTK with velocity + pressure field
+!       write 2D binary output for VTK with force field 
 !       write on unit 52 (vtk_ff.xxxxxxx.dat) where 
 !                                  xxxxxxx is the timestep
 !       the file is closed at the end of the subroutine
@@ -117,7 +117,6 @@
         end do
         close(52)
 !
-!  w (scalar)
         open(52,file=file_name,status='old', position='append')
         write(52,'(A21)')'SCALARS forceX float'
         write(52,'(A20)')'LOOKUP_TABLE default'

@@ -62,6 +62,7 @@
 !
 ! ----------------------------------------------
 ! front, outflow  (x = l)
+!        write(6,*) "Loop 1"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -112,6 +113,7 @@
 !
 ! ----------------------------------------------
 ! rear, inflow (x=0, parabolic profile)
+!        write(6,*) "Loop 2"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -162,6 +164,7 @@
 ! ----------------------------------------------
 ! left (y = 0)  
 ! right (y = m) 
+!        write(6,*) "Loop 3"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
@@ -201,6 +204,7 @@
 ! ----------------------------------------------
 ! step  
 ! left, noslip  (y = m/4)
+!        write(6,*) "Loop 4"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -233,10 +237,11 @@
 !
 ! ----------------------------------------------
 ! rear, noslip  (x = l/4)
+!        write(6,*) "Loop 5"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do j=0,stepy
+        do j=1,stepy
 #elif OPENACC
 #ifdef KERNELS
 !$acc kernels
@@ -245,9 +250,9 @@
 !$acc parallel
 !$acc loop independent
 #endif
-        do j=0,stepy
+        do j=1,stepy
 #else
-        do concurrent (j=0:stepy)
+        do concurrent (j=1:stepy)
 #endif
            a03(stepx-1,j-1) = a10(stepx,j)
            a01(stepx-1,j+1) = a12(stepx,j)
@@ -263,6 +268,7 @@
 #endif
 #endif
 !
+!        write(6,*) "Fine Loop"
 ! ----------------------------------------------
 ! stop timing
         call time(tcountA1)
