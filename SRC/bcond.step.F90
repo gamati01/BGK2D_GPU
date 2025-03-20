@@ -62,7 +62,6 @@
 !
 ! ----------------------------------------------
 ! front, outflow  (x = l)
-!        write(6,*) "Loop 1"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -113,7 +112,6 @@
 !
 ! ----------------------------------------------
 ! rear, inflow (x=0, parabolic profile)
-!        write(6,*) "Loop 2"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -164,11 +162,10 @@
 ! ----------------------------------------------
 ! left (y = 0)  
 ! right (y = m) 
-!        write(6,*) "Loop 3"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd 
-        do i=0,l+1
+        do i=1,l+1
 #elif OPENACC
 #ifdef KERNELS
 !$acc kernels
@@ -177,9 +174,9 @@
 !$acc parallel
 !$acc loop independent
 #endif
-        do i=0,l+1
+        do i=1,l
 #else
-        do concurrent (i=0:l+1)
+        do concurrent (i=1:l)
 #endif
 ! left, noslip  (y = 0)  
            a08(i  ,0)  = a17(i,1)
@@ -204,11 +201,10 @@
 ! ----------------------------------------------
 ! step  
 ! left, noslip  (y = m/4)
-!        write(6,*) "Loop 4"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
-        do i=0,stepx
+        do i=1,stepx
 #elif OPENACC
 #ifdef KERNELS
 !$acc kernels
@@ -217,9 +213,9 @@
 !$acc parallel
 !$acc loop independent
 #endif
-        do i=0,stepx
+        do i=1,stepx
 #else
-        do concurrent (i=0:stepx)
+        do concurrent (i=1:stepx)
 #endif
            a08(i  ,stepy-1)  = a17(i,stepy)
            a12(i+1,stepy-1)  = a01(i,stepy)
@@ -237,7 +233,6 @@
 !
 ! ----------------------------------------------
 ! rear, noslip  (x = l/4)
-!        write(6,*) "Loop 5"
 ! ----------------------------------------------
 #ifdef OFFLOAD
 !$OMP target teams distribute parallel do simd
@@ -268,7 +263,6 @@
 #endif
 #endif
 !
-!        write(6,*) "Fine Loop"
 ! ----------------------------------------------
 ! stop timing
         call time(tcountA1)

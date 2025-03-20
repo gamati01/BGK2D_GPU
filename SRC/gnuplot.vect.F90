@@ -24,6 +24,8 @@
 !       integer variables used: 
 !       max time allowed  99'999'999
 !       single precision only, to saving space..
+!     BUGS
+!       itmust be activated onlt if there's an obstacle
 !
 !     *****
 !=======================================================================
@@ -43,6 +45,8 @@
         real(sp) :: force01,force03,force05,force08
         real(sp) :: force10,force12,force14,force17
         real(sp), parameter :: zerol=0.0
+!
+#ifdef OBSTACLE
 !
         file_name = 'gnu.xxxxxxxx.vtk'
 !
@@ -100,11 +104,16 @@
         write(16,*) "I/O: force (gnuplot,ASCII) done"
         write(6,*)  "I/O: force (gnuplot,ASCII) done"
 !
-!#ifdef DEBUG_1
+#else
+        write(6,*)  "WARNINIG: OBSTACLE preproc flag not activated"
+        write(16,*)  "WARNINIG: OBSTACLE preproc flag not activated"
+#endif
+#
+#ifdef DEBUG_1
         if(myrank == 0) then
            write(6,*) "DEBUG1: Exiting from sub. gnu_vect"
         endif
-!#endif
+#endif
 !
 4000    format(i8.8)
 !
