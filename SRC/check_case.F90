@@ -59,8 +59,18 @@
 #endif
 !
 #ifdef OBSTACLE
-        write(6 ,*)  "INFO: The test case has an obstacle in the flow"
-        write(16,*)  "INFO: The test case has an obstacle in the flow"
+        write(6 ,*)  "INFO: The test case has obstacle in the flow"
+        write(16,*)  "INFO: The test case has obstacle in the flow"
+#ifdef SQUARE
+        write(6 ,*)  "INFO: the obstacle is a square"
+        write(16,*)  "INFO: the obstacle is a square"
+#elif HALF_CIRCLE
+        write(6 ,*)  "INFO: the obstacle is an half-cylinder"
+        write(16,*)  "INFO: the obstacle is an half-cylinder"
+#else
+        write(6 ,*)  "INFO: the obstacle is an cylinder"
+        write(16,*)  "INFO: the obstacle is an cylinder"
+#endif
 #endif
 !
 #ifdef NOSHIFT

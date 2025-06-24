@@ -118,12 +118,12 @@
       time_loop = real(countE1-countE0)/(count_rate)
       time_loop1 = tcountE1-tcountE0
 !
-!     final diagnostic (for check)
+!     final diagnostic (just for further check)
       call diagno(itime-1)
       call varm(itime-1)
       call prof_i(itime-1,m/2)
       call prof_j(itime-1,l/2)
-      call vtk_ff_bin(itime-1)
+!      call vtk_ff_bin(itime-1)
 !
 #ifdef OFFLOAD
 !$omp end target data

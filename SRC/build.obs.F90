@@ -78,6 +78,41 @@
             enddo
          endif
       enddo
+#elif HALF_CIRCLE
+      write( 6,*) "INFO: creating obstacle (half-cylinder)"
+      write(16,*) "INFO: creating obstacle (half-cylinder)"
+            icoord = 2*l/5
+      jcoord = m/2
+!
+      write( 6,*) "INFO: Cyl radius    -->", radius, radius/m
+      write( 6,*) "INFO: Cyl icoord    -->", icoord, icoord/l
+      write( 6,*) "INFO: Cyl jcoord    -->", jcoord, jcoord/m
+!
+      R = radius*uno
+      R2a = (R-2)*(R-2)   ! lower radius
+      R2b = (R+2)*(R+2)   ! upper radius
+!
+      do j = m/2, m
+         do i = 1, l
+!
+            d2 = (icoord-i)*(icoord-i)  &
+                +(jcoord-j)*(jcoord-j)
+!
+            if((d2.gt.R2a).and.(d2.lt.R2b)) then
+!
+                obs(i,j) = 1
+                nobs = nobs + 1
+!
+                imin = min(imin,i)
+                jmin = min(jmin,j)
+!
+                imax = max(imax,i)
+                jmax = max(jmax,j)
+!
+             endif
+         end do
+      end do
+!
 #elif POROUS
 ! creating porous 
       write( 6,*) "INFO: creating obstacle (porous)" 
