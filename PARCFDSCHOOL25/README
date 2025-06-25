@@ -1,0 +1,31 @@
+
+
+* to load
+module load nvhpc
+
+* to compile with CIRCLE
+make openacc NVIDIA=1 SINGLE=1 FUSED=1 VKS=1
+
+
+* to compile with SQUARE
+make openacc NVIDIA=1 SINGLE=1 FUSED=1 VKS=1 FIX=-DSQUARE
+
+
+* to compile with HALF CIRCLE
+make openacc NVIDIA=1 SINGLE=1 FUSED=1 VKS=1 FIX=-DHALF_CIRCLE
+
+
+bgk.input		--> Re=128 (32*0.1/0.05)
+bgk.large.input		--> Re=128 (64*0.1/0.1)
+bgk.huge.input		--> Re=128 (64*0.1/0.1)
+
+
+To do
+
+Re=128, 96, 64, 48, 32
+size=normal,large,huge
+geometry=circle, square, half
+parallelization=openacc,openmp offloat, do concurrent
+precision=single, mixed, double
+
+test case: 5*3*3*3*3 = 405
