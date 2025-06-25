@@ -98,7 +98,8 @@
             d2 = (icoord-i)*(icoord-i)  &
                 +(jcoord-j)*(jcoord-j)
 !
-            if((d2.gt.R2a).and.(d2.lt.R2b)) then
+!            if((d2.gt.R2a).and.(d2.lt.R2b)) then
+            if((d2.lt.R2b)) then
 !
                 obs(i,j) = 1
                 nobs = nobs + 1

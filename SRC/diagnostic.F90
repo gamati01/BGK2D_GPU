@@ -82,7 +82,7 @@
 #endif
 !
 !#ifdef LES
-           call probe_visc(itime,l/2,m/2)
+!           call probe_visc(itime,l/2,m/2)
 !#endif
 !           call flush(61)            ! flush prof_i.dat
 !           call flush(68)            ! flush probe.dat
