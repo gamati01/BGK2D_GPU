@@ -29,3 +29,20 @@ parallelization=openacc,openmp offloat, do concurrent
 precision=single, mixed, double
 
 test case: 5*3*3*3*3 = 405
+
+
+Numero di Reynolds (Re)	Coefficiente di Drag
+CIRCLE
+20	~2.0
+40	~1.5
+60	~1.4
+100	~1.2
+150	~1.1
+
+
+SQUARE
+20	~2.2
+40	~2.1
+60	~2.0
+100	~1.9
+150	~1.8
