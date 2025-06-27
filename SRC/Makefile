@@ -49,7 +49,8 @@ endif
 #
 ifdef NVIDIA
  OFFLOAD = -mp=gpu -DOFFLOAD  -Minfo=accel 
- OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc80,managed
+# OPENACC = -Minfo=acc -O2 -acc -DOPENACC -ta=tesla:cc90,managed
+ OPENACC = -Minfo=acc -O2 -acc -DOPENACC -gpu=cc90 -gpu=mem:managed
  MULTI = -stdpar=multicore -Minfo=all -DMULTICORE
  DC  = -stdpar=gpu -DDOCONCURRENT -Minfo=all
  SCC = nvc
