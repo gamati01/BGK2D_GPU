@@ -160,8 +160,8 @@
 #else
 !$acc end parallel
 #endif
-
 !
+#endif
 ! ----------------------------------------------
 ! stop timing
         call time(tcountA1)
@@ -169,7 +169,6 @@
         time_bc = time_bc + real(countA1-countA0)/(count_rate)
         time_bc1 = time_bc1 + (tcountA1-tcountA0)
 !
-#endif
 !
 #ifdef DEBUG_2
         if(myrank == 0) then

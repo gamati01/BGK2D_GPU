@@ -38,8 +38,10 @@
         real(mykind) :: force10, force12, force14, force17
 !
 ! cylinder center
-        icoord = int(2.0*l/5.0)
-        jcoord = int(m/2.0)
+        icoord = 2*l/5
+        jcoord = m/2
+!        icoord = int(2.0*l/5.0)
+!        jcoord = int(m/2.0)
 ! 
 ! border 
         delta = 3
@@ -95,7 +97,7 @@
            enddo
         enddo
 
-        norm = -uno/(u_inflow*u_inflow*radius)
+        norm = uno/(u_inflow*u_inflow*radius)
         write(66,*) itime, forceX*norm, forceY*norm
 !
         call flush(66)            ! flush for drag/lift
