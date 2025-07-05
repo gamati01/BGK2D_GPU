@@ -15,7 +15,8 @@
 !
 !     NOTES
 !       drag/lift on file drag.lift (unit=66)
-!       verify that the obstacle is inside the box       
+!       * verify that the obstacle is inside the box       
+!       * check che correctness of the Drag coefficient (sign)
 !
 !     *****
 !=====================================================================
@@ -94,7 +95,7 @@
            enddo
         enddo
 
-        norm = uno/(u_inflow*u_inflow*radius)
+        norm = -uno/(u_inflow*u_inflow*radius)
         write(66,*) itime, forceX*norm, forceY*norm
 !
         call flush(66)            ! flush for drag/lift
