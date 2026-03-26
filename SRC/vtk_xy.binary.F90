@@ -44,8 +44,6 @@
 !
         file_name = 'tec_xy.xxxxxxxx.vtk'
 !
-        myrank = 0
-!
 #ifdef NOSHIFT
        cte1 = zero
 #else
@@ -159,9 +157,7 @@
         write(6,*)  "I/O: plane xy (vtk,binary) done"
 !
 #ifdef DEBUG_1
-        if(myrank == 0) then
-           write(6,*) "DEBUG1: Exiting from sub. vtk_xy_bin"
-        endif
+write(6,*) "DEBUG1: Exiting from sub. vtk_xy_bin"
 #endif
 !
 4000    format(i8.8)
