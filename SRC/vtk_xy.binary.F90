@@ -22,7 +22,7 @@
 !       
 !     NOTES
 !       character used:  file_name (19)
-!       integer variables used: itime,i,k, x_scale, z_scale
+!       integer variables used: itime,i,j
 !       max time allowed  99'999'999
 !       single precision only, to saving space..
 !
