@@ -2,7 +2,6 @@
 !     ****** LBE/vtk_xy_bin
 !
 !     COPYRIGHT
-!       (c) 2009 by CASPUR/G.Amati
 !       (c) 2000-2011 by CASPUR/G.Amati
 !       (c) 2013-20?? by CINECA/G.Amati
 !     NAME
