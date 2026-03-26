@@ -110,17 +110,17 @@
            d_right=(a01(i+1,j)+a03(i+1,j)+a05(i+1,j)+a08(i+1,j) &
                    +a10(i+1,j)+a12(i+1,j)+a14(i+1,j)+a17(i+1,j)+a19(i+1,j)) + cte1
 !
-            up1 =  a01(i,j+1)+a03(i,j+1)+a05(i,j+1) &
-                  -a10(i,j+1)-a12(i,j+1)-a14(i,j+1)/d_up
+            up1 =  (a01(i,j+1)+a03(i,j+1)+a05(i,j+1) &
+                   -a10(i,j+1)-a12(i,j+1)-a14(i,j+1))/d_up
 !
-          down1 = a01(i,j-1)+a03(i,j-1)+a05(i,j-1) &
-                 -a10(i,j-1)-a12(i,j-1)-a14(i,j-1)/d_down
+          down1 =  (a01(i,j-1)+a03(i,j-1)+a05(i,j-1) &
+                   -a10(i,j-1)-a12(i,j-1)-a14(i,j-1))/d_down
 !
-          left1 = a03(i-1,j)+a08(i-1,j)+a12(i-1,j) &
-                 -a01(i-1,j)-a10(i-1,j)-a17(i-1,j)/d_left
+          left1 =  (a03(i-1,j)+a08(i-1,j)+a12(i-1,j) &
+                   -a01(i-1,j)-a10(i-1,j)-a17(i-1,j))/d_left
 !
-          right1= a03(i+1,j)+a08(i+1,j)+a12(i+1,j) &
-                 -a01(i+1,j)-a10(i+1,j)-a17(i+1,j)/d_right
+          right1=  (a03(i+1,j)+a08(i+1,j)+a12(i+1,j) &
+                   -a01(i+1,j)-a10(i+1,j)-a17(i+1,j))/d_right
 !
 ! delta_x = delta_y = 2.0
               vorticity = 0.5*(up1-down1) - 0.5*(right1-left1)  
